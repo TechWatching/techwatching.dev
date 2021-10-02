@@ -1,0 +1,48 @@
+#content p {
+    text-align: justify
+}
+
+
+img[align=left] {
+    margin-right: 0.5em;
+}
+
+img[align=right] {
+    margin-left: 0.5em;
+}
+
+.centered-img {
+    margin-top: 0.5em; 
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+figure > img {
+    margin-top: 6px; 
+    margin-bottom: 6px;
+    max-width: 100%;
+}
+
+figure.left {
+    float: left;
+    min-width: 320px;
+    width: 40%;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+figure.right {
+    float: right;
+    min-width: 320px;
+    width: 40%;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+blockquote {
+    padding: 0px 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #eee;
+}
