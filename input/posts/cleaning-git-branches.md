@@ -8,7 +8,7 @@ Tags:
   - shell
   - nushell
 ---
-When working on a git repository, I often have to manually delete old local branches that I don't use anymore. That's not a huge waste of time but still that's something I have to do quite often so I decided to automate that.
+When working on a git repository, I often have to manually delete old local branches that I don't use anymore. That's not a huge waste of time but still, that's something I have to do quite often so I decided to automate that.
 
 ## Why do I end up having outdated local branches on my git repositories?
 
@@ -21,7 +21,7 @@ At work I am working in a small team of developers, we host our git repositories
   - the PR triggers a pipeline that ensures the code build correctly, follow some conventions (with a Sonar analysis for instance) and that unit tests pass
   - the PR can only be completed after a code review of at least one member of the team
   
-These practices allow us to keep good quality in our code base, not to mess with our git repositories, and ensure the main branch always build.
+These practices allow us to keep good quality in our code base, not to mess with our git repositories, and ensure the main branch always builds.
 
 However, each week we are creating a lot of branches that need to be deleted as once merged we no longer need to have them. When a pull request is approved and we decide to complete it, Azure DevOps takes care of automatically merging the associated feature branch into master and deleting it from the repository. Once that's done, I can do a `git fetch --prune` on my laptop to have the feature branch removed from the remote of my local repository (by the way, I recommend you to directly set the fetch command to prune by default in your git config 👌). Nevertheless, this does not delete the local version of the feature branch thus our problem: over time if we do not think of deleting all these outdated branches, they become too many and we don't even know which branch should be kept or not.
 

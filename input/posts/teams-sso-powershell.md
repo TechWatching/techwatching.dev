@@ -11,20 +11,20 @@ If you have no interest in reading the blog post and just want the final script,
 
 ## Context
 
-Several months ago, I supervised a student project aiming at developing a Teams application for my company. The application is mainly composed of a tab where Human Resources people can see information about arrivals and departures in the company. Once the project finished and a first version of the application available, I provisioned the application infrastructure on my company Azure tenant using [Pulumi](https://www.pulumi.com/) which is a really nice infrastructure as code platform. 
+Several months ago, I supervised a student project aiming at developing a Teams application for my company. The application is mainly composed of a tab where Human Resources people can see information about arrivals and departures in the company. Once the project was finished and the first version of the application was available, I provisioned the application infrastructure on my company Azure tenant using [Pulumi](https://www.pulumi.com/) which is a nice infrastructure as code platform. 
 
-However, configuring Single Sign-On for the tab of the application did not seem possible with Pulumi as it internally uses Terraform Provider for AzureAD which at the time of writing don't have all functionalities necessary to configure this. The [documentation about SSO for Teams tab](http://aka.ms/teams-sso) currently lists all the steps necessary to configure it from the Azure Portal, however it mentions nothing about automating it, hence this blog post.
+However, configuring Single Sign-On for the tab of the application did not seem possible with Pulumi as it internally uses Terraform Provider for AzureAD which at the time of writing doesn't have all functionalities necessary to configure this. The [documentation about SSO for Teams tab](http://aka.ms/teams-sso) currently lists all the steps necessary to configure it from the Azure Portal, however, it mentions nothing about automating it, hence this blog post.
 
 ## Steps to create the PowerShell script
 
-Usually I prefer Azure CLI to PowerShell as I find easier to find commands I need, but Azure CLI doesn't have yet the necessary commands. Most of the code comes from [this script](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/blob/master/3.-Web-api-call-Microsoft-graph-for-personal-accounts/AppCreationScripts/Configure.ps1) located in a repository of the [Azure Samples GitHub organization](https://github.com/Azure-Samples). I took only what was necessary for Teams Tab SSO, adapted it to use Microsoft Graph objects / commands and added missing commands.
+Usually, I prefer Azure CLI to PowerShell as I find it easier to find commands I need, but Azure CLI doesn't have yet the necessary commands. Most of the code comes from [this script](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/blob/master/3.-Web-api-call-Microsoft-graph-for-personal-accounts/AppCreationScripts/Configure.ps1) located in a repository of the [Azure Samples GitHub organization](https://github.com/Azure-Samples). I took only what was necessary for Teams Tab SSO, adapted it to use Microsoft Graph objects/commands, and added missing commands.
 
-I am not an expert in PowerShell so there might me things to improve in the final script, but I hope the following steps will help you to understand how to configure SSO for your Teams Tab.
+I am not an expert in PowerShell so there might be things to improve in the final script, but I hope the following steps will help you to understand how to configure SSO for your Teams Tab.
 
 ### Interacting with Azure Active Directory
 
 PowerShell has a module called [AzureAd](https://docs.microsoft.com/en-us/powershell/module/azuread/?view=azureadps-2.0) that allow us to interact with Azure Active Directory.
-First step is to install this module if not already installed, import it and authenticate to Azure AD in order to be able to use Active Directory commands once authenticated.
+The first step is to install this module if not already installed, import it and authenticate to Azure AD to be able to use Active Directory commands once authenticated.
 
 ```PowerShell
 if ($null -eq (Get-Module -ListAvailable -Name "AzureAD")) { 
@@ -36,7 +36,7 @@ Import-Module AzureAD
 Connect-AzureAD -TenantId $tenantId
 ```
 
-This will prompt us to login with our AD account. We will see later in the article how we can avoid that if we are using this script in an Azure Pipeline.
+This will prompt us to log in with our AD account. We will see later in the article how we can avoid that if we are using this script in an Azure Pipeline.
 
 ### Retrieving the application registration
 
@@ -69,7 +69,7 @@ Set-AzureADMSApplication -ObjectId $app.Id -IdentifierUris "api://$customDomainN
 
 ### Creating the access_as_user scope
 
-Teams Tab SSO works by making the Teams client (whether it be Teams mobile app, desktop app or web app) ask for an Azure AD token with the scope `access_as_user` of the Tab application you developed. So we need to create a scope `access_as_user` in the application.
+Teams Tab SSO works by making the Teams client (whether it be Teams mobile app, desktop app, or web app) ask for an Azure AD token with the scope `access_as_user` of the Tab application you developed. So we need to create a scope `access_as_user` in the application.
 
 ```PowerShell
 # Add all existing scopes first
@@ -112,7 +112,7 @@ function CreateScope(
 
 ### Preauthorize Teams clients.
 
-As the Teams clients will ask a token with the previously created scope, they must be authorized to have access to this permission. That is what does the following script:
+As the Teams clients will ask for a token with the previously created scope, they must be authorized to have access to this permission. That is what does the following script:
 
 ```PowerShell
 # Authorize Teams mobile/desktop client and Teams web client to access API
@@ -148,7 +148,7 @@ function CreatePreAuthorizedApplication(
 
 ### Grant user-level Graph API permissions
 
-Next step consists in specifying the permissions the application will need for the AAD endpoint: email, offline_access, openid, profile ([OpenID connect scopes](https://docs.microsoft.com/fr-fr/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes)).
+The next step consists in specifying the permissions the application will need for the AAD endpoint: email, offline_access, openid, profile ([OpenID connect scopes](https://docs.microsoft.com/fr-fr/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes)).
 
 ```PowerShell
 # Add API permissions needed
@@ -160,7 +160,7 @@ $requiredResourcesAccess.Add($requiredPermissions)
 Set-AzureADMSApplication -ObjectId $app.Id -RequiredResourceAccess $requiredPermissions
 ```
 
-This codes calls a PowerShell function `GetRequiredPermissions` that add the delegated or application permissions specified in parameter. Here we only ask for delegated permissions of Microsoft Graph needed to retrieve an OpenId Connect token but this function is generic and could be used to require scopes or roles of other APIs.
+This code calls a PowerShell function `GetRequiredPermissions` that add the delegated or application permissions specified in parameter. Here we only ask for delegated permissions of Microsoft Graph needed to retrieve an OpenId Connect token but this function is generic and could be used to require scopes or roles of other APIs.
 
 ```PowerShell
 #
@@ -247,7 +247,7 @@ The task of the Azure Pipeline will look like this:
     azurePowerShellVersion: 'LatestVersion'
 ```
 
-The advantage is that this task will connect to Azure with an Azure Service Connection that has enough rights to execute the Azure AD commands in this script. However it involves passing to the `Connect-AzureAD` command the access token of the Service Principal associated to the Azure Service Connection. This can easily be done as I found out in [a stackoverflow post](https://stackoverflow.com/questions/60185213/automate-connect-azuread-using-powershell-in-azure-devops).
+The advantage is that this task will connect to Azure with an Azure Service Connection that has enough rights to execute the Azure AD commands in this script. However, it involves passing to the `Connect-AzureAD` command the access token of the Service Principal associated with the Azure Service Connection. This can easily be done as I found out in [a StackOverflow post](https://stackoverflow.com/questions/60185213/automate-connect-azuread-using-powershell-in-azure-devops).
 
 ```PowerShell
 $context = [Microsoft.Azure.Commands.Common.Authentication.Abstractions.AzureRmProfileProvider]::Instance.Profile.DefaultContext

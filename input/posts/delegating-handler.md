@@ -13,7 +13,7 @@ However, it is not always the case and knowing how to implement that using HttpC
 
 # Context
 
-Let's imagine we have a very simple API which contains the following routes :
+Let's imagine we have a very simple API that contains the following routes :
 
 <img src="/posts/images/delegatinghandler_api_1.png" class="img-fluid centered-img">
 
@@ -56,7 +56,7 @@ We could also have used a class as a singleton to store the token and its expira
 
 Handling the token retrieval in a separate service is nice but that does not solve the issue of duplicated code. Even if the `RetrieveToken` method is now part of `UserApiAuthenticationService`, each method of `UserService` will still call `RetrieveToken`. Moreover setting the token on each request should not be a concern of `UserService`.
 
-That's where come *delegating handlers*. A delegating handler is quite similar to an ASP.NET Core middleware but instead of applying some processing on an incoming request and its response, it does so on an outgoing request and its response. In concrete terms, you use a delegating handler to apply something (logging, authentication, caching ...) to http requests you make to an API using an `HttpClient`. To learn more about *delegating handlers* there is a nice [article](https://www.stevejgordon.co.uk/httpclientfactory-aspnetcore-outgoing-request-middleware-pipeline-delegatinghandlers) from Steve Gordon on the topic. 
+That's where come *delegating handlers*. A delegating handler is quite similar to an ASP.NET Core middleware but instead of applying some processing on an incoming request and its response, it does so on an outgoing request and its response. In concrete terms, you use a delegating handler to apply something (logging, authentication, caching ...) to HTTP requests you make to an API using an `HttpClient`. To learn more about *delegating handlers* there is a nice [article](https://www.stevejgordon.co.uk/httpclientfactory-aspnetcore-outgoing-request-middleware-pipeline-delegatinghandlers) from Steve Gordon on the topic. 
 
 A custom delegating handler is exactly what we need: a piece of code that all our HTTP requests from `UserService` will go through and where we will be able to set the token on the authentication header of each request. Here is the code of our custom delegating handler:
 

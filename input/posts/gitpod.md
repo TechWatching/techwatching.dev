@@ -9,10 +9,10 @@ Tags:
 ---
 The other day when I was looking for a way to automate my development environment setup, I came across [Gitpod](https://www.gitpod.io/). Not really what I was looking for but I discovered an awesome tool for working on open source projects.
 
-Gitpod is an online service which aims at providing ready-to-code development environments in the browser for GitHub projects.
+Gitpod is an online service that aims at providing ready-to-code development environments in the browser for GitHub projects.
 
 Let's see that with one project I was contributing to a few months ago: the [Voxxrin Companion mobile app](https://github.com/voxxrin/voxxrin-companion-ui).
-First let's go to the GitHub's page of the project, and prefix the URL of the page with `gitpod.io/#` which give us the following URL: http://gitpod.io/#https://github.com/voxxrin/voxxrin-companion-ui.
+First, let's go to the project GitHub's page, and prefix the URL of the page with `gitpod.io/#` which gives us the following URL: http://gitpod.io/#https://github.com/voxxrin/voxxrin-companion-ui.
 
 As I am already logged in to the  Gitpod account I created (free for open source developers with a quota of 100 hours/month) Gitpod will start creating a development environment for me. That means pulling a Docker image with everything I need to code (for specific needs, you can also specify a custom docker image to use) and initializing a workspace for me with the code of the project.
 
@@ -21,7 +21,7 @@ Less than 30s and here we are :
 
 I have now a complete development environment running in the cloud with the code of my project already cloned. If the editor looks familiar to you it's because [Theia](https://www.theia-ide.org/) (the IDE's name) is very similar to [VS Code but in the cloud](http://typefox.io/theia-vs-code-in-the-cloud) (it reuses many parts from VS Code). This is great because it means I can use an IDE I am already familiar with, and even use vs code extensions (provided you have the .vsix files to install them).
 
-So let's run my project which is an ionic application. Node is already installed so I just have to type `npm install` and then `npm run-script serve` in the terminal opened in the editor exactly as if I was working on my local VS Code. My application is configured to be launched on port `8100` so Gitpod will suggest me to expose this port in order for me to be able to view my application in my browser.
+So let's run my project which is an ionic application. Node is already installed so I just have to type `npm install` and then `npm run-script serve` in the terminal opened in the editor exactly as if I was working on my local VS Code. My application is configured to be launched on port `8100` so Gitpod will suggest I expose this port for me to be able to view my application in my browser.
 
 <img src="/posts/images/gitpod_voxxrin_2.png" class="img-fluid centered-img">
 <img src="/posts/images/gitpod_voxxrin_3.png" class="img-fluid centered-img">
@@ -39,11 +39,11 @@ When I have finished, I can just stop the workspace and that's it.
 
 I created the workspace for my project as-is but lots of things can be configured by having a [`gitpod.yml`](https://www.gitpod.io/docs/41_config_gitpod_file/) file in the repository of your project 
 
-With Gitpod you just need a browser and an internet connection to be able to work on any of your GitHub project from anywhere. When you work on multiple open source projects the nice thing is that it allows you to easily switch from one to another. I wonder if the Browser-Based Web Companion [**Visual Studio Online**](https://devblogs.microsoft.com/visualstudio/intelligent-productivity-and-collaboration-from-anywhere/) announced by Microsoft at Build 2019 will offer the same capabilities and how it will differ from Gitpod.
+With Gitpod you just need a browser and an internet connection to be able to work on any of your GitHub projects from anywhere. When you work on multiple open source projects the nice thing is that it allows you to easily switch from one to another. I wonder if the Browser-Based Web Companion [**Visual Studio Online**](https://devblogs.microsoft.com/visualstudio/intelligent-productivity-and-collaboration-from-anywhere/) announced by Microsoft at Build 2019 will offer the same capabilities and how it will differ from Gitpod.
 
-This was just a quick introduction to Gitpod but there is far more things you can do with it:
-- running scripts on start-up of your environment  (an `npm install` for instance)
-- continuously auto building your repository
+This was just a quick introduction to Gitpod but there are far more things you can do with it:
+- running scripts on the start-up of your environment  (an `npm install` for instance)
+- continuously auto-building your repository
 - install a database
 - use it for private projects (not free, there are multiple pricings available)
 - share an environment with other users

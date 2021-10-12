@@ -15,11 +15,11 @@ In `Microsoft.Data.SqlClient` v3.0.0, a new authentication mode `Active Director
 
 >🗨 If you do not have heard about `Microsoft.Data.SqlClient`, it is the new data provider for Microsoft SQL Server and Azure SQL Database which supports both .NET Framework and .NET Core and replace the old `System.Data.SqlClient` components.
 
-But first let's talk about how we used to do that before.
+But first, let's talk about how we used to do that before.
 
 # The traditional way: using a secret connection string
 
-The `tradidional way` to connect to an Azure SQL database from an application in C# is to provide to the `SqlConnection` constructor a connection string that contains a username and a password. The corresponding C# code is quite simple:
+The `traditional way` to connect to an Azure SQL database from an application in C# is to provide to the `SqlConnection` constructor a connection string that contains a username and a password. The corresponding C# code is quite simple:
 
 ```csharp
 var connectionString = "Server=server-testingmsi6499.database.windows.net; Database=database-testingmsi6499;User ID=globalSqlAdmin;Password=MySecretPassword;");
@@ -27,13 +27,13 @@ var connectionString = "Server=server-testingmsi6499.database.windows.net; Datab
 using (var sqlConnection = new SqlConnection(connectionString));
 await connection.OpenAsync();
 ```
-In that case the connection string is a secret we must secure and not just by putting it in some configuration location everyone can have access to, but by storing it in a secured place like `Azure Key Vault`.
+In that case, the connection string is a secret we must secure and not just by putting it in some configuration location everyone can have access to, but by storing it in a secured place like `Azure Key Vault`.
 
-However, even if you secure it appropriately, using a connection string with username/password in it has some disadvantages:
+However, even if you secure it appropriately, using a connection string with a username/password in it has some disadvantages:
 - you need to handle who has access to it (so who has access to the key vault)
 - every application or every developer could potentially use the same connection string so auditing is not very convenient (for instance identifying in the database logs which user has run a specific transaction)
-- you only control who has access to the connection string in the key vault, not what people do with it (share it by email, store it on their local computer, ...) so not who can really access the database
-- you need to handle the rotation of the secret, in other words change the username/password regularly (because you can really revoke the access to someone to the database, if he had access to the connection string at some point in time it is not a secret for him anymore)
+- you only control who has access to the connection string in the key vault, not what people do with it (share it by email, store it on their local computer, ...) so not who can access the database
+- you need to handle the rotation of the secret, in other words, change the username/password regularly (because you can revoke the access to someone to the database, if he had access to the connection string at some point in time it is not a secret for him anymore)
 
 For all these reasons, using a secret connection string to connect to an Azure SQL Database is not the right approach.
   
@@ -55,13 +55,13 @@ using var connection = new SqlConnection("Server=server-testingmsi6499.database.
 await connection.OpenAsync();
 ```
 
-The code is using the [Azure Identity library](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme) which as the documentation says "*provides Azure Active Directory token authentication support across the Azure SDK*". It is the recommended way to get an Azure token although you may have seen code that uses another library [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication) to do the same thing. The class `DefaultAzureCredential` from Azure Identity library combines multiple authentication mechanisms (like Managed Identities, Visual Studio, Azure CLI ...) that will be tried in order to retrieve a token so it is practical class which can handle most of the scenarios.   
+The code is using the [Azure Identity library](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme) which as the documentation says "*provides Azure Active Directory token authentication support across the Azure SDK*". It is the recommended way to get an Azure token although you may have seen code that uses another library [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication) to do the same thing. The class `DefaultAzureCredential` from Azure Identity library combines multiple authentication mechanisms (like Managed Identities, Visual Studio, Azure CLI ...) that will be tried in order to retrieve a token so it is a practical class that can handle most of the scenarios.   
 
-Therefore, provided that you have granted access to your database to the user you are using locally (in Visual Studio, in vs code or in Azure CLI) and to the managed identity of your application in Azure (App Service or Azure Function for instance) the same code will work both locally and in Azure.
+Therefore, provided that you have granted access to your database to the user you are using locally (in Visual Studio, in vs code, or in Azure CLI) and to the managed identity of your application in Azure (App Service or Azure Function for instance) the same code will work both locally and in Azure.
 
 # Here comes `Active Directory Default` authentication mode
 
-We have seen that using Azure Active Directory Authentication was a better solution than using a connection string with secrets in it to connect to a database. However it involves manually retrieving an Azure AD token which makes the code a bit more complex to read. That is exactly why `Active Directory Default` new authentication mode was introduced in `Microsoft.Data.SqlClient` v3.0.0. Under the hood, `SqlClient` does the exact same thing that we were showing previously so we don't have to do it ourselves: just specifying the authentication mode to `Active Directory Default` in the connection string is enough to make it work.
+We have seen that using Azure Active Directory Authentication was a better solution than using a connection string with secrets in it to connect to a database. However, it involves manually retrieving an Azure AD token which makes the code a bit more complex to read. That is exactly why `Active Directory Default` new authentication mode was introduced in `Microsoft.Data.SqlClient` v3.0.0. Under the hood, `SqlClient` does the same thing that we were showing previously so we don't have to do it ourselves: just specifying the authentication mode to `Active Directory Default` in the connection string is enough to make it work.
 
 ```csharp
 using var connection = new SqlConnection("Server=server-testingmsi6499.database.windows.net; Authentication=Active Directory Default; Database=database-testingmsi6499;");
@@ -72,10 +72,10 @@ await connection.OpenAsync();
 
 # A complete example
 
-Enough theory, what if you want to quickly test this by yourself ?
+Enough theory, what if you want to quickly test this by yourself?
 
 ## A bit of Azure CLI to initialize the database
-I took an [Azure CLI sample script](https://docs.microsoft.com/en-us/azure/azure-sql/database/scripts/create-and-configure-database-cli) from Microsoft and modify it a little to configure a database with all what is necessary to use Azure Active Directory to connect my user to it.
+I took an [Azure CLI sample script](https://docs.microsoft.com/en-us/azure/azure-sql/database/scripts/create-and-configure-database-cli) from Microsoft and modify it a little to configure a database with all that is necessary to use Azure Active Directory to connect my user to it.
 
 ```bash
 #!/bin/bash
@@ -90,12 +90,12 @@ login="globalSqlAdmin"
 password="P@ssw0rdToChange!" # to change to have a more secured password
 
 # Retrieve your public IP.
-# Replace by your local machine IP if your are executing this script from cloud shell.
+# Replace by your local machine IP if you are executing this script from cloud shell.
 startIP=$(dig +short myip.opendns.com @resolver1.opendns.com)
 endIP=$startIP
 
-# Retrieve your current logged in user to be used as sql server admin. 
-# Change with another user id if you want another user to be admin.
+# Retrieve your current logged-in user to be used as SQL server admin. 
+# Change with another user id if you want another user to be an admin.
 azureaduser=$(az ad signed-in-user show --query "objectId" -o tsv)
 
 echo "Creating $resourceGroup..."
@@ -116,22 +116,22 @@ az sql server ad-admin create --resource-group $resourceGroup --server-name $ser
 echo "Database connection string to use: \"Server=$server.database.windows.net; Authentication=Active Directory Default; Database=$database;\""
 ```
 
-This script should be self explanatory if you have already played a little with Azure CLI. Basically, what it does is:
-- create an azure sql server
-- configure the server firewall to allow you to query it from your local IP address (if you are executing the script from cloud shell, replace `startIP` variable by your local machine IP)
-- create an azure sql database with already tables and data in it from the sample AdventureWorksLT
+This script should be self-explanatory if you have already played a little with Azure CLI. Basically, what it does is:
+- create an azure SQL server
+- configure the server firewall to allow you to query it from your local IP address (if you are executing the script from cloud shell, replace `startIP` variable with your local machine IP)
+- create an azure SQL database with already tables and data in it from the sample AdventureWorksLT
 - set you logged in azure ad user as the AD administrator of the database
 - write in the console the connection string to use in your C# code to access the database 
 
-If you want to customize something do not hesitate to modify the scripts and especially variables like the resources location, the sql server user / password or the name of the resources. This is a bash script but if you want to execute it in PowerShell, all the Azure CLI commands should work fine, you just have to change the variables declarations as the syntax is different in PowerShell. If you don't have Azure CLI installed on your laptop you can use Azure Cloud Shell to execute this script.
+If you want to customize something do not hesitate to modify the scripts and especially variables like the resources location, the SQL server user/password, or the name of the resources. This is a bash script but if you want to execute it in PowerShell, all the Azure CLI commands should work fine, you just have to change the variables declarations as the syntax is different in PowerShell. If you don't have Azure CLI installed on your laptop you can use Azure Cloud Shell to execute this script.
 
->🗨 If you are new to Azure CLI, you can read my article [Good bye Azure Portal, Welcome Azure CLI](https://www.techwatching.dev/posts/welcome-azure-cli).
+>🗨 If you are new to Azure CLI, you can read my article [Goodbye Azure Portal, Welcome Azure CLI](https://www.techwatching.dev/posts/welcome-azure-cli).
 
 ## Querying the database from a minima API in C#
 
-Usually I like to create a console application (with the [worker service template](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-5.0&tabs=visual-studio#worker-service-template) for instance) for my samples, yet this time I decided to try the new minimal APIs from .NET 6 (currently in preview).
+Usually, I like to create a console application (with the [worker service template](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-5.0&tabs=visual-studio#worker-service-template) for instance) for my samples, yet this time I decided to try the new minimal APIs from .NET 6 (currently in preview).
 
-Minimal APIs would probably deserve an entire blog post, but let's just say a minimal API in .NET 6 allow you to build a small HTTP API with less ceremony that a classic controller-based API. As all the code can be written in a `Program.cs` file, so it's very convenient when you want to quickly build a web application without too much complexity (especially if you are new to ASP.NET Core) or if you are developing a small microservice.
+Minimal APIs would probably deserve an entire blog post, but let's just say a minimal API in .NET 6 allow you to build a small HTTP API with less ceremony than a classic controller-based API. As all the code can be written in a `Program.cs` file, so it's very convenient when you want to quickly build a web application without too much complexity (especially if you are new to ASP.NET Core) or if you are developing a small microservice.
 
 ```csharp
 using Dapper;
@@ -159,13 +159,13 @@ public record Product(int ProductID, string Name);
 
 As you can see this code is only 26 lines long:
 - there is only one route, that returns the Product identifiers and names from the table `[SalesLT].[Product]` of the database created with the previous Azure CLI script
-- the SQL query is done by using the micro ORM [Dapper](https://github.com/DapperLib/Dapper) which really simplifies the boilerplate code to query an sql database while keeping performance
+- the SQL query is done by using the micro ORM [Dapper](https://github.com/DapperLib/Dapper) which simplifies the boilerplate code to query an SQL database while keeping performance
 - the result of the SQL query is mapped to a record class `Product` which is declared in one line
 - the code uses `Microsoft.Data.SqlClient` v3.0.0 with the `Active Directory Default` authentication mode
 
 <img src="/posts/images/sqlclient_minapi_1.png" class="img-fluid centered-img">
 
->🗨 To keep things simple, I am connecting to the database with the my Azure AD account which is admin of the sql server. But I could also have assigned a role with lower permissions to my account, see [here](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-connect-msi#grant-permissions-to-managed-identity) for more information on how to do that. 
+>🗨 To keep things simple, I am connecting to the database with the Azure AD account which is an admin of the SQL server. But I could also have assigned a role with lower permissions to my account, see [here](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-connect-msi#grant-permissions-to-managed-identity) for more information on how to do that. 
 # To conclude
 
 While building an application interacting with Azure we often neglect to use mechanisms like Azure AD authentication that remove the need for secrets. But as we have seen in this article some libraries like `Microsoft.Data.Sql.Client` or the Azure SDKs allow us to do that quite easily. I love how connecting to an Azure SQL Database in C# is becoming more simple and more secure at the same time.
