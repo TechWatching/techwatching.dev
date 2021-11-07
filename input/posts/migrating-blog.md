@@ -1,0 +1,159 @@
+Title: Migrating and open-sourcing my blog
+Lead: What changed on my blog - Statiq, GitHub, giscus, and much more.
+Published: 07/11/2021
+Image: /images/migration_1.jpg
+Tags:
+  - Statiq
+  - .NET
+  - GitHub
+  - GitHub Actions
+  - open source
+---
+Today I talk to you about the recent changes I made to my blog when I migrated it to [Statiq](https://statiq.dev/) and open-sourced it.
+
+# Some context
+
+I initially created my blog in March 2019 using:
+- [Wyam](https://github.com/Wyamio/Wyam) (a .NET static website generator) to generate the website
+- [Azure Repos](https://azure.microsoft.com/en-us/services/devops/repos/) to store the source code on a private git repository
+- [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) to build and deploy the website
+- [Netlify](https://www.netlify.com/) to host the website
+- [Disqus](https://disqus.com/) to allow visitors to comment on my articles
+
+A little bit more than 2 years later in October 2021, everything was still working perfectly fine and I could have let everything that way. Yet, I thought some things could be improved and I wanted to change some parts of this stack. 
+
+# Migrating from Wyam to Statiq
+
+## Why?
+
+I am convinced that static website generators have a great future and are one of the best solutions for blogs #ThisIsTheWay.
+
+Although Wyam was working fine for my blog, it has been "rebranded and rebooted as [Statiq](https://www.statiq.dev/) with a ton of improvements" (as you can read on [Wyam website](https://wyam.io/)) so it made sense to migrate to use an actively maintained tool.
+
+I could have migrated to another static website generator (there are so many of them!) but I like using one written in .NET. If I want to customize how my website is generated, I can easily modify the code as it's .NET code. So `Statiq` is a good choice for me. 
+
+>🗨 By the way, in this article when I am talking about `Statiq` I am talking about the static site generator but technically `Statiq` is more than that. It is a static generation platform that is divided into 3 parts:
+> - `Statiq Framework` ➡ a framework to build a custom static generator application 
+> - `Statiq Web` ➡ a static website generation toolkit built on top of `Statiq Framework`
+> - `Statiq Docs` ➡ a toolkit built on top of `Statiq Web` to generate a site with .NET API documentation
+> You may not know, but the .NET Foundation website is generated using `Statiq.Web`.
+
+## How?
+
+Migration was quite easy (some CSS classes to replace and some configuration to change and that was it!). Statiq has a [page](https://www.statiq.dev/web/porting-from-wyam) in its documentation to explain how to do that.
+
+The main difference is that instead of using the Wyam CLI to generate my blog from my articles in markdown and a config file, I now have a .NET console application that I run to do the same.
+
+## What changed?
+
+Although Statiq is a reboot of Wyam, and a lot has changed internally, my blog is pretty much the same as before. Statiq comes with the theme [CleanBlog](https://github.com/statiqdev/CleanBlog) that I was using before with Wyam so the UI looks the same. However as it uses a more recent version of the theme, the migration brought a few improvements to my blog:
+- there is now a search box to search my blog (everything is indexed so finding an article that might interest you is easier than ever)
+- the code highlighting is prettier than before
+
+You can see below an example of that:
+
+<img src="/posts/images/migrating_blog_1.png" class="img-fluid centered-img">
+
+I also took the opportunity of migrating my blog to correct a lot of grammar and spelling mistakes there were on my articles. To find the mistakes and correct them I used the free version of [Grammarly](https://www.grammarly.com/) and I was surprised by how good it was. I intend to use it to write my future articles and I strongly recommend it to you. It is especially useful to me as I am not an English native speaker. Of course, I am not saying there will be no mistake in my articles but I should catch most of them with Grammarly.
+
+# Open-sourcing my blog
+
+People interested in creating their blog sometimes ask me what stack I used to build my blog. So I thought open-sourcing my blog would be a great way to answer this question and show exactly how this blog is built. If you are a .NET developer and want to create your blog, I strongly recommend you to use [Statiq Web](https://www.statiq.dev/web/). You can get started by following the documentation, it is very easy. And now, you have an example of a blog using Statiq that you can look at [here](https://github.com/techwatching/techwatching.dev).
+
+I am often a consumer of open source code (as we all are these days) so it feels great to be a contributor this time by sharing the source code of my blog (even if there is currently not much customization). I don't expect many people to look at it but at least it's [there](https://github.com/techwatching/techwatching.dev) if you care.
+
+# All-in on GitHub
+
+GitHub is one of the best platforms for open source projects. But whether it be for open source or proprietary software, GitHub is above all a great development platform to build, ship, and maintain software. I am more familiar with Azure DevOps which is a great platform too and that I use at work but using GitHub was the opportunity to learn new things. Therefore, I decided to migrate to GitHub for my blog and not only for hosting the code.
+
+## Hosting the source code of my blog
+
+Speaking of hosting the code, here is my new git repository on GitHub:
+<img src="/posts/images/migrating_blog_2.png" class="img-fluid centered-img">
+
+To move my code to GitHub, I just created a new git repository in GitHub and copy-pasted my code there. Adding GitHub as a new remote of my repository could have been a better way to migrate my code to GitHub while preserving the commit history. However, I did not care about history and took the opportunity to reorganize my code.
+
+> I know that it is possible to have public projects/git repositories in Azure DevOps so I could have kept my code there, but as I said, moving to GitHub to store my code was a choice. 
+
+And now that my git repository is on GitHub, I can use the [github.dev](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) web-based editor to modify my repository directly in the browser. How cool is that?
+
+<img src="/posts/images/migrating_blog_3.png" class="img-fluid centered-img">
+
+I don't know if I will use `github.dev` a lot but I like the fact of being able to work on my blog from any computer without having to install anything.
+
+> If you never heard of github.dev, simply go to any GitHub repository in your favorite web browser and press `.` to open this repository in a vscode-like editor that runs entirely in your browser. You can also replace `github.com` with `github.dev` in the URL to open it. It even works on your mobile although I don't find it very convenient.
+
+## Building and deploying my blog
+
+Coming from Azure DevOps, moving from Azure Pipelines to GitHub Actions was not a big deal. What changed however is that my pipeline doesn't need to install any specific CLI to build and deploy my blog. Indeed, with Statiq my blog is a .NET console application, so my site can be generated directly with the .NET CLI. Statiq as built-in support for deploying a website on different platforms including Netlify thus my pipeline to generate and deploy my site is quite simple:
+
+```yml
+name: Deploy Blog to Netlify
+
+on:
+  push:
+    branches: 
+      - main
+  schedule:
+  - cron: "0 5 * * *"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: main
+        submodules: recursive
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+    - run: dotnet run -c Release -- deploy
+      env:
+        NetlifySiteId: ${{ secrets.NetlifySiteId }}
+        NetlifyAccessToken: ${{ secrets.NetlifyAccessToken }}
+```
+
+This pipeline runs every day and each time something is merged on my main branch. This way my website is redeployed when I publish a new article (which generally corresponds to a commit being made on the main branch through the merge of the branch where I was writing the article). This also allows me to finalize an article but publish it at a future date without having to take care of it.
+
+## Hosting my website
+
+This is the only part where I did not really go all-in on GitHub as I did not use GitHub Pages to host my blog, I kept Netlify. I am happy with it, it does the job, costs me nothing, and allows me to have previews of my blog if I want to so there was no reason to change.
+
+<img src="/posts/images/migrating_blog_4.png" class="img-fluid centered-img">
+
+## Providing a comments system
+
+I was previously using the well-known comments system [Disqus](https://disqus.com/) to let readers of my blog comment on the articles. To be honest, it works well, has a lot of features (moderation, monitoring...), and is used on many blogs. However, I have always found it a bit complex for my needs and was annoyed to "force" my readers to create a Disqus account to write comments. So when I read articles of people complaining about Disqus ads, tracking and performance issues I knew it was time to find an alternative.
+
+And there are many alternatives to Disqus! But one I found very interesting was [utterances](https://utteranc.es/), a GitHub application that relies on GitHub issues to store blog comments. As the creator of this library explains [here](https://danyow.net/using-github-issues-for-blog-comments/), `utterances` served as a POC for the GitHub-based feedback system in Microsoft Docs. I thought using GitHub issues for the comments of my blog was awesome because:
+- my readers will not have to create an account to write comments, my readers are developers so they probably already have a GitHub account
+- with comments stored as GitHub issues on my GitHub repository, I have everything at the same place (code, pipelines, and comments)
+
+But you know what? I finally did not choose `utterances` as the comments system for my blog 😀. Instead, I chose to use [giscus](https://giscus.app/) which is similar to `utterances` (in fact it is heavily based on it) but stores comments in [GitHub Discussions](https://docs.github.com/en/discussions). GitHub Discussions did not exist when `utterances` was created but I think discussions are a much more appropriate place than GitHub issues to store comments, that's why I chose it. Apart from that, advantages are the same as `utterances`.
+
+<img src="/posts/images/migrating_blog_5.png" class="img-fluid centered-img">
+
+If you don't have a comments system on your blog yet or that your current one does not satisfy you, you should check [giscus](https://giscus.app/), I am very happy with it.
+ 
+> 🗨 If you are currently using Disqus and want to migrate to `giscus` (while preserving your existing comments), the easiest way I found was to export the Disqus comments in a file, use this [tool](https://github.com/JuergenGutsch/disqus-to-github-issues) on GitHub to convert them into issues, and manually convert existing issues to discussions on each issue page. You can read this [blog post](https://ljvmiranda921.github.io/notebook/2021/03/26/migrating-from-disqus-to-utterances/) that partially explains how to do that. 
+
+## Managing my blog as a project
+
+My blog is not very hard to manage but there are always things to do or think about: improvements to do, articles to write, ideas to find. Instead of writing that down on my ToDo app or my OneNote as I used to do, I decided to use the [GitHub Issues beta](https://github.com/features/issues/) that allows you to create a "project" with a backlog, boards, and issues that can be categorized with custom fields.
+
+<img src="/posts/images/migrating_blog_6.png" class="img-fluid centered-img">
+
+# Summary
+
+In this article, I talked to you about what changed on my blog, and what my new stack is:
+- [Statiq](https://www.statiq.dev/web/) a .NET static website generator to generate the website
+- [GitHub](https://github.com/) to store the source code on a public (open source) git repository
+- [GitHub Actions](https://github.com/features/actions) to build and deploy the website
+- [GitHub Issues (beta)](https://github.com/features/issues/) to manage my ideas for the blog
+- [GitHub Discussions](https://docs.github.com/en/discussions) with [giscus](https://giscus.app/) to allow visitors to comment my articles
+- [Netlify](https://www.netlify.com/) to host the website
+
+I like this new stack where most things are centralized in one place: GitHub. I own the content of this blog, but I love that code to generate this blog is open source. There is still plenty of room for improvement on my blog, but I am confident Statiq will help me to continue customizing my blog easily. I hope you liked this article, do not hesitate to comment (you now know how comments work behind the scenes 😀).
+
+>🗨 If you are reading this article from hashnode or dev.to and not directly on my [blog](https://techwatching.dev), these changes do not apply to you. But do not worry, I will continue to cross-post my articles on these platforms too which have great communities. 
