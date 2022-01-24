@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Statiq.App;
+using Statiq.Common;
 using Statiq.Web;
 
 namespace TechWatching
@@ -10,6 +11,7 @@ namespace TechWatching
             await Bootstrapper
                 .Factory
                 .CreateWeb(args)
+                .DeployToNetlify(Config.FromSetting<string>("NetlifySiteId"), Config.FromSetting<string>("NetlifyAccessToken"))
                 .RunAsync();
     }
 }
