@@ -7,7 +7,7 @@ Tags:
   - GitHub
 ---
 
-Do you often star a GitHub repository and later when you want to get back to it struggle to find it on your stars page? I do! Well, I did... until I discovered Astral, the web application that allows you to `Organize Your GitHub Stars With Ease`. That is what we are going to talk about in this article.
+Do you often star a GitHub repository and later when you want to get back to it struggle to find it on your stars page? I do! Well, I did... until I discovered [Astral](https://astralapp.com/), the web application that allows you to `Organize Your GitHub Stars With Ease`. That is what we are going to talk about in this article.
 
 # GitHub stars as a bookmarking tool.
 
@@ -33,7 +33,7 @@ The problem is that starred repositories can only be filtered with information t
 
 # What is Astral?
 
-Astral is an open source web application that helps you organize your starred repositories.
+[Astral](https://github.com/astralapp/astral) is an open source web application that helps you organize your starred repositories.
 
 <img src="/posts/images/astral_app_1.png" class="img-fluid centered-img">
 
