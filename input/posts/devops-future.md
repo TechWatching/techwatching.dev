@@ -1,0 +1,137 @@
+Title: Forget DevOps, the future is already here!
+Lead: Best practices in IT.
+Published: 11/02/2021
+Image: /images/books_1.jpg
+Tags:
+  - DevOps
+  - IT
+---
+
+DevOps has been the trendy term for quite a few years now. Lots of companies including the biggest companies in Silicon Valley have started adopting DevOps practices. However the DevOps journey is not an easy one, so you might wonder if DevOps is suited for you and your company. Do now worry anymore, you can forget about DevOps because your company is probably already using the best practices in IT, and these are not DevOps practices. Let's take a deep dive into some of these practices in this article.
+
+>📌 The title as most of this article (apart from this paragraph and the conclusion) is highly ironic. I wanted to talk about the wrong ways of working in IT that I have seen or heard about, and I thought that if I talked about them as if they were best practices it would be more obvious why they are so wrong. Some of the "best practices" described in the article come from things I read on the web, some from things I witnessed in companies I worked for either as an employee or as a contractor, and some from discussions I had with IT people working in other companies. Yet, wherever they come from I deliberately exaggerated and transformed them to make them funny. The aim of this article is not to criticize everything but to make people realize that some decisions they take or ways of working they like can have a really bad impact on their projects, their team, other teams, and even their entire company. 
+
+# No-spec & Low-spec
+You may have heard of "no-code and low-code" platforms that aim at creating applications using GUI tools instead of writing code. With no-spec and low-spec, the concept is similar but applied to specifications: the goal is to create applications without providing specifications or the less specifications possible. 
+
+The low spec practice is very useful when a Product Owner does not really know what features need to be implemented in an application. By staying deliberately vague with "high-level specifications", unclear PowerPoint slides, or oral directives instead of a real backlog, a Product Owner can ensure that the lack of functional requirements will be the problem of the development team instead of his. Once the implementation is finished, the Product Owner can even ask the development team to write the specification retroactively based on the code they wrote. I am using the term "Product Owner" but when doing low spec the person responsible for the functional specifications is generally not part of the team developing the product and not very available to work with the developers which leads to creating funny roles like "Proxy Product Owner" in the team 🤔.
+
+<img src="/posts/images/devopsfuture_postit_1.jpg" class="img-fluid centered-img">
+
+When there is no written specification at all, we can talk about "no spec". For instance a manager asking the developer team to "build an API" on a business domain without providing other details. "No spec" practice does not mean there is nothing to do, there is generally a need sometimes urgent 🔥 but no backlog, no user stories, no document that describes what is expected. There is another name for this (that Serverless enthusiasts may like more 😉): Specless. In the same way, Serverless does not mean there is no server, Specless does not mean there are no specifications, it is just that they are in the head of someone but not written anywhere. Specless / no spec is interesting when you need to provide an occupation to a developer team, by giving them a Specless project to do you can keep them busy quite a bit of time because developers will have to guess what the business need, to understand what they need to implement and to find to whom ask their questions.
+
+# The lead reviewer recipe
+For this recipe you will need:
+- a new fresh project (take one that is quite hard with complex business rules to implement that require closeness between developers and the Product Owner) 
+- an experienced developer in your company
+- an IT consulting company with offshore developers
+
+Follow the following steps :
+- Convince your boss that the new project will cost a lot less if it is done by offshore developers that will be supervised by one of the experienced developers of your company (pay attention to only take into account the short term costs, do not take into consideration the technical debt or other long term costs)
+- Negotiate a fixed-price contract with an IT consulting company to do your project (make the price really low to ensure the consulting company will have to put only inexperienced developers on the project to be profitable)
+- Contact an experienced developer of your company, tell him you value his skills, and offer him a position of "technical leader" on a new project (insist on the fact that it is a real opportunity for him to supervise a team of developers)
+- Organize the project so that all go through the experienced developer of your company: the Product Owner should only talk to him, technical specifications sent to the offshore developers should be written by him and all the code should be reviewed by him
+
+<img src="/posts/images/devopsfuture_review_1.jpg" class="img-fluid centered-img">
+
+And that is it, your former experienced developer should now have become a lead reviewer: he should only have time to write technical specifications, do code reviews and answer questions from the offshore developers.
+
+Unfortunately, lead reviewers do not last long. After some time without coding, they become less and less relevant and get bored of only reviewing code. But that should not stop you, once you know the recipe it is easy to make another lead reviewer 😉!
+
+# The meeting game
+The meeting game is a game played side many companies. Generally, a manager asked someone to organize a meeting with people from different teams on a topic where some important decisions need to be taken. There are 3 phases in the game: before the meeting, during the meeting, and after the meeting:
+
+- In the first phase, only the organizer of the meeting plays. His goal is to find a date and time for the meeting to take place, the sooner it is the more points he earns. It seems an easy task but it can be a real challenge to find a slot when all the attendees will be available. Indeed the meeting game has become so popular in companies that everyone has already several meeting game sessions in a day. Most active players can even have 8 in a single day 🙃! When sending the meeting invites, it is really important that the organizer provides the less information possible about the topic of the meeting in order not to compromise phase 2, you will understand why in a minute.
+
+- In the second phase, all the attendees of the meeting play except for the organizer who acts as referee. The goal of this phase is to guess what the agenda of the meeting is. It seems a basic question but when playing the meeting game, the agenda is never sent in the invite so most attendees have no idea what the meeting is about. And with a manager who originally requested the meeting not necessarily present, a lot of participants in the meeting (the more players the better 😉) and many meetings in a day for everyone it can become quite hard to guess what the agenda is (sometimes even the organizer does not know exactly). Generally, for a 45 minutes meeting, the game begins 10 minutes after the start time of the meeting as there are always some people coming late from another meeting, the game lasts around 20 minutes the time for someone to find out what is the agenda, and there are 15 min left to discuss and take the decisions.
+
+- In the third phase, attendees have to tell their respective teams what was said and apply the decisions made during the meeting. What makes this phase difficult is that in a meeting game it is recommended not to take notes and completely forbidden for anyone to write and send a meeting report (it is considered "cheating"). So participants have to act accordingly to what was decided during the meeting (and sometimes nothing has been really settled) with nothing written and approved by everyone to help them. It is always quite funny to see some weeks later what everyone remembers of the meeting, and what actions have been taken.    
+
+<img src="/posts/images/devopsfuture_dices_1.jpg" class="img-fluid centered-img">
+
+There is a variant of the meeting game where the goal of some players is to highjack the meeting by making people talk about other things than the initial topic of the meeting.
+
+If you feel that some teams in your company are becoming too much productive at work, it is a good idea to impose mandatory meeting game sessions weekly or even daily.
+
+# Everything as mail
+You are probably familiar with the practice of treating most things related to IT projects as code: builds and releases pipelines as code, configuration as code, and infrastructure as code just to name a few. There are many benefits to have "everything as code": everything is under source control and easy to reuse, everything becomes easily testable, everything can be automated thus predictable and consistent...
+
+It sounds great but code is a developer thing so forget this and instead think of something that everyone already knows and uses: emails! Emails can be used for all sorts of things and that is what will see.
+
+## Specifications as mail
+Who needs to describe User Stories in Azure Boards, Confluence, Trello, or JetBrains Space when you can write the specifications directly in an email? 
+
+You will not have to struggle to fill all the mandatory fields of a work item, organize the work to do in epics, features, user stories, or whatever, with an email you can write the specifications any way you like. People can respond to your email with additional requests or questions, and by grouping your emails by conversation you will always be able to find what has been "specified" on a topic. Your mailbox is your source control where you will find the entire history of what has been said or decided in a project. Moreover using specifications as mail values people with organized mailboxes: the ability to quickly find the email conversation that contains the specification you are looking for becomes a necessary skill.
+
+Some people may say that it is quite difficult to track all the work there is to do just by using emails. But that is not true, be sure that when it is important work, even if it is buried deep in a conversation of your mailbox there will always be someone to unearth the topic or feature specified in this conversation. When you use specifications as mail, there is even a system to prioritize what is important. Actually, you can prioritize items in three different ways:
+- Firstly, mark an email as important (not really effective as everyone does that)
+
+- Secondly, write your email in all caps (especially useful to answer your own email to tell everyone that the work you have asked for has not been done and you are not happy about it)
+
+- And last but not least, add lots of additional recipients in your email, especially VIPs in your company (always fun to make people nervous by including their line manager or their manager's manager in the conversation)
+
+<img src="/posts/images/devopsfuture_mail_1.jpg" class="img-fluid centered-img">
+
+If you are more a Word person to write your specifications, you can always attach your Word specifications in the emails you exchange. This way you are still doing specifications as mail while using your favorite text editor. In that scenario, what happens generally is the following:
+- You send a document by email to your colleagues with a version number in its name for instance, `Awesome specifications v1.0.docx`
+- One of your colleagues modifies it, adds a line at the beginning of the document to explain the changes he or she did, and increments the version number in the document's name before sending back the document to everyone
+- The document continues to live like that for a while as you and your colleagues are modifying it 
+- You end up having many versions of the same document in your email box, and a specifications document that starts with 3 pages of history explaining the changes between versions
+
+Well, that is not a very environmentally friendly way of handling specifications versioning but it works fine as long as everyone takes the latest version of the specifications before modifying it and that 2 people do not do changes simultaneously.
+
+## Bugs as mail
+
+Bugs as mail are similar to specifications as mail. The concept is to use email instead of using any bug tracker like Jira, Azure Boards, or GitHub issues. Why would you bother to create a bug in a bug tracker and provide all the required information? If you spotted a bug, you do not want to wait for this bug to be planned on a sprint depending on its priority, to wait for it to be assigned to someone, and even less to have to regularly check the status of the bug to know if it has been corrected. It is much easier to directly send an email to the developer you think can help you and exchange by email until it gets solved.
+
+To prioritize bugs, you can use the same methods you use to prioritize specifications.
+
+## Infrastructure as mail
+
+Of the different "as mail" practices, this one is my favorite. For that one you need to have "traditional horizontal teams", understand interdependent teams divided according to the software architecture: a back-end team, a front-end team, an infrastructure team, a database team...
+
+Let's take an example for you to understand the infrastructure as mail practice. Imagine you are a member of the back-end team in charge of developing the Web API on the project. You are developing a new route that requires a specific configuration setting (or environment variable) that needs to be set on the platform that hosts your application (whether it is a virtual machine, an app service, or a docker container). As the developer of this new route, you are the most relevant person to set this new setting as you exactly know what is its purpose; however, it is not in your scope so you will have to contact the infrastructure team to do it. Therefore, you will send an email to the infrastructure team explaining what needs to be set so that they do it instead of you, and that's infrastructure as mail !📧 
+
+Every change that you will need to do that is related to infrastructure will require for you to send an email to the infrastructure team. If you store secrets in your application in a key vault and you need to add another secret in this key vault, you write an email to add this secret. If you need to set some configuration on a cloud resource your application is using, you write an email to have this resource configured for you. You do not care whether the change is tied to what you are developing or not, you are a developer-only here to write code, the infrastructure should not be your concern, you just have to send an email specifying what change you need in the infrastructure.
+
+<img src="/posts/images/devopsfuture_mail_2.jpg" class="img-fluid centered-img">
+
+It is however really important to have a clear separation between the developer team and the infrastructure team. You certainly do not want to have some infrastructure people directly in your team because they could understand what features you are developing and what you are trying to achieve when you request a change in the infrastructure and because you could understand how the infrastructure works. If you have a team on a functional perimeter that can easily develop functionalities and operate them, you will be able to push quickly features to production, the customers will be happy but the business people will think development and infrastructure are easy things and you will have less consideration, time and budget.  That is not what you want! To avoid that, make sure that developers have no idea how the infrastructure is implemented and that the infrastructure team has no idea what the application code does. In doing so, you can be sure that infrastructure modifications discussed by email will be misinterpreted, that they will lead to errors, and that synchronizing application deployment and infrastructure deployment will be hard. Thus, business people will value you and your colleagues because the work you do will look very complex and as a matter of fact be very complex.
+
+What is funny with infrastructure as mail is that you can have the best engineers implementing the infrastructure, using the latest infrastructure as code tools (Pulumi, Terraform ...) in the end it always comes to exchanging emails between people.  
+
+# Go big or go home
+
+I do not know if this one is a best practice or just common sense. When you are building a product that is used by many customers, what you want is to have a big impact on them and bring to the product lots of new features to make the customer happy, thus what you want is to "go big or go home". Nowadays many people are talking about short development cycles, only delivering a few features at a time but more quickly. It may work for their small projects but you are working on big projects. You do not want the customer to only have one or two features every three weeks, you want your product to be completely transformed with big changes to impress the customer even if it takes 2 years to make them.
+
+Some people say deploying many changes at a time can be risky, especially if you are not used to deploying often, issues can occur and you will not be prepared to handle that. Those people are fools, if you have done a big testing phase and you have qualified people to deploy your software nothing can go wrong! And if ever an incident occurs, just find the person responsible and fire that person: you will learn nothing from the incident but people will have a fear of failure and will be more careful next time 😈. Concerning the fact that the needs of the customer might not correspond to what you specified or might have changed the time for your waterfall project to go to production, you should not worry too much about that if you have done a solid specifications phase. To sum up, "Never fail" should be your motto and not non-sense phrases like "fail fast, recover quickly" or "fail fast, learn fast".
+
+<img src="/posts/images/devopsfuture_tortoise_1.jpg" class="img-fluid centered-img">
+
+If someone in your organization starts talking about continuous deployment, stop him right away. How your company should work is by doing waterfall projects with a big specification phase, a huge development phase, a long Quality Assurance phase, and the time necessary to deploy all that. Each major release of your software should follow this cycle to produce new big versions every 3 to 4 years for example. And if some bugs are discovered between these major releases, fix them but do not make the mistake to deploy the bug fixes right away. Doing a patch release just for a few bugs would be ridiculous and you would risk making the customer accustomed to having problems corrected quickly. No, make the fix, let it in a drawer and wait 6 months that there are enough other corrections to deploy to make another release. This is often called a "maintenance release" as it contains only bug fixes. I like to call such a release a cold fix, it is like a hotfix in production but you have waited so much time that you cannot call it 'hot' 🥶. If you want to please people that want to do continuous deployment, tell them you are doing a new thing called "slow continuous deployment". "Go big or go home" is probably the practice that has always been followed in your company, so there is no reason to change: it is not because many other companies like Google or Microsoft have changed their way of working to release their products more often that you should do the same. Yes, your competitors might out-innovate you by deploying new features faster than you do, but that is better than burden yourself with trying to transform the organization of your company.
+
+<img src="/posts/images/devopsfuture_waterfall_1.jpg" class="img-fluid centered-img">
+
+# Divide and rule among your company
+
+Supporters of DevOps often talk about changing the organization of a company to work with vertical teams instead of horizontal teams. The aim is to have self-organizing end-to-end teams that are cross-functional (with people that have different expertise and are not just back-end people, data people, IT operations people, or UX people together) and that do not depend directly on other teams to do their work. This is a big mistake because if you have self-organizing teams in your company you lose some power and control over everyone. It is better to stay with the traditional horizontal teams, which is something that does not require any culture-shift nor transformation of the way your company is structured.
+
+If you have watched Game of Thrones, the practice "divide and rule among your company" is something you will find nice. Imagine each horizontal team or each department of your company as a House in Game of Thrones looking for more power that is more budget and responsibility. Even if everyone is supposed to share a common goal, in fact each team has its own objectives, its processes, its methodology, and uses its own tools. Without saying that teams are working against each other, teams are for sure not working together. When an issue occurs, the goal for a team is not to contribute to solving it as quickly as possible but it is to make sure it can not be held responsible for the issue. With this practice, there is a toxic culture that encourages teams to blame each other: front-end team blames the back-end team, back-end team blames the QA team, QA team blames the architecture team, and everyone blames the infrastructure team... In this context, as a product/program/department manager supervising multiple horizontal teams, it is quite easy for you to maintain your power and control everything because teams are too busy fighting each other to contest the management decisions. Besides, because of dependency between teams, everyone is waiting for everyone, so projects fall behind schedule. And when a project falls behind schedule, the common understanding is that the project needs more people, thus more people are hired to work on your projects, of course it solves nothing (quite the contrary in fact) but more people means more budget so more responsibility for you. It is easier to play an influential role in your company when you supervise 6 teams of 10 people each than when you only have 2 teams of 4 people to manage. 
+
+<img src="/posts/images/devopsfuture_chess_1.jpg" class="img-fluid centered-img">
+
+Of course, playing "divide and rule among your company" with good old does horizontal teams does not look the most trendy thing to the outside world yet it is not that complicated to be among the cool kids anyway. There is probably in your company an Application Life Management team, or maybe a team in charge of automating build and release pipelines for all the other teams, or even a team dedicated to writing scripts to build your software infrastructure. You can take that team or merge these 3 teams in one if you have these 3 teams and then just rename it to "DevOps team". Of course, you are not applying DevOps practices by doing that, you just have a bunch of people in a team called "DevOps" that automate stuff for the rest of the company, but who cares? Most people do not know what DevOps is about so they will just think "What an innovative company, they are doing DevOps, they even have a team dedicated to doing DevOps". In addition to that, people in this new team will feel great because they will have a new and nice job title to put on their CV: "DevOps Engineer" (which is non-sense as DevOps is not a job title but whatever... recruiters are looking for this). If you prefer you can also use the name "Site Reliability Engineering" for the name of your new team, what is important is not what the name means but how it sounds and how it can make your company shine to the outside world. 
+
+<div align="center">
+  <?# Twitter 852879869998501889 /?>
+</div>
+
+# Final words
+
+I hope this article made you laugh or at least smile a little bit because it probably reminds you of similar "best practices" you have seen. And most importantly I hope it made you think about practices in your company that could be improved. 
+
+Do not worry, despite all I said I am a big fan of DevOps principles 💖. I think DevOps can help to deliver more value to the end-users of the applications we are developing. Yet, DevOps practices are not an easy thing to apply as it often implies transforming the way the company is organized. Because DevOps is challenging, people prefer to keep the bad practices they gradually adopted over the years, practices like the ones I described in this article.
+
+Indeed despite our best efforts, we all make bad choices but instead of considering that it is too late to change things, we should learn from our mistakes, try to make things better, and keep improving over time. Adopting DevOps practices is a journey that never really ends: there is always something to improve.  
+
+If you are interested in DevOps, I highly recommend reading `The Phoenix Project` and `The Unicorn Project`, two captivating novels about DevOps that I enjoyed reading. Companies talking about how their DevOps journey is also a great way to learn more about DevOps, for instance there is this [video](https://youtu.be/kgDdywJTBZ4) from Microsoft which is great. And that is the end of this article, I wish you an amazing DevOps journey too.
