@@ -1,6 +1,6 @@
 Title: Pulumi with an Azure Blob Storage backend
 Lead: Pulumi without Pulumi Service.
-Published: 13/12/2021
+Published: 14/12/2021
 Image: /images/cloud-crave_1.jpg
 Tags:
   - Pulumi
