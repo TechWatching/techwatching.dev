@@ -5,6 +5,7 @@ Tags:
   - Azure Functions
   - Pulumi
   - Azure Active Directory
+  - Azure
 ---
 
 If you are using Azure Functions chances are you are using the setting `AzureWebJobsStorage` in your Function App configuration. And it is quite likely that the value of this setting which is a secret is stored in a non-secured way directly in your Function App configuration, available to anyone who has access to this configuration. But do not worry, we will see in this article how we can make your Function App more secure by removing this secret.

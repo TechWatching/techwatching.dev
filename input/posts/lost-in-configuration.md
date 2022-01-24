@@ -6,6 +6,7 @@ Tags:
   - ASP.NET Core
   - configuration
   - Azure Key Vault
+  - Azure
 ---
 Have you ever felt a bit overwhelmed by the configuration in a project, not knowing where to look for the settings between the command line parameters, the environment variables, the configuration files in code, the configuration in Azure, ... ? When developing an ASP.NET Core application there are many places where you can put your configuration which makes it difficult to know where you should put it. Even if the [official documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/) about configuration in ASP.NET Core is very complete and well written, it only describes what you can use and how to use it, not what you should use and when. In this article,     I will try to answer these questions and give you my opinion about how we should use configuration providers in ASP.NET Core.
                        

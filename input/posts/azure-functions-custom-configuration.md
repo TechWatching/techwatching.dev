@@ -5,6 +5,7 @@ Image: /images/lightning_1.jpg
 Tags:
   - Azure Functions
   - Azure Key Vault
+  - Azure
   - Configuration
 ---
 The possibility to add configuration sources in Azure Functions has just been released with the latest version of `Microsoft.Azure.Functions.Extensions` [NuGet package](https://www.nuget.org/packages/Microsoft.Azure.Functions.Extensions/1.1.0). I have been waiting for this feature for a long time (like many people I think) because it brings to Azure Functions all the things we are used to with configuration in ASP.NET Core 😻. But that is not the only reason, it is also because with this feature you almost don't need to use key vault references!
