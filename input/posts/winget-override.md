@@ -8,12 +8,12 @@ Tags:
   - package manager
   - tooling
 ---
-In my last article about Windows Package Manager, I said that with winget I was missing "*being able to specify some parameters for a package installation (like the workload and components to install for Visual Studio 2019)*". Well that was before I went through a few GitHub issues of the winget-cli repository that mentioned the `override` option.
+In my last article about Windows Package Manager, I said that with winget I was missing "*being able to specify some parameters for a package installation (like the workload and components to install for Visual Studio 2019)*". Well, that was before I went through a few GitHub issues of the winget-cli repository that mentioned the `override` option.
 
 # About the override option
 `winget install` official documentation says the `override` option to the `install` command can be used to provide a "*string that will be passed directly to the installer*". What does that mean exactly?
 
-When you install a program on your laptop, the installer GUI often prompts you to configure some parameters for the program. For instance Git installer let you choose how you want to handle CRLF. Each installer has its own parameters that you can specify on the command line if you run the installer exe in you terminal. When using winget cli, you can also specify these parameters by passing them as the value of the option `override`.
+When you install a program on your laptop, the installer GUI often prompts you to configure some parameters for the program. For instance, Git installer lets you choose how you want to handle CRLF. Each installer has its own parameters that you can specify on the command line if you run the installer exe in your terminal. When using winget CLI, you can also specify these parameters by passing them as the value of the option `override`.
 
 # An example with Visual Studio 2019 installation
 If we take the example of Visual Studio 2019, let's say we want to install it with the English language pack and the Azure workload. To do that we can run the following command:
@@ -23,7 +23,7 @@ If we take the example of Visual Studio 2019, let's say we want to install it wi
 You can find the documentation of the visual studio installer with the parameters I used [here](https://docs.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=vs-2019#bootstrapper-commands-and-command-line-parameters).
 
 # Why `override`?
-So `override` is a really useful option because it allows us to customize our program installations. The name `override` could seem a bit strange but in fact it is to indicate that we override the default parameters that could have been specified in the manifest of the package you are installing. By the way the packages and their manifests can be found in [this GitHub repository](https://github.com/microsoft/winget-pkgs/). If you look at some of them you will see what parameters they use by default and be able to know if you need to override them to fit your needs.
+So `override` is a really useful option because it allows us to customize our program installations. The name `override` could seem a bit strange but it is to indicate that we override the default parameters that could have been specified in the manifest of the package you are installing. By the way, the packages and their manifests can be found in [this GitHub repository](https://github.com/microsoft/winget-pkgs/). If you look at some of them you will see what parameters they use by default and be able to know if you need to override them to fit your needs.
 
 # Pros and cons
-As we said, each installer has its own parameters so if we want to customize our installations we will have to look at each installer documentation which can be quite tiresome. If we compare to Chocolatey it is more or less the same but on Chocolatey site each package has a page with most of the time the parameters documentation or at least a link to the installer documentation. Winget clearly lacks that. Yet, even if it requires a bit of effort to find the parameters of a package, thanks to `override` option we can fully customize its installation which is great.
+As we said, each installer has its own parameters so if we want to customize our installations we will have to look at the documentation of each installer which can be quite tiresome. If we compare to Chocolatey it is more or less the same but on Chocolatey site, each package has a page with most of the time the parameters documentation or at least a link to the documentation of the installer. Winget clearly lacks that. Yet, even if it requires a bit of effort to find the parameters of a package, thanks to the `override` option we can fully customize its installation and that's great.
