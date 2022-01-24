@@ -12,11 +12,11 @@ When I started writing this article I did not realize it would be so long so I d
 
 In the previous article, we talked about blog posts and blogging/microblogging platforms. But a technology watch is not only about reading IT news and commenting on people's posts, it is above all about learning new things. That is why you have to find which medium/resource or combination of media/resources will be more efficient for you to learn from (in fact it depends on what type of learner you are).
 
-# Reading
+## Reading
 
 I already talked in my previous article about reading blog posts, tweets ... but these are not the only resources to read. 📚
 
-## Documentation is your friend
+### Documentation is your friend
 
 When you want to learn more about a technology, a framework, or a tool the best place to start is its documentation 📄. Because it can sometimes be quite boring to read, documentation is often overlooked unless looking for a specific piece of information. It is a shame because there is so much useful content you can find in good documentation: concepts to understand, a functionality you did not know, tutorials to do ...
 
@@ -31,7 +31,7 @@ Microsoft's documentation used to be scattered all over the web with lots of dif
 
 If you are not convinced to go and have a look at Microsoft Docs, maybe you will be when I will tell you that some parts of the documentation are interactive. That means some samples of code can be run directly in the browser, for instance, the C# code on this [page](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions#code-try-4).
 
-## Choose which books to read
+### Choose which books to read
 
 If you love reading, then grab a tech book to go into a topic in depth 📖. Unless you are only working on preview technologies, it is very likely that someone has written a book on the technology you are working on. They are books about everything in IT and there are also publishers specialized in programming and computer technology topics like [`Manning Publications`](https://www.manning.com/), [`O'Reilly`](https://www.oreilly.com/), [`Microsoft Press`](https://www.microsoftpressstore.com/), [`Packt`](https://www.packtpub.com/) just to name a few. Books published by this kind of companies are written by experts in their field so should be of good quality and allow you to deep dive into things. 
 
@@ -43,11 +43,11 @@ I am fond of reading myself, yet I have trouble reading technology-related books
 
 <img src="/posts/images/techwatch_books_2.png" class="img-fluid centered-img">
 
-# Watching videos
+## Watching videos
 
 If reading is not your thing then maybe watching software development videos will be a better option for you. Whatever the topic and the format (short or long videos) you will probably find lots and lots of videos 📺 to teach you what you want to learn.
 
-## Find lots of content on YouTube
+### Find lots of content on YouTube
 
 Among all the online video-sharing platforms you can find with technological content, the major one for me is YouTube, not because of its features but because of its diversity and wealth of content. As you can have multiple YouTube accounts linked to the same Google address you can create a dedicated account for your technological watch. Then you use this account to subscribe to all the channels you are interested in to be notified when a new video is published. Subscribing to a channel is a bit like adding a blog to your RSS feed reader, you will not watch all the videos but you want to be notified about new content in case something appeals to you. Moreover, a YouTube channel is kind of a blog with videos instead of articles. Therefore if you know some software developers with good teaching skills and they have a YouTube channel, don't hesitate to subscribe to it.
 
@@ -55,29 +55,29 @@ Among all the online video-sharing platforms you can find with technological con
 
 There are also many channels that are more organization or company channels that can be interesting too. For instance, there is a [Microsoft Developer channel](https://www.youtube.com/channel/UCsMica-v34Irf9KVTh6xx-g), a [Xamarin Developers channel](https://www.youtube.com/channel/UCe-f02uZgEXdHmHpC3loAQg), a [.NET foundation channel](https://www.youtube.com/channel/UCvtT19MZW8dq5Wwfu6B0oxw) and so on. I also liked the fact that some IT conferences organizations upload videos of their talks on their channel. One I particularly enjoy is [NDC Conferences channel](https://www.youtube.com/channel/UCTdw38Cw6jcm0atBPA39a0Q). Unfortunately, I have never been to an NDC conference but their talks are awesome with great speakers and topics so it is nice to be able to watch their replays. Outside channels, on YouTube you can also come across interesting playlists about an IT topic in particular.
 
-## Wants Microsoft content? try Channel 9
+### Wants Microsoft content? try Channel 9
 
 As someone working with Microsoft technologies every day, I cannot avoid talking about [Channel 9](https://channel9.msdn.com/). Channel 9 is a Microsoft community site hosting videos mostly about Microsoft products and technologies. A lot of the content is organized in shows focused on an area like the Internet of Things, Artificial Intelligence, DevOps, Xamarin, Visual Studio... Episodes of these shows are published regularly. Usually, hosts shows are receiving a different guest in each episode to talk about a subject in particular, which is nice because these guests are experts in their field. Events (mostly Microsoft conferences) are live broadcasted on the site and talks of these events are available in replay there. You can sign in to the website with your Microsoft account to post comments under videos and subscribe to channels. One thing to know is that most of the videos published on Channel 9 are also published on YouTube where you can find them on specific channels.
 
 <img src="/posts/images/techwatch_channel9_2.png" class="img-fluid centered-img">
 
-## Get more interaction with live streams
+### Get more interaction with live streams
 
 The rise of social networks showed that you don't need anymore a recording studio to make a good quality video. There are now a lot of IT professionals who share their knowledge by live streaming from home when developing software. Watching other developers live coding is one of the best ways to improve your development skills. Developers are sharing their thoughts while they are coding and you can generally interact with them and other people watching the stream via chat. It's way more interactive than just watching a recorded video. Many developer advocates are live streaming on [Twitch](https://www.twitch.tv/) which is a service well known for video game live streaming. So it might be a good place to start if you want to start watching live streams. 
 
-## Finding the time to watch videos
+### Finding the time to watch videos
 
 Let's be honest, watching technical videos take time, a lot of time you may not have. But maybe you can replace one of the many Netflix TV shows I am sure you are watching with a Channel 9 show related to a domain you are interested in. And maybe there are some moments when what you do does not require your full attention and you can watch a technical video in parallel, while cooking or ironing for instance (be careful not to get burned yet 🔥). For me, it's ironing, as it is a boring activity I find it nice to be able to learn things while doing it (although if you ask my girlfriend it makes me quite slow at ironing my clothes 🤣). One tip to win a little bit of time when the speakers on a video are speaking slowly is to increase the playback speed of the video to 1,25 or 1,5 (most of the online video-sharing platforms have this feature). Of course, that will not work for live streams which is the reason why I don't often watch some: too much time-consuming.  
 
-# Podcasts: why not listening to one?
+## Podcasts: why not listening to one?
 
 There is a great offer of IT podcasts if listening to podcasts 🎙 is something you like. IT podcasts are often quite similar to the Channel 9 shows I talked about: they are focused on a domain (Cloud, DevOps, mobile development, ...) and podcasts hosts are receiving a different expert to talk about a topic (technology, framework, language, new feature, ...) in each episode. There are many free applications that you can download on your smartphone to search, subscribe and listen to podcasts. I only tried [Google Podcasts](https://play.google.com/store/apps/details?id=com.google.android.apps.podcasts&hl=en) which does the job but don't hesitate to read applications comparison to find the best application for you.
 
 At first, I was quite reluctant to listen to podcasts as I think I am more a visual learner than an auditory learner. Moreover, I like to see code and not only listen to someone. But I tried anyway and I have to say some podcasts are really good and even if you don't see code you will hear about frameworks or tools you did not know about and improve your knowledge on a topic. It will never be my favorite way to learn software but I don't mind listening to a podcast episode while gardening 👨‍🌾.
 
-# Learning platforms, do not forget them
+## Learning platforms, do not forget them
 
-## What are they ?
+### What are they ?
 
 Trying to answer the question `Where to learn ?` without talking about learning platforms would be wrong because they are interesting places where to acquire IT skills. So what can I say about learning platforms? Well, they are plenty of them, for some you have to pay a subscription fee whereas others are free of charge. Their content is often a mix of videos and tutorials. They sometimes offer course certificates of completion and often use gamification: the more courses you take the more badges and trophies you obtain and the higher is your level/rank on the platform. 
 
@@ -85,13 +85,13 @@ Learning platforms have a tendency to be bought or replaced by other services. M
 
 So what learning platforms can I suggest to you? 
 
-## edX: discover a great open source platform
+### edX: discover a great open source platform
 
 I like [edX](https://www.edx.org/) which is a Massive Open Online Course (MOOC) provider created by Harvard and MIT and which is both non-profit and open source 🤩. They have courses from a lot of organizations (whether it be top-ranked universities or industry-leading companies) in a huge variety of domains (IT is just one among many). You can take their online courses for free and you only have to pay if you want to submit graded assessments, earn a certificate of completion, or access archived courses. Microsoft previously offered many courses on edX which was particularly useful to prepare for certifications but it does not seem the case anymore. 
 
 <img src="/posts/images/techwatch_edx.png" class="img-fluid centered-img">
 
-## Pluralsight: learn from subject-matter experts
+### Pluralsight: learn from subject-matter experts
 
 I mentioned earlier Pluralsight which offers video training courses for IT professionals. Courses are authored by subject-matter experts that earn royalties depending on the number of people watching their videos lessons. Of course the quality of the content depends on the author but Pluralsight courses are generally really good and well constructed. I find convenient the way the content is organized on the website: courses are grouped by path, each path corresponding to a topic, an area, or a certification (Microsoft, Google, AWS, ...). You can bookmark a course, follow an author, or create your channels to organize the content you are interested in. 
 
@@ -101,7 +101,7 @@ I would not rely entirely on Pluralsight to prepare for certification yet it is 
 
 Unfortunately, all of this content is not free and is even pretty expensive unless your company can offer you a license. You can have one to several months for free (depending on your Visual Studio subscription) to test the platform by going to https://my.visualstudio.com/Benefits. Another tip is to create an account [here](https://www.pluralsight.com/partners/microsoft/azure) that gives you access to a lot of Azure video courses for free thanks to a [partnership between Microsoft and Pluralsight](https://help.pluralsight.com/help/microsoft-azure-courses). 
 
-## Microsoft Learn: learn by doing
+### Microsoft Learn: learn by doing
 
 Microsoft Learn is Microsoft new learning website launched in 2018. Course modules are categorized by products, roles, and levels which makes their content easily searchable. As for Pluralsight, modules are grouped by learning path that corresponds to a technology area or certification. The platform aims at providing people with self-paced guided learning about Microsoft products and technologies. Modules are divided into short steps which means that whether you have a 10 minutes slot or a 2 hours slot you will be able to learn at your own pace. You can bookmark modules or add them to `collections` to organize your learning content.
 
@@ -115,11 +115,11 @@ So far from what I told you, Microsoft Learn does not make the difference compar
 
 I would not say that Microsoft Learn is perfect, no learning platform is and there are always things to improve. For instance, I think in some areas there are not enough advanced modules. Indeed sometimes we already know the basics of a technology but we need a learning path that teachzq us more advanced concepts about it and deep dive into it. And a thing I find unfortunate is that Microsoft Learn is not (yet?) open source, which means there is no way to contribute to a course or directly make a pull request to correct a mistake or a typing error. However, it is definitely a platform I suggest you try especially if you are working with Microsoft technologies. 
 
-## What else ?
+### What else ?
 
 Of course, there surely are a lot of other awesome learning platforms but these are the ones I use and like. Let me know what are the ones you like in the comments 😃! By the way, the book publishers I spoke of earlier often have their learning platform with offers combining books and online training. I did not try them myself but they should have interesting content. Anyway, the platform itself does not matter much, what matters is that it allows you to improve your skills.
 
-# Summary
+## Summary
 In this second article of this blog post series about technology watch, I talked about where and how you can learn new things in IT. We saw you can read documentation and books, watch videos, listen to podcasts and use learning platforms. This is of course a non-exhaustive list of ways to learn but that is a good beginning.
 
 In the next article of this series, we will see what does it mean to be part of the community of developers and what it can bring to you in your technology watch.

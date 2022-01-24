@@ -11,8 +11,8 @@ Tags:
 If you are using Azure Functions chances are you are using the setting `AzureWebJobsStorage` in your Function App configuration. And it is quite likely that the value of this setting which is a secret is stored in a non-secured way directly in your Function App configuration, available to anyone who has access to this configuration. But do not worry, we will see in this article how we can make your Function App more secure by removing this secret.
 
 But first, let's start at the beginning.
- 
-# What is this AzureWebJobsStorage setting?  
+
+## What is this AzureWebJobsStorage setting?  
 
 As explained in the [documentation](https://docs.microsoft.com/en-us/azure/azure-functions/storage-considerations#storage-account-requirements), Azure Functions "rely on Azure Storage for operations such as managing triggers and logging function executions" which explains why you must associate a storage account to your Function App when you create one.
 
@@ -20,7 +20,7 @@ By default when you create a Function App with its storage account from Azure Po
 
 <img src="/posts/images/functionsidentity_portal_1.png" class="img-fluid centered-img">
 
-# Why AzureWebJobsStorage poses a security risk?
+## Why AzureWebJobsStorage poses a security risk?
 
 App settings of your Function App are stored encrypted in Azure so having secrets in a Function App configuration in Azure does not seem a big security threat. Yet,  secrets in Azure application settings will be available to anyone who has access to the configuration screen of your Function App (or to Kudu) which does not seem a great idea. Moreover in the application settings of a Function App, there is no proper access monitoring, alerting, and auditing as you would have in an Azure Key Vault. So your secret is not really "safe" there.
 
@@ -28,7 +28,7 @@ App settings of your Function App are stored encrypted in Azure so having secret
 
 To avoid having someone gaining access to your storage account without you knowing, you probably do not want your storage account connection string to stay in a Function App configuration on Azure Portal.
 
-# What can we do about it?
+## What can we do about it?
 
 A solution could be to store the AzureWebJobsStorage secret value in an Azure Key Vault and use a [Key Vault reference](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references) to link the secret in Key Vault to the AzureWebJobsStorage setting like on the example below.
 
@@ -40,11 +40,11 @@ If you want more details about connecting to the storage with the Function App i
 
 >🗨 If you have read [my article](https://www.techwatching.dev/posts/sqlclient-active-directory-authent) about connecting to an Azure SQL Database using Azure AD to authenticate instead of a secret connection, you probably know that I am not a big fan of secrets when we can avoid using them. From a security perspective, I think it is always a gain to remove the need for secrets while ensuring a resource can only be accessed by authorized people/applications.
 
-# How to configure a Function App to work with its storage account without a secret connection string?
+## How to configure a Function App to work with its storage account without a secret connection string?
 
 To do that, I will use [Pulumi](https://www.pulumi.com/) which is an Infrastructure as Code platform that uses programming languages instead of DSL to deploy infrastructure. As I am usually programming in C# for my application code, I will use C# as well for my infrastructure code.
 
-## What resources do we need to create?
+### What resources do we need to create?
 
 We need to create 3 different Azure resources:
 - a consumption App Service Plan
@@ -54,7 +54,7 @@ We need to create 3 different Azure resources:
 A resource group will also be created to contain these resources.
 And we will also need to assign the Storage Blob Data Owner role to the Function App, so to create a Role Assignment "resource".
 
-## What the infrastructure code looks like?
+### What the infrastructure code looks like?
 
 The infrastructure code looks like standard C# code, but it describes the Azure resources we need using the [Azure Native provider](https://www.pulumi.com/blog/full-coverage-of-azure-resources-with-azure-native/) for Pulumi.
 
@@ -153,7 +153,7 @@ And that's just it, with this code the Function App will go well without needing
 
 You can find all this code on [this GitHub repository](https://github.com/TechWatching/FunctionAppWithoutSecretConnectionString) if you want to test it by yourself. You will also find an HttpTrigger Azure Function created from the templates in Visual Studio that I only used to have something deployed on my Function App. 
 
-# How can we remove the AzureWebJobsStorage secret setting using Terraform?
+## How can we remove the AzureWebJobsStorage secret setting using Terraform?
 
 I am a big fan of Pulumi's approach to build and deploy infrastructure but as Terraform is pretty popular for doing Infrastructure as Code, I thought it might be a good idea to explain how to solve the same issue using Terraform instead of Pulumi.
 
@@ -171,7 +171,7 @@ I guess this will be implemented someday in Terraform provider for Azure RM, so 
 
 >🗨 Because Terraform provider for Azure RM is manually implemented using the Azure SDK, it does not match Azure APIs hence not all new resources and features are available (they have to be implemented in the provider as new features in Azure are released and it can take time). It's something that is not a problem with Pulumi Azure Native provider as the SDKs are generated automatically from the Azure API specifications which makes Pulumi Azure Native provider always up-to-date.
 
-# Final thoughts
+## Final thoughts
 
 I hope that after reading this article if you are working on a Function App with an AzureWebJobsStorage setting you will take the time to replace it with an access to storage through the Managed Identity of your Function. One question you could ask me is why this is not the default behavior when creating a new Function App instead of using the AzureWebJobsStorage. And that would be an excellent question... for the Azure Functions team 😀.
 

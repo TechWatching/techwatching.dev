@@ -12,9 +12,9 @@ Tags:
 
 This week is mainly about learning Azure tooling.
 
-# Playing with "new" emulators
+## Playing with "new" emulators
 
-## Azure SignalR Local Emulator
+### Azure SignalR Local Emulator
 
 This week I was playing with SignalR Service (using the serverless service mode) and I needed to debug my Azure Functions locally. While I was implementing the infrastructure as code to deploy the Azure SignalR Service resource to Azure, I realized that I did not need to do that to test my code as there was a local emulator for SignalR Service. This emulator is currently in preview but looks promising. 
 
@@ -28,7 +28,7 @@ dotnet tool install  -g Microsoft.Azure.SignalR.Emulator --version 1.0.0-preview
 
 Have a look at the [documentation](https://github.com/Azure/azure-signalr/blob/dev/docs/emulator.md) if you want to learn more about it.
 
-## Azurite
+### Azurite
 
 You probably have already heard about [Azurite](https://github.com/Azure/Azurite) the cross-platform emulator for local Azure Storage development. It is really useful when you are using queues, tables, or blobs from Azure Storage in your project and you want to debug your code with emulated versions of these services running locally. If you are developing Azure Functions you are certainly using an emulator for the storage but maybe not be aware of it.
 
@@ -45,7 +45,7 @@ It's funny because I try to keep myself up-to-date on this kind of news but I di
 
 > 🗨 Be aware that Azurite is also available in a [vscode extension](https://marketplace.visualstudio.com/items?itemName=Azurite.azurite) which allows you to start and stop storage services individually. If you don't want to bother with the command line, using Azurite from vscode is a good option.
 
-# Using your Edge profile and skipping the account prompt screen when signing into Microsoft sites.
+## Using your Edge profile and skipping the account prompt screen when signing into Microsoft sites.
 
 As I have different Azure Active Directory accounts (for my company, for some of the clients I am working for, for testing purposes) it can be quite challenging to manage so I am using different Microsoft Edge profiles to keep things separated and to avoid signing out when switching from one account to another. However, even with different profiles, when you access a Microsoft site (Azure DevOps for instance) the browser prompts you to choose the account you want to use.
 
@@ -53,7 +53,7 @@ As I have different Azure Active Directory accounts (for my company, for some of
 
 Claire Novotny (currently executive director at the .NET Foundation and working in the .NET team at Microsoft) developed a Microsoft Edge extension `Use my current account` that solves this problem. This plugin is available [here](https://microsoftedge.microsoft.com/addons/detail/use-my-current-account/hbfacnnpimgddoojjaonnnbeljegicfl) to download and you can check the source code on [this GitHub repository](https://github.com/novotnyllc/UseMyCurrentAccount). It is a simple but very useful extension that I strongly encourage you to download if you use multiple Azure AD accounts.
 
-# Using up-to-date Azure icons in Visio.
+## Using up-to-date Azure icons in Visio.
 
 I use Visio from time to time to create nice-looking Azure architecture diagrams (at least I try 😀). To do that I use Visio packages about Azure some people provide on GitHub and that contain all the Azure resources icons I need.
 
@@ -61,7 +61,7 @@ Azure icons often change, and there are always new resources added so always dow
 
 > 🗨 If you want more tips about Visio, check the other articles of Xavier on his [blog](https://blog.xmi.fr/), there are also articles about Azure, IoT, .NET...
 
-# Explore Azure services easily with Azure Charts
+## Explore Azure services easily with Azure Charts
 
 Microsoft's documentation is great but it is sometimes not easy to have a good overview of the services Azure provides. Finding basic things like the SLA of a service, the regions where it is available, and the learning resources to getting started on it can often take time. Unless you know about Alexey Polkovnikov's website [Azure Charts](https://azurecharts.com/) which gives you all that and much more in a visual way.
 

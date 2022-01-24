@@ -16,7 +16,7 @@ In this article about Azure CLI, we will talk about:
 
 Azure CLI can be installed by following the instructions on [this page](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
 
-# 1 - Managing Azure resources
+## 1 - Managing Azure resources
 Azure resources can be managed in different ways but the main ones are the [Azure Portal](https://portal.azure.com), [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/) and [Azure CLI](https://docs.microsoft.com/en-us/cli/azure). If you are new to Azure or if you are creating resources you are not familiar with, it is always nice to have a GUI to understand what you are doing and Azure Portal is the right way to go.  
 
 <img src="/posts/images/azurecli_portal_1.png" class="img-fluid centered-img">
@@ -25,7 +25,7 @@ However, handling resources in the portal, moving from pane to pane to always do
 
 Until recently, when I was not using the Azure Portal I was more prompt to use Azure PowerShell than Azure CLI, probably because I was often finding samples of what I wanted to do written in PowerShell. But in fact, there are lots of commands in Azure PowerShell and even with autocomplete I am not good at remembering them. So I couldn't stop returning to using Azure Portal 😕. And yet, lately, I finally came back to the command line when I started to discover the power of Azure CLI: such a nice and above all easy tool to use and that's what I will try to show you next.
 
-# 2 - Azure CLI Syntax
+## 2 - Azure CLI Syntax
 
 The Azure CLI Syntax is simple to understand. For instance, the command `az webapp list` will list the WebApps in the subscription you are currently logged in.
 
@@ -49,9 +49,9 @@ A few arguments are globally available arguments which means that can be used fo
 
 Once used to the Azure CLI syntax, it is way more convenient than the Azure Portal and you don't have to search what Azure PowerShell command you need to use. You just have to look for the available subgroups and commands in the Azure service where you want to work (don't forget to use `--help`) and you will quickly get the job done.
 
-# 3 - Deep dive in Azure CLI
+## 3 - Deep dive in Azure CLI
 
-## Command output
+### Command output
 <img src="/posts/images/azurecli_console_2.png" class="img-fluid centered-img">
 
 By default, the output format of Azure CLI commands is JSON but there are other formats you can use by specifying an output argument (`--output` or `-o`) like this: `az group list -o table`.
@@ -60,7 +60,7 @@ By default, the output format of Azure CLI commands is JSON but there are other 
 
 💎 The default output format can be configured using the `az configure` command. This command also allows you to configure other settings like a default resource group for your commands for instance.
 
-## Using variables
+### Using variables
 Whether you choose to run your commands in Bash or PowerShell, you can use variables with Azure CLI, only the syntax for creating variables will change depending on the command-line shell you use. 
 >The samples in this article use the PowerShell syntax. 
 
@@ -80,7 +80,7 @@ az appservice plan show -n $webAppName -g $rgName
 $servicePlan = az appservice plan show -n $webAppName -g $rgName 
 ```
 
-## JMESPath
+### JMESPath
 
 If you don't know [JMESPath](http://jmespath.org/), it is a query language for JSON that allows to extract and transform elements from a JSON document or CLI output in the context of Azure CLI. 
 
@@ -145,7 +145,7 @@ Here are some CLI commands that query more precisely the resource groups:
 
 💎 JMESPath is not an Azure CLI only thing, it is used in different other projects or tools like the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-output.html#controlling-output-filter).
 
-## Mixing output, variables, and JMESPath
+### Mixing output, variables, and JMESPath
 Once you have understood how to use variables, commands output, and JMESPath with Azure CLI you can mix everything to manage Azure resources with CLI commands that use results of previous CLI commands, which can make powerful scripts :)
 
 Let's presume that we want to create a Web App for the IT Department in an existing App Service Plan of our subscription located in West Europe.
@@ -166,11 +166,11 @@ az webapp list -g $itRgName --query "[].name"
 
 This is just a quick example but you can easily imagine all the possibilities that Azure CLI offers you.
 
-# Where to use Azure CLI
+## 4 - Where to use Azure CLI
 
 All that is great but we haven't talked about where we can use Azure CLI, let's do that now!
 
-## Bash vs PowerShell
+### Bash vs PowerShell
 We briefly mentioned that you can run Azure CLI in Bash or PowerShell, and as a matter of fact you can also run it in Windows Command Prompt.
 Although Azure CLI is originally designed to be bash-oriented, it works fine in PowerShell so it's a perfectly valid choice too. What command line shell you choose is up to you!
 
@@ -178,7 +178,7 @@ And don't think that you will be limited to using one or the other shell dependi
 
 Just a quick note about autocompletion: at this time tab completion is only supported in bash and Microsoft currently does not plan to add support for PowerShell but is open to contributions from the community. That's not a big deal but that's good to know, there is a [GitHub issue](https://github.com/Azure/azure-cli/issues/2324) on this matter. If you are not using bash and that tab completion is important for you, [Azure CLI interactive mode](https://docs.microsoft.com/en-us/cli/azure/interactive-azure-cli?view=azure-cli-latest) is what you are looking for (we will talk about it later in the article)! 
 
-## Azure CLI in Visual Studio Code
+### Azure CLI in Visual Studio Code
 As for most of Azure components, there is an extension in vs code for Azure CLI: Azure CLI Tools.
 
 <img src="/posts/images/azurecli_vscode_1.png" class="img-fluid centered-img">
@@ -191,7 +191,7 @@ It also allows you to run commands in the integrated terminal or run them and sh
 
 <img src="/posts/images/azurecli_vscode_2.png" class="img-fluid centered-img">
 
-## Azure Cloud Shell
+### Azure Cloud Shell
 
 I did not talk about Azure CLI installation but you can find everything you need in [Microsoft documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). Actually, Azure Cloud Shell provides you a way to use Azure CLI without installing anything.
 
@@ -206,7 +206,7 @@ Cloud Shell in itself is free but requires an Azure file share to be mounted so 
 
 Azure Cloud Shell is also available in the Azure Portal or directly in your vs code integrated terminal through the [Azure Account extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account).
 
-# Azure CLI Interactive mode
+## 5 - Azure CLI Interactive mode
 
 I mentioned Azure CLI interactive mode as a way to have auto-completion. In fact, it is much more than that as it also provides you with command descriptions, examples, completion on resources names, JMESPath on the previous command... 
 
@@ -230,7 +230,7 @@ As you can see in the example above, you can even use a JMESPath query on the pr
 
 💎 If you like interactive CLI, you can also have a look at [AzBrowse](https://github.com/lawrencegripper/azbrowse) which is a nice community project.
 
-# To conclude
+## To conclude
 
 Even if the title of this article suggests saying goodbye to Azure Portal, when you start using Azure CLI you are not going to stop completely using Azure Portal. You will always need a GUI for some tasks or to better visualize things. However, you will probably use less often Azure Portal as you are going to find yourself more productive with Azure CLI and will enjoy being able to script everything ✨.
 

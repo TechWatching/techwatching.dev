@@ -11,7 +11,7 @@ In our daily job, we often have to query secure REST APIs that require our HTTP 
 Of course, many APIs come with an SDK that makes the job easier for us as it directly takes care of retrieving a token and sending the authenticated HTTP requests.
 However, it is not always the case and knowing how to implement that using HttpClient, IMemoryCache, and DelegatingHandler can become pretty useful.
 
-# Context
+## Context
 
 Let's imagine we have a very simple API that contains the following routes :
 
@@ -35,7 +35,7 @@ where `AuthResponse` is a class we defined to map the response of the `POST /log
 
 So now we have the code to retrieve the token, how do we use it to implement our `IUserService`?
 
-# Retrieve the token from a private method 
+## Retrieve the token from a private method 
 The easiest way to do that is to create a private method in `UserService` that returns this token and to call it from `GetAllUsers` and `UpdateUser`. That would give us something like that :
 
 <?# Gist 337f610109a2ffd7fad5214045693001 /?>
@@ -44,7 +44,7 @@ There are two main problems with this way of doing things:
 - We have some code duplication as we are calling the `RetrieveToken` in each of our methods calling the API. That could be okay here as we only have 2 methods calling the API but that can quickly be problematic if we start to have more methods and repeat the call to `RetrieveToken`in each method.
 - For each call to an authenticated route of the API, we are making a call to the `login` route even if our token from a previous call is probably still valid. 
 
-# Use a dedicated service to retrieve the token and save it for future calls
+## Use a dedicated service to retrieve the token and save it for future calls
 Although it's not necessary at this point, it can be interesting to move the code of our private method `RetrieveToken` into a separate service `UserApiAuthenticationService` that will be injected in `UserService`. That way, if the authentication method changes someday, `UserService` implementation won't change. Moreover, we won't mess with the same `HttpClient` for authentication and other calls. 
 
 <?# Gist 5483325936f012388af3bf20ab013ae5 /?>
@@ -52,7 +52,7 @@ Although it's not necessary at this point, it can be interesting to move the cod
 To avoid requesting always the same token to the API, we added a line to store the token in the memory cache and a line to check if the token is already in the cache before querying the API.
 We could also have used a class as a singleton to store the token and its expiration date, but the built-in `IMemoryCache` of ASP.NET Core is more convenient and handle the expiration of the token for us by removing it from the cache when the date is passed. You can find more about cache memory in ASP.NET Core [here](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-3.1).
 
-# Use a Delegating handler to directly set the token in the HttpClient request
+## Use a Delegating handler to directly set the token in the HttpClient request
 
 Handling the token retrieval in a separate service is nice but that does not solve the issue of duplicated code. Even if the `RetrieveToken` method is now part of `UserApiAuthenticationService`, each method of `UserService` will still call `RetrieveToken`. Moreover setting the token on each request should not be a concern of `UserService`.
 
@@ -70,6 +70,6 @@ To finish we just have to specify in the `Startup.cs` on which HttpClient to app
 
 <?# Gist a907d4bcc06fa98a60f2939a6a388ec6 /?>
 
-# To conclude
+## To conclude
 
 To summarize, we have put the code that retrieves a token in a separate dedicated service that caches the token until it expires. And we have created a custom delegating handler that calls this service and sets the retrieved token on the authentication header of each HTTP request to the API.

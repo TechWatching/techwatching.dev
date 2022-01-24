@@ -10,7 +10,7 @@ When I started writing this article I did not realize it would be so long so I d
 - [Where to learn ?](https://techwatching.dev/posts/technology-watch-part2)
 - [Be part of the community](https://techwatching.dev/posts/technology-watch-part3)
 
-# About technology watch in IT
+## About technology watch in IT
 
 Everyone agrees that in Information Technology, where everything is evolving rapidly, doing some technology watch is very important. It's especially true for the job of developer which involves using fast-moving frameworks/libraries, trying new cloud components/tools, and keeping up to date with new programming language features/new languages... 
 
@@ -20,11 +20,11 @@ Often what you learn about a technology (whether it be reading a blog post, watc
 
 ⏲ However finding the time to do a technology watch is not easy and not every IT company is ready to let their employees have some time for it (even if it could be profitable for the company in the end). Therefore it is something we often have to do in our spare time and it is not always easy to know where to start a technology watch and how to do it, hence this blog post series. The aim is to share with you different ways of learning new things in development, stay up to date with the latest IT news in your tech area, and how I do my technology watch. As my technology watch is mainly about .NET and Microsoft technologies this will be the opportunity to also share some sources and platforms especially interesting for .NET developers.
 
-# Blogs posts
+## Blogs posts
 
 A great way to learn is to learn from others so reading blog posts from people sharing their experiences can be a good start to do a technology watch.
 
-## Choose which blogs to read
+### Choose which blogs to read
 
 If you have been a developer for a few years, you probably already have come across many interesting blogs when looking for the answer to an issue you had or more information on a specific topic. Some of these blogs might even come back frequently in your searches if the author works in the same field you work. These are the blogs you should follow and from which you should read articles because it's likely where you will find interesting articles for you.
 
@@ -36,7 +36,7 @@ Yet, I don't think that there is a must-read list of blogs that you should only 
 
 In a nutshell read blogs that you will enjoy reading because there is no point in making yourself read things just to learn something: learning should always be a pleasure ✨.
 
-## Use an RSS feed reader
+### Use an RSS feed reader
 
 Once you have your custom list of blogs that you want to read articles from, you should use an RSS feed reader. Of course, you can always bookmark the blogs and from time to time check if a new article has been published but honestly, that is a loss of time. Most blogs, if not all, have an RSS feed so you just have to add blogs your want to follow in your favorite RSS feed reader to keep up with new articles as they are published.
 
@@ -48,7 +48,7 @@ As you can see on the screenshot of my Feedly account I try to regroup blogs by 
 
 An RSS feed reader is a very useful way to aggregate a curated list of articles that you could be interested in but that doesn't mean you should read every single article that appears in your feed. Filtering articles to read is important as I guess your time is limited and even if you selected carefully which blogs to follow you won't be interested in all their articles. For instance, I recently started to use Pulumi for Infrastructure as Code so I added their [blog](https://www.pulumi.com/blog/) in my blogs list to know about future features and updates to Pulumi. That does not mean I will read every post from their blog but at least I will be notified when they publish a new article and have less risk of missing a piece of news (like a new version). That's for me the principal advantage of an RSS feed reader: staying informed.
 
-## A few RSS feeds I like
+### A few RSS feeds I like
 
 I won't tell you all the RSS feeds I am following because it would be quite long and boring but I still want to share a few of them. 
 
@@ -70,11 +70,11 @@ And finally, there are 3 blogs/websites that publish every day a collection of l
 
 Another way to read interesting blog posts is to find them on platforms like [Medium](https://medium.com/) or [DEV](https://dev.to/) which brings us to another way to do a technology watch: using blogging and micro blogging platforms. 
 
-# Blogging and microblogging platforms
+## Blogging and microblogging platforms
 
 Reading blog posts is great but it takes time and sometimes lacks interactivity especially when a blog does not contain a comments/discussions section above each article. Blogging should not be a one-way conversation but a community discussion.
 
-## Give a try to blogging platforms
+### Give a try to blogging platforms
 
 What I want to talk about is not platforms that help you create your own blog/website like `WordPress` but social platforms where everyone can publish articles, read and comment articles, follow an author or a topic, and discuss with other users. There are many of these platforms, you may have heard of  `Medium` which is pretty popular but which requires you to pay if you want unlimited access to articles (without a paywall once you have read too many articles) and whose content is not only about IT.
 
@@ -88,7 +88,7 @@ The blogging platform I use and like is [DEV](https://dev.to/) which is an open 
 
 That's what I do and this is a great way to reach a larger audience while attracting some traffic to your blog if readers want want to read more of your articles. 
 
-## What about microblogging?
+### What about microblogging?
 
 According to Wikipedia:
 >Microblogging is an online broadcast medium that exists as a specific form of blogging. A microblog differs from a traditional blog in that its content is typically smaller in both actual and aggregated file size.
@@ -97,7 +97,7 @@ Hence, Microblogging is not about long articles but small posts or short message
 
 Lots of microblogging platforms exist like [Twitter](https://twitter.com), [Tumblr](https://www.tumblr.com/) and even [LinkedIn](https://www.linkedin.com/). I don't know if [Reddit](https://www.reddit.com/) can be considered as a microblogging platform too as it is more a collection of forums but it's worth mentioning it because it's pretty popular among developers. As far as I am concerned the only one I use for my technology watch is Twitter so this is the only one I can speak about.
 
-## Twitter: the place to be to follow IT content
+### Twitter: the place to be to follow IT content
 
 Because Twitter is one of the most famous microblogging platforms, you probably know it and may even already be a user. What you might not realize is how useful such a platform can be to watch technology content. Lots of people and organizations are on Twitter so you can use it to follow a lot of things but I use it almost exclusively to follow IT content. If you are not yet on Twitter or another microblogging platform you can create a Twitter account just for your technology watch which is what I did: [@techwatching](https://twitter.com/techwatching).
 
@@ -122,7 +122,7 @@ Tweets are small so it's not like reading an entire blog post even if to be hone
 
 Like every social platform, Twitter is good at allowing people to interact with each other. People may not respond to you because they did not see your tweet/comment among all the others or because they did not have the time, yet in theory, you can publicly talk to anyone. This allows you to reach people you could not have otherwise, share ideas and sometimes get help from kind and skilled people on a specific topic. As long as you don't complain all the time and harass people with questions you are good to go 😉.
 
-# Summary
+## Summary
 In this first article of this blog post series about technology watch, I talked about how to start your technology watch by reading blog articles and interacting with others on blogging and microblogging platforms. We saw how to choose the blogs and accounts to follow on websites like DEV or Twitter and we saw that using an RSS feed reader is important to keep up with latest blog articles.
 
 In the [next article](https://techwatching.dev/posts/technology-watch-part2) of this series, we will see where we can learn new things as part of our technology watch.

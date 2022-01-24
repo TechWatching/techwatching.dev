@@ -9,7 +9,7 @@ Tags:
 
 Do you often star a GitHub repository and later when you want to get back to it struggle to find it on your stars page? I do! Well, I did... until I discovered [Astral](https://astralapp.com/), the web application that allows you to `Organize Your GitHub Stars With Ease`. That is what we are going to talk about in this article.
 
-# GitHub stars as a bookmarking tool.
+## GitHub stars as a bookmarking tool.
 
 When you find an interesting GitHub repository, instead of adding it to your browser bookmarks among a lot of other websites, you can star it. As [GitHub Docs](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars) say: `Starring make it easy to find a repository again later`. Indeed usually, when I come across a nice GitHub repository, I want to go back to it later (to deep dive into the awesome framework I discover, to try this new open source tool, to have this useful sample somewhere when I will need it...).
 
@@ -21,7 +21,7 @@ In addition to that, you can sort, filter (by language or topic), and search sta
 
 <img src="/posts/images/astral_github_2.png" class="img-fluid centered-img">
 
-# Have you seen that repository I am looking for?
+## Have you seen that repository I am looking for?
 
 Using GitHub stars to bookmark the repositories you are interested in is great but if you do it a lot, it can become hard to find later the repository you want. Even if it is possible to sort, filter, and search repositories, it is sometimes impossible to quickly find what you are looking for. And there are good reasons for that:
 - You have starred this repository a long time ago, and it does not stand out from other repositories in terms of activity or number of stars so sorting won't help you
@@ -31,7 +31,7 @@ Using GitHub stars to bookmark the repositories you are interested in is great b
 
 The problem is that starred repositories can only be filtered with information that is not particularly useful to you. What we would need is something to organize the starred repositories in a way relevant to us. And here comes Astral.
 
-# What is Astral?
+## What is Astral?
 
 [Astral](https://github.com/astralapp/astral) is an open source web application that helps you organize your starred repositories.
 
@@ -49,7 +49,7 @@ Once grouped by tags, it becomes very easy to find the repositories you need. Th
 
 > 🗨 Astral can also be self-hosted if you need. As it is a free web application, I don't see the point of self-hosting it but it is possible.  
 
-# How do I use Astral?
+## How do I use Astral?
 
 I organize my starred repositories by grouping them with tags that I create in Astral and that are relevant to my way of categorizing things. That is the power of creating custom tags and assigning repositories to them, everyone can organize its starred repositories as it suits him or her.
 
@@ -69,6 +69,6 @@ Speaking of multiple criteria, you can create `Smart Filters` in Astral to filte
 
 <img src="/posts/images/astral_app_4.png" class="img-fluid centered-img">
 
-# To conclude
+## To conclude
 
 If you are often bookmarking GitHub repositories for future usage, Astral is a nice little web application to add to your toolbox. I found it by chance, but I liked it and I am now regularly using it. So try it and if you like it, give it a star and tag the repo with a `tools` tag in Astral 😉.

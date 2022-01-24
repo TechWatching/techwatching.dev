@@ -11,7 +11,7 @@ Tags:
 
 This week I worked mainly in vs code to do some web development so tips will mostly be about vscode.
 
-# Work on different parts of your file with the new "split in group" command
+## Work on different parts of your file with the new "split in group" command
 
 When you are developing a component in Vue.js, it is convenient to be able to work at the same time on the HTML template and the TypeScript code which happen to be in the same file.
 
@@ -21,7 +21,7 @@ The latest release of vscode allows you to do that easily by introducing a new c
 
 <img src="/posts/images/w412021tips_vscode_2.png" class="img-fluid centered-img">  
 
-# `vscode-jest`, a must-have extension when using Jest
+## `vscode-jest`, a must-have extension when using Jest
 
 Many projects are using `Jest` as their testing framework for the frontend. But I was quite surprised to see that by default there is no test explorer in vscode to run or debug your `Jest` tests. I like the command line but for some things, like debugging a specific test, a UI is way more convenient. 
 
@@ -35,7 +35,7 @@ If you are familiar with full-featured IDEs, you will like this extension that g
 
 That brings me to talking about sharing your vs code extensions with your colleagues.
 
-# Share to your colleagues the vscode extensions to use on your project
+## Share to your colleagues the vscode extensions to use on your project
 
 When you start working on a new project, you often have to find out which extensions your colleagues are using so that you install everything you need to work on the project. If your colleagues are nice, they would have written this kind of information in the README or the wiki of the project. But what if vscode could directly suggest to you which extensions to install when you open the project on your computer.
 
@@ -63,7 +63,7 @@ This is just a list of vscode extensions identifiers. You can find the identifie
 
 And finally, let's talk a little bit about C#.
 
-# Help the C# compiler helps you with nullable reference types.
+## Help the C# compiler helps you with nullable reference types.
 
 I am a big fan of enabling nullable on c# projects because I am convinced that it enforces you to write better code. 
 

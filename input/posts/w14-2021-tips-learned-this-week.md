@@ -11,7 +11,7 @@ Tags:
 
 This week I learned a few things related to vscode and especially about the `Azure IoT Hub` vscode extension.
 
-# Accessing Azure resources in vscode from a specific tenant.
+## Accessing Azure resources in vscode from a specific tenant.
 
 There are a lot of vscode extensions (like the ones in [this extension pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack)) that allow you to access and manipulate your Azure resources from Visual Studio Code. 
 
@@ -21,7 +21,7 @@ This [specific extension `Azure Account`](https://marketplace.visualstudio.com/i
 
 >📌 If you like to update the settings in JSON mode the key to use is `azure.tenant`
 
-# Azure IoT Hub vs code extension is awesome.
+## Azure IoT Hub vs code extension is awesome.
 
 I think everything is in the title. I knew about this extension before this week but I did not take the time to really use it. However this week it helped me a lot for my sprint demo where I needed to show new functionalities I implemented on an IoT backend: modify device twin tags in the IoT Hub and send some messages to an IoT device under certain conditions.
 

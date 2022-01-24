@@ -11,7 +11,7 @@ I recently played a bit with GitHub Actions and as I have spent some time runnin
 
 >🗨 Disclaimer: Although I have some experience with Azure Pipelines, I am still learning GitHub Actions so I do not pretend to know everything about them nor do I never make mistakes when writing about them. Feel free to correct me in the comments if you think I am wrong about something or if something that I show can be done more effectively.
 
-# Tip n°1: Environment variables syntax depends on the shell you are using in your job
+## Tip n°1: Environment variables syntax depends on the shell you are using in your job
 
 As you know a GitHub Actions workflow is composed of different jobs where each job is a set of steps that execute on the same runner. As a runner can be hosted Ubuntu, Windows, macOS, or even another operating system (if you host your own runner) the shell that will execute your commands will not be the same by default depending on the runner you choose. For instance, if you are on a Ubuntu GitHub-hosted runner, by default the shell will be bash whereas on a Windows GitHub-hosted runner it will be PowerShell (I think we don't say PowerShell Core anymore but I am speaking of `pwsh`, not the old Windows PowerShell of course).
 
@@ -23,7 +23,7 @@ This is really important to know because depending on the shell used, the syntax
 
 The documentation briefly explains the syntax to use depending on the shell [here](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#using-a-specific-shell) but you can easily miss it as I did. In fact, most of the GitHub Actions examples you can find are in bash so if you use them as-is without paying attention to the shell you are using, you will probably get it wrong. I lost a lot of time trying to figure out why my scripts were not working on a Windows runner so I hope knowing that you will avoid doing the same.
 
-# Tip n°2: Do not use your repository `GITHUB_TOKEN` in tasks that need to trigger another workflow.
+## Tip n°2: Do not use your repository `GITHUB_TOKEN` in tasks that need to trigger another workflow.
 
 The `GITHUB_TOKEN` is a secret you can use in your workflow to do some actions on your GitHub repository like pushing a tag, creating a new release, creating an issue... It is very convenient because it allows you to automate in your workflow many things for your GitHub repository using built-in actions or the GitHub REST API.
 
@@ -37,7 +37,7 @@ What does this mean? It means that if you have 2 workflows and that the first on
 
 So imagine you want to implement a workflow that publishes a release when a new tag is pushed on a repository and another workflow that automatically tweets about your new release once it is published, how can you do that? You just have to [create a GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token), add it as a secret in your repository, and use it in your first workflow to create your release. This way, the second workflow will run fine when the release is published.
 
-# Tip n°3: Assign information from the event triggering a GitHub Actions workflow to a PowerShell variable. 
+## Tip n°3: Assign information from the event triggering a GitHub Actions workflow to a PowerShell variable. 
 
 Sometimes, in a GitHub Actions workflow, we want to execute some PowerShell to do specific actions depending on information from the event that triggered the workflow. Hence having a PowerShell variable with this data could be useful. For instance, if we have a workflow triggered by the publication of a release, maybe we need to retrieve the URLs of the binaries of this release which can be done easily if the event data is in a PowerShell variable. 
   
@@ -70,7 +70,7 @@ $installerUrl = $github.release.assets | Where-Object -Property name -match 'win
 
 I did not know about jq but I find it is a nice tool although the syntax is not that straightforward. Yet, I prefer the PowerShell way because it allows to directly manipulate an object instead of a JSON string. It is what I did to automate the upgrade of the `Nushell` winget package using GitHub Actions when a new release is published (you can read more about it in this [article](https://www.techwatching.dev/posts/wingetcreate)).
 
-# Tip n°4: Enable debugging logs to help you understand what is going wrong in your workflow
+## Tip n°4: Enable debugging logs to help you understand what is going wrong in your workflow
 
 Like many CI / CD platforms, GitHub Actions has the disadvantage of not being testable locally which makes it hard to debug a workflow when something is not working properly. Moreover, by default, you won't see how some expressions/contexts are evaluated when the workflow run so logs will not help you figure out what is wrong in your workflow definition.
 

@@ -11,7 +11,7 @@ Tags:
 
 This week I learned a few things related to versioning an application 
 
-# Create a git tag from an Azure Pipeline.
+## Create a git tag from an Azure Pipeline.
 
 Creating a git tag for your repository stored in Azure DevOps can be done quite easily by creating a tag in your local repository and pushing it to Azure DevOps or by simply manually creating it from the `Tags` page in Azure DevOps. So why bother creating a tag from an Azure Pipeline?
 
@@ -39,7 +39,7 @@ Moreover, you need to add an extra checkout task at the beginning of your pipeli
 
 If you are not using a Microsoft-hosted agent but your own on-premise agent, you can have a problem when you delete a tag that was created by a pipeline. Indeed tags in the local repository of an on-premise agent are not automatically fetched and pruned so your following build can fail if it tries to create a tag that still exists locally (even if does not on the remote repository). To avoid that you can do add following command in your script `git fetch origin refs/tags/*:refs/tags/* --prune`.
 
-# Application version in logs in Application Insights
+## Application version in logs in Application Insights
 
 When developing applications in Azure, Application Insights is a key component to monitor these applications. But as for many components, we sometimes do not know how to use it to its full potential. 
 This week a colleague told me about a very basic feature that I did not know about: logs in Application Insights contain the version of the application that sends the logs. Indeed there is a property `application_Version` in each log with the version number of the application.

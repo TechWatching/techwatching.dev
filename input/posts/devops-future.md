@@ -11,7 +11,7 @@ DevOps has been the trendy term for quite a few years now. Lots of companies inc
 
 >📌 The title as most of this article (apart from this paragraph and the conclusion) is highly ironic. I wanted to talk about the wrong ways of working in IT that I have seen or heard about, and I thought that if I talked about them as if they were best practices it would be more obvious why they are so wrong. Some of the "best practices" described in the article come from things I read on the web, some from things I witnessed in companies I worked for either as an employee or as a contractor, and some from discussions I had with IT people working in other companies. Yet, wherever they come from I deliberately exaggerated and transformed them to make them funny. The aim of this article is not to criticize everything but to make people realize that some decisions they take or ways of working they like can have a really bad impact on their projects, their team, other teams, and even their entire company. 
 
-# No-spec & Low-spec
+## No-spec & Low-spec
 You may have heard of "no-code and low-code" platforms that aim at creating applications using GUI tools instead of writing code. With no-spec and low-spec, the concept is similar but applied to specifications: the goal is to create applications without providing specifications or the fewer specifications possible. 
 
 The low spec practice is very useful when a Product Owner does not know what features need to be implemented in an application. By staying deliberately vague with "high-level specifications", unclear PowerPoint slides, or oral directives instead of a real backlog, a Product Owner can ensure that the lack of functional requirements will be the problem of the development team instead of his. Once the implementation is finished, the Product Owner can even ask the development team to write the specification retroactively based on the code they wrote. I am using the term "Product Owner" but when doing low spec the person responsible for the functional specifications is generally not part of the team developing the product and not very available to work with the developers which leads to creating funny roles like "Proxy Product Owner" in the team 🤔.
@@ -20,7 +20,7 @@ The low spec practice is very useful when a Product Owner does not know what fea
 
 When there is no written specification at all, we can talk about "no spec". For instance, a manager asking the developer team to "build an API" on a business domain without providing other details. "No spec" practice does not mean there is nothing to do, there is generally a need sometimes urgent 🔥 but no backlog, no user stories, no document that describes what is expected. There is another name for this (that Serverless enthusiasts may like more 😉): Specless. In the same way, Serverless does not mean there is no server, Specless does not mean there are no specifications, it is just that they are in the head of someone but not written anywhere. Specless/no spec is interesting when you need to provide an occupation to a developer team, by giving them a Specless project to do you can keep them busy quite a bit of time because developers will have to guess what the business need, to understand what they need to implement and to find to whom ask their questions.
 
-# The lead reviewer recipe
+## The lead reviewer recipe
 For this recipe you will need:
 - a new fresh project (take one that is quite hard with complex business rules to implement that require closeness between developers and the Product Owner) 
 - an experienced developer in your company
@@ -38,7 +38,7 @@ And that is it, your former experienced developer should now have become a lead 
 
 Unfortunately, lead reviewers do not last long. After some time without coding, they become less and less relevant and get bored of only reviewing code. But that should not stop you, once you know the recipe it is easy to make another lead reviewer 😉!
 
-# The meeting game
+## The meeting game
 The meeting game is a game played side many companies. Generally, a manager asked someone to organize a meeting with people from different teams on a topic where some important decisions need to be taken. There are 3 phases in the game: before the meeting, during the meeting, and after the meeting:
 
 - In the first phase, only the organizer of the meeting plays. His goal is to find a date and time for the meeting to take place, the sooner it is the more points he earns. It seems an easy task but it can be a real challenge to find a slot when all the attendees will be available. Indeed the meeting game has become so popular in companies that everyone has already several meeting game sessions in a day. Most active players can even have 8 in a single day 🙃! When sending the meeting invites, it is really important that the organizer provides the less information possible about the topic of the meeting in order not to compromise phase 2, you will understand why in a minute.
@@ -53,12 +53,12 @@ There is a variant of the meeting game where the goal of some players is to high
 
 If you feel that some teams in your company are becoming too much productive at work, it is a good idea to impose mandatory meeting game sessions weekly or even daily.
 
-# Everything as mail
+## Everything as mail
 You are probably familiar with the practice of treating most things related to IT projects as code: builds and releases pipelines as code, configuration as code, and infrastructure as code just to name a few. There are many benefits to have "everything as code": everything is under source control and easy to reuse, everything becomes easily testable, everything can be automated thus predictable and consistent...
 
 It sounds great but code is a developer thing so forget this and instead think of something that everyone already knows and uses: emails! Emails can be used for all sorts of things and that is what will see.
 
-## Specifications as mail
+### Specifications as mail
 Who needs to describe User Stories in Azure Boards, Confluence, Trello, or JetBrains Space when you can write the specifications directly in an email? 
 
 You will not have to struggle to fill all the mandatory fields of a work item, organize the work to do in epics, features, user stories, or whatever, with an email you can write the specifications any way you like. People can respond to your email with additional requests or questions, and by grouping your emails by conversation you will always be able to find what has been "specified" on a topic. Your mailbox is your source control where you will find the entire history of what has been said or decided in a project. Moreover using specifications as mail values people with organized mailboxes: the ability to quickly find the email conversation that contains the specification you are looking for becomes a necessary skill.
@@ -80,13 +80,13 @@ If you are more a Word person to write your specifications, you can always attac
 
 Well, that is not a very environmentally friendly way of handling specifications versioning but it works fine as long as everyone takes the latest version of the specifications before modifying it and that 2 people do not do changes simultaneously.
 
-## Bugs as mail
+### Bugs as mail
 
 Bugs as mail are similar to specifications as mail. The concept is to use email instead of using any bug tracker like Jira, Azure Boards, or GitHub issues. Why would you bother to create a bug in a bug tracker and provide all the required information? If you spotted a bug, you do not want to wait for this bug to be planned on a sprint depending on its priority, to wait for it to be assigned to someone, and even less to have to regularly check the status of the bug to know if it has been corrected. It is much easier to directly send an email to the developer you think can help you and exchange by email until it gets solved.
 
 To prioritize bugs, you can use the same methods you use to prioritize specifications.
 
-## Infrastructure as mail
+### Infrastructure as mail
 
 Of the different "as mail" practices, this one is my favorite. For that one you need to have "traditional horizontal teams", understand interdependent teams divided according to the software architecture: a back-end team, a front-end team, an infrastructure team, a database team...
 
@@ -100,7 +100,7 @@ It is however really important to have a clear separation between the developer 
 
 What is funny with infrastructure as mail is that you can have the best engineers implementing the infrastructure, using the latest infrastructure as code tools (Pulumi, Terraform ...) in the end it always comes to exchanging emails between people.  
 
-# Go big or go home
+## Go big or go home
 
 I do not know if this one is a best practice or just common sense. When you are building a product that is used by many customers, what you want is to have a big impact on them and bring to the product lots of new features to make the customer happy, thus what you want is to "go big or go home". Nowadays many people are talking about short development cycles, only delivering a few features at a time but more quickly. It may work for their small projects but you are working on big projects. You do not want the customer to only have one or two features every three weeks, you want your product to be completely transformed with big changes to impress the customer even if it takes 2 years to make them.
 
@@ -112,7 +112,7 @@ If someone in your organization starts talking about continuous deployment, stop
 
 <img src="/posts/images/devopsfuture_waterfall_1.jpg" class="img-fluid centered-img">
 
-# Divide and rule among your company
+## Divide and rule among your company
 
 Supporters of DevOps often talk about changing the organization of a company to work with vertical teams instead of horizontal teams. The aim is to have self-organizing end-to-end teams that are cross-functional (with people that have different expertise and are not just back-end people, data people, IT operations people, or UX people together) and that do not depend directly on other teams to do their work. This is a big mistake because if you have self-organizing teams in your company you lose some power and control over everyone. It is better to stay with the traditional horizontal teams, which is something that does not require any culture-shift nor transformation of the way your company is structured.
 
@@ -126,7 +126,7 @@ Of course, playing "divide and rule among your company" with good old does horiz
   <?# Twitter 852879869998501889 /?>
 </div>
 
-# Final words
+## Final words
 
 I hope this article made you laugh or at least smile a little bit because it probably reminds you of similar "best practices" you have seen. And most importantly I hope it made you think about practices in your company that could be improved. 
 

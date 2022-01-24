@@ -10,7 +10,7 @@ Tags:
 ---
 Have you ever felt a bit overwhelmed by the configuration in a project, not knowing where to look for the settings between the command line parameters, the environment variables, the configuration files in code, the configuration in Azure, ... ? When developing an ASP.NET Core application there are many places where you can put your configuration which makes it difficult to know where you should put it. Even if the [official documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/) about configuration in ASP.NET Core is very complete and well written, it only describes what you can use and how to use it, not what you should use and when. In this article,     I will try to answer these questions and give you my opinion about how we should use configuration providers in ASP.NET Core.
                        
-# A quick reminder about configuration
+## A quick reminder about configuration
 
 Configuration is what allows you to quickly change how an application behaves by modifying a setting instead of rewriting the code. Configuration/settings are sometimes linked to the environment where your application runs but not always. Generally, when something is likely to change, a good practice is to define a setting for it in the configuration instead of hard coding it in the source code.
 
@@ -18,7 +18,7 @@ Configuration can take many forms and ASP.NET Core has this powerful concept of 
 
 <img src="/posts/images/lostinconfiguration_providers_2.png" class="img-fluid centered-img">
 
-# Why do I have so many configuration providers by default?
+## Why do I have so many configuration providers by default?
 
 When you create a new ASP.NET Core project from a template and run it, you have probably noticed that your configuration is not empty and that by default, multiple configuration providers are already registered.
 <img src="/posts/images/lostinconfiguration_providers_1.png" class="img-fluid centered-img">
@@ -59,7 +59,7 @@ It is important to know that order in which the configuration provider is specif
 
 If the order in which configuration providers are registered by default does not suit you, then you can simply create the `HostBuilder` yourself in `Program.cs` instead of using `CreateDefaultBuilder` method.
 
-# How to have a global view of the configuration used by your application?
+## How to have a global view of the configuration used by your application?
 
 Having different providers to load the configuration in your application is great but one drawback is that the configuration is scattered all over the place. Indeed sometimes we want to have the complete list of settings an application uses and if we have to look everywhere (key vault, environment variables, JSON files,...) it becomes impossible to manage.
 
@@ -69,7 +69,7 @@ So why using the `appsettings.json` file for that? In the last section, I showed
 
 >🗨 When running your application locally, if you want to display what are the values of the settings in your configuration and where their values come from you can read [this article](https://andrewlock.net/debugging-configuration-values-in-aspnetcore/) by Andrew Lock that explains how to do that using the `IConfigurationRoot.GetDebugView()` method.
 
-# What about configuration in an App Service or an Azure Function, is it a specific configuration provider?
+## What about configuration in an App Service or an Azure Function, is it a specific configuration provider?
 
 Well, the answer is no. Application settings in the configuration of an App Service or a Function App (the settings you can see in the Azure portal) are passed as environment variables to the application. 
 
@@ -77,7 +77,7 @@ Well, the answer is no. Application settings in the configuration of an App Serv
 
 If you remember in which order the providers are registered, it means that configuration in Azure will override most of the configuration coming from other providers.
 
-# Where to put environment-dependent configuration?
+## Where to put environment-dependent configuration?
  
 As the name suggests, environment variables are a good place to set your environment-dependent configuration. If you are deploying your ASP.NET Core application in an Azure App Service, you can set these environment variables in the application settings section of your App Service in the Azure portal. However, I guess you are probably using an Infrastructure as Code tool (like Pulumi or Terraform) instead of manually modifying your Azure resources in the portal, so that means your environment-dependent configuration will be stored among your infrastructure code and deployed to Azure with the rest of the infrastructure.
 
@@ -87,7 +87,7 @@ Using environment variables is a good approach but it is less convenient than ha
 
 <img src="/posts/images/lostinconfiguration_appsettings_1.png" class="img-fluid centered-img">
 
-# How to deal with secrets in my application configuration?
+## How to deal with secrets in my application configuration?
 
 There are multiple ways of handling secrets but there is one fundamental rule: 'never commit a secret in source control'. Whatever the context, there is no valid reason that justifies putting a value in source code, that's it.
 
@@ -115,7 +115,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
  
 Vaults are generally cheap and anyway it is not as if security was an optional feature we should choose to add or not, therefore there is no reason not to use a vault to keep your secrets safe.
 
-# How to share configuration between different applications?
+## How to share configuration between different applications?
 
 There is a specific Azure component for that which is [Azure App Configuration](https://docs.microsoft.com/en-us/azure/azure-app-configuration/overview). It provides you a centralized place to manage your configuration for different applications, environments and locations. It also provides you other interesting features like the ability to dynamically change the value of an application setting without the need to restart this application.
 
@@ -141,12 +141,12 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-# Which configuration provider can help me to use A/B testing and feature flags in my code?
+## Which configuration provider can help me to use A/B testing and feature flags in my code?
 
 [Azure App Configuration](https://docs.microsoft.com/en-us/azure/azure-app-configuration/overview) is also the configuration provider to use when you want to use A/B testing or feature flags. 
 There are probably other configuration providers that allow you to do that but this is the one I know.
 
-# What is the point of using the `launchsettings.json` file?
+## What is the point of using the `launchsettings.json` file?
 
 Unlike the `appsettings` files, the `launchsettings.json` file is not used when you build and deploy your application somewhere. It is only useful to debug your application code locally. The tools you use to run your application on your local machine (your IDE or the .NET Core CLI) will use the settings in this file to provide configuration to your apps through environments variables or command line arguments. By default, this file will set the `ASPNETCORE_ENVIRONMENT` environment variable (or `DOTNET_ENVIRONMENT` depending on whether your application is an ASP.NET Core application or not) to `Development` so that you debug your code with the `Development` configuration
 
@@ -154,7 +154,7 @@ Unlike the `appsettings` files, the `launchsettings.json` file is not used when 
 
 >🗨 You can define multiple profiles in the `launchsettings.json` file to be able to run your application with multiple configurations. It can be interesting to create a `Staging profile` to debug your application with the `Staging` configuration; for instance to reproduce a bug that only happens in Staging environment. 
 
-# Let's recap.
+## Let's recap.
 
 To know where to put your settings in an ASP.NET Core project you have to ask yourself some questions: is this setting secret or not, does its value depends on the environment, will it be shared with other applications... ?
 

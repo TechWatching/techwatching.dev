@@ -11,7 +11,7 @@ Tags:
 
 This week I learned some Azure CLI commands, how to have JSON IntelliSense in vscode and that Azure Storage Explorer was usable again.
 
-# Autocompletion and schema validation when editing a JSON file in vscode.
+## Autocompletion and schema validation when editing a JSON file in vscode.
 
 When you are editing a JSON file in vscode, chances are that there is a JSON schema somewhere that describes the shape of the JSON you are modifying. Wouldn't it be great if vscode could provide you suggestions and validate the JSON according to such a schema while you are typing ⌨? 
 
@@ -23,7 +23,7 @@ In the screenshot above, I am editing a JSON file where the linked JSON schema i
 
 This is a tip that you probably already know but as far as I am concerned I only discovered it recently and it is really useful. If you want to do more advanced things like mapping some files types to specific JSON schemas you can have a look in [vscode documentation](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings).
 
-# Listing assigned roles for a user on a subscription with Azure CLI
+## Listing assigned roles for a user on a subscription with Azure CLI
 
 I recently had to list all the roles assigned to my user on a subscription. 👮‍♀️
 For that I used the [`az role assignment list` command](https://docs.microsoft.com/en-us/cli/azure/role/assignment?view=azure-cli-latest#az_role_assignment_list) like this:
@@ -41,7 +41,7 @@ So at the end my command to list the assigned roles to my user on the current su
 az role assignment list --assignee $(az ad signed-in-user show --query "objectId") --query "[*].{role:roleDefinitionName,scope:scope}" --include-inherited
 ```
 
-# Azure Storage Explorer just got better!
+## Azure Storage Explorer just got better!
 
 [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) is a tool to manage your Azure cloud storage resources from your desktop. Instead of going to the Azure portal and navigating between all the panes and resources, you can do everything from this tool like viewing the tables and blobs in the storage accounts you have access to.
 

@@ -41,7 +41,7 @@ We know how to identify the outdated branches but we need a command to delete th
 
 You can find on Stackoverflow some posts like [this one](https://stackoverflow.com/questions/7726949/remove-tracking-branches-no-longer-on-remote) that show different solutions using bash that work perfectly but I thought it would be interesting to try to script that using another shell. Indeed I recently started to use a shell called [nushell](https://github.com/nushell/nushell) which is a pretty powerful yet simple cross-platform shell. It is still in preview at the time of writing but if you have not heard of it I suggest you read the [introduction post](https://www.jonathanturner.org/2019/08/introducing-nushell.html) of Jonathan Turner.
 
-# Let's script that with nushell!
+## Let's script that with nushell!
 
 Enough of talking, let's script.
 To start with, we can use the nu lines command to create a table from the lines of the `git branch -vl` output (we added an extra `*/*` argument as we are only interested in posts branches).
@@ -61,7 +61,7 @@ And the final script:
 git branch -vl '*/*' | lines | split column " " BranchName Hash Status --collapse-empty | where Status == '[gone]' | each { git branch -D $it.BranchName }
 ```
 
-# Make it a git alias.
+## Make it a git alias.
 
 We can integrate this script into our git commands by creating a git alias. Let's say I want to create the alias `bcl` for branch clean up, we only need to add the following to our `.gitconfig`:
 

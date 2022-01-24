@@ -13,7 +13,7 @@ Tags:
 
 In my [previous articles about winget](https://www.techwatching.dev/tags/winget) I talked about installing packages but I did not talk about producing packages for Windows Package Manager. So let's set things right.
 
-# About winget packages
+## About winget packages
 
 Windows Package Manager allows you to search and install applications that are referenced by the sources you have configured to be used by the winget tool. Sources are repositories that list applications that can be installed by winget and the data needed for them to be installed (in the form of a manifest file containing information such as the installer location of a package for instance). The default source is the [Windows Package Manager Community Repository](https://github.com/microsoft/winget-pkgs) which is a public GitHub repository where everyone can submit their application package manifest to make an application available for installation to Windows Package Manager users. 
 
@@ -23,31 +23,31 @@ Once you know that, if you are the developer of an application you want to distr
 
 As a package creator, you probably do not want to create and update this app manifest manually. Luckily for you, there is a tool to do that for you.
 
-# WingetCreate to the rescue
+## WingetCreate to the rescue
 
-## Introducing WingetCreate
+### Introducing WingetCreate
 [Windows Package Manager Manifest Creator](https://github.com/microsoft/winget-create) aka WingetCreate is a tool "designed to help generate or update manifest files for the Community repo" (quoting the readme of WingetCreate repository). At the time of writing it is still in preview but you can already use it to help you with your manifest files. You can download the installer from [this link](https://aka.ms/wingetcreate/latest) but of course, it is available from winget: `winget install wingetcreate`.
 
 The main commands are [New](https://github.com/microsoft/winget-create/blob/main/doc/new.md), [Update](https://github.com/microsoft/winget-create/blob/main/doc/update.md) and [Submit](https://github.com/microsoft/winget-create/blob/main/doc/submit.md).
 
-## The `New` command
+### The `New` command
 It allows you to create a new manifest from scratch. If you don't know where to start to deal with manifest files it is a nice way of getting started. Yet having a look at existing manifests in the [winget community repository](https://github.com/microsoft/winget-pkgs) can be sometimes more efficient.
 
-## The `Update` command
+### The `Update` command
 It allows you to update an existing manifest, that is to say, to create an updated version of your manifest when you have released a new version of your application (so new version number and new installer URL). You can use this command to `submit` your updated package to the Windows Package Manager Community Repository. In my opinion, it is the most useful command from WingetCreate as it can be easily be integrated into a build pipeline to publish your installer. 
 
-## The `Submit` command
+### The `Submit` command
 It allows you to submit an existing manifest (you created earlier on disk with the create or update command) to the Windows Package Manager Community Repository automatically. Basically, what it does is that it uses the GitHub personal access token you give it to create a Pull Request with your manifest in this repository.
 
-## What else?
+### What else?
 
 If you look at the [settings command](https://github.com/microsoft/winget-create/blob/main/doc/settings.md) you will see that you can specify the name of the GitHub repository to target for your package submission. This is interesting if you want to host a private source for winget available to your organization only where you will publish applications related to your business needs and that you don't want to make available publicly. 
 
 WingetCreate is a really helpful tool to create, update and validate a manifest for your winget package. Still, you probably don't want to manually run WingetCreate each time you release a new package version. So let's see how to automate that with GitHub Actions.
 
-# Automating your app manifest upgrade with GitHub Actions
+## Automating your app manifest upgrade with GitHub Actions
 
-## Why using GitHub Actions to demonstrate the automation of app manifests upgrades?
+### Why using GitHub Actions to demonstrate the automation of app manifests upgrades?
 
 <img src="/posts/images/wingetcreate_githubactions.png" class="img-fluid centered-img">
 
@@ -55,7 +55,7 @@ In my daily work, Azure Pipelines are the pipelines I used to do CI/CD and they 
 
 Moreover, I think many applications that are available or will want to be available as a winget package are open source applications whose code are hosted in a GitHub repository and that are already using GitHub Actions for their CI/CD. So I thought it could be useful to have an example of using WingetCreate with GitHub Actions, especially as GitHub has this concept of "releases".
 
-## An interesting use case for with Nushell
+### An interesting use case for with Nushell
 
 [Nushell](https://www.nushell.sh/) is a cross-platform shell written in Rust. Nushell's developers took the best of existing shells (like the structured data approach from PowerShell) and created a shell that feels modern, easy-to-use, and very useful in my opinion.
 
@@ -69,7 +69,7 @@ Nushell already uses GitHub Actions for its continuous integration and to create
 
 Therefore, the idea was to update Nushell manifest with the latest version of Nushell using `WingetCreate` each time a new release of Nushell is published.
 
-## Triggering a new workflow from a release event
+### Triggering a new workflow from a release event
 
 Automating the app manifest upgrade of Nushell just meant creating a `job` in a GitHub Actions workflow that would call `WingetCreate` with the new version number and the new installer URL.
 
@@ -167,7 +167,7 @@ Here is what a Pull Request generated by the GitHub Actions workflow looks like:
 
 <img src="/posts/images/wingetcreate_pr.png" class="img-fluid centered-img">
 
-# To summarize
+## To summarize
 
 We have introduced the notion of source for winget packages and in particular, the Windows Package Manager Community Repository where we can open PR to submit a new application or new versions of an existing application. We have seen how Windows Package Manager Manifest Creator could help us do that and how it could be automated from a GitHub Actions workflow like it was done for the Nushell project.
 

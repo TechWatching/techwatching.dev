@@ -12,7 +12,7 @@ Tags:
 
 I often see developers talking on Twitter or Dev.to about things they have learned during the previous day or the previous week. I like the idea so I decided to write my first article about tips I learned during this past week. I am not intending to write an article like this every week but from time to time when I feel I have something interesting to share or that I want to keep track of for myself. 
 
-# Start Windows Terminal with multiple panes thanks to startup actions.
+##Start Windows Terminal with multiple panes thanks to startup actions.
 
 The new Windows Terminal has evolved a lot since its first release in preview in 2019. It now has a lot of nice features and it keeps getting better which is awesome. I was previously using Cmder but Windows Terminal has quickly become my default terminal.
 
@@ -24,7 +24,7 @@ One of the latest releases of Windows Terminal allows specifying startup actions
 
 <img src="/posts/images/w092021tips_terminal_1.png" class="img-fluid centered-img">  
 
-# A git config setting to make working with submodule easier.
+##A git config setting to make working with submodule easier.
 On the projects I am working on, we are using submodules to share some code between different components. NuGet packages are great to share code between different projects or applications but it is sometimes a bit complicated to handle when you simply want to share a few models and services between an API and an Azure Function for instance. In these situations, it is easier to use submodules for which you don't have to handle versioning (you just reference in your repository a commit or a branch of the submodule you want to use) nor set up source link (you can directly debug the code from the submodules in your project).
 
 However, one drawback of using submodules is that you have to learn and execute a few additional git commands to manipulate submodules. Typically when you do a `git pull` in your git repository, you have to do a `git submodule update` to update the submodules to their respective commit referenced in the "super" git repository. That is just one additional command but if you do that often it can quickly become boring 🥱.
@@ -34,7 +34,7 @@ I never really look for a way to make that easier until this week where I discov
 So just execute the following command and be more productive with submodules 🐱‍🏍:
 `git config submodule.recurse true`.
 
-# IntelliSense for Azure Pipelines custom tasks in vscode.
+##IntelliSense for Azure Pipelines custom tasks in vscode.
 
 Azure Pipelines is an awesome CI/CD tool to automate your builds and deployments. The only problem when writing pipelines is that you have to write YAML  😿. I guess we just have to get used to writing YAML because it has become something used everywhere. Fortunately, there is a [vscode extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-devops.azure-pipelines) that helps writing Azure Pipelines files by providing syntax highlighting and autocompletion for Azure Pipelines YAML files in vscode. 
 

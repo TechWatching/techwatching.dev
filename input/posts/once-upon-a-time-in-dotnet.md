@@ -12,7 +12,7 @@ Tags:
 
 In this article, I want to talk about a few things in .NET such as HTTP requests with an Http Client, HTTP message handlers, records... For the theoretical aspect of these topics, I think the official documentation on docs.microsoft.com and many blog articles already explain them very well, better than I could ever do. But what I am interested in here is to talk about these topics through a case study.
 
-# Introducing the case study
+## Introducing the case study
 I wrote a very basic ASP.NET Core API [`MyLotrApi`](https://github.com/TechWatching/MyLotrApi/tree/a70b6f91fcbcc30a3c3a3616799e3e85817b7906) that exposes some data from the "Lord of the Rings" universe. This API calls another existing API [`The One API`](https://the-one-api.dev/) to retrieve this data. The code is quite simple: 
 - a controller `LotrController` with 2 routes
     - `GET /popularmovies` that returns the movies in the "Lord of the Rings" universe with a rotten tomatoes score above 80
@@ -23,7 +23,7 @@ I wrote a very basic ASP.NET Core API [`MyLotrApi`](https://github.com/TechWatch
     - uses NewtonSoft for deserializing responses
 - a `Models` class that contains the different data models used by the API
 
-# About using records
+## About using records
 
 Instead of using basic C# classes for the models in this API, I used [records](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9#record-types). Many people are talking about records nowadays because it is one of the latest trendy features of C# 9. Unfortunately, that makes other people think records are just another syntactic sugar added to C# that they do not need to use in their code. Yet, there are a lot of benefits in using records.
 
@@ -67,7 +67,7 @@ As a workaround, you can compare the properties of your two variables (if they a
 
 <img src="/posts/images/onceuponatime_records_2.png" class="img-fluid centered-img">
 
-# What can be improved in `TheOneApiService`?
+## What can be improved in `TheOneApiService`?
 
 Enough talking about records, let's have a closer look at [`TheOneApiService`](https://github.com/TechWatching/MyLotrApi/blob/a70b6f91fcbcc30a3c3a3616799e3e85817b7906/src/MyLotrApi/TheOneApiService.cs) and see what we can improve. At first sight, the code looks fine, just 2 methods that use an `HttpClient` to make a get request, ensure that the response is ok (throw an exception otherwise), retrieve the response content as a string, and deserialize it into their corresponding types with NewtonSoft. Basic code that we can often see.
 
@@ -75,7 +75,7 @@ Enough talking about records, let's have a closer look at [`TheOneApiService`](h
 
 Yet, it seems that there is a bit of code duplication between the methods, not a problem as we only have two methods but it can quickly become one if we add other methods. So what can we do about that?
 
-## Adding a private method that factorizes the code
+### Adding a private method that factorizes the code
 
 This solution is something I often see: people wrap the common logic between their methods in a private method that gets called by the others. So we end up having a generic `Send` that does all the job (request, response handling, deserialization ...), and our 2 methods `GetMovies` and `GetCharacters` that have become quite trivial.
 
@@ -101,7 +101,7 @@ If you are fond of SOLID, what I am just saying is that this solution does not s
 
 So what could be done to improve this code if it is not by factorizing it in a private method. As we said, the code in the service does too much things so maybe it's time to remove some concerns from the `TheOneApiService`.
 
-## Implementing an HTTP message handler to simplify the code
+### Implementing an HTTP message handler to simplify the code
 
 I already talked about using an HTTP message handler / delegating handler in [a previous article](https://www.techwatching.dev/posts/delegating-handler). When registered with an HTTP client, it is a piece of code that all the HTTP requests you do on this HTTP client will go through. Hence it is a nice way of factorizing code that we want to apply to all the requests to `The One API` like the fact of throwing the `TheOneApiException` when the HTTP responses are not successful.
 
@@ -109,7 +109,7 @@ I already talked about using an HTTP message handler / delegating handler in [a 
 
 (This code can be found [here](https://github.com/TechWatching/MyLotrApi/blob/9dfd9966044560d6e13c71d93eeba775e02bd18d/src/MyLotrApi/Services/HttpMessageHandlers/TheOneApiErrorDelegatingHandler.cs))
 
-## Using `HttpClientJsonExtensions` to get rid of the deserialization code 
+### Using `HttpClientJsonExtensions` to get rid of the deserialization code 
 
 In the current code, there are some lines to read the response content as a string and deserialize it. The interesting code in the service is the fact of doing a GET or a POST to retrieve some data, not the boilerplate code to handle deserialization. So it would be great to be able to remove it. In .NET Framework, there used to be some HTTP client extensions that worked with NewtonSoft to do that.
 
@@ -118,7 +118,7 @@ In .NET Core there is no longer that, however, there are HttpClient method exten
 <img src="/posts/images/onceuponatime_theoneapiservice_3.png" class="img-fluid centered-img">
 
 (This code can be found [here](https://github.com/TechWatching/MyLotrApi/blob/4ceca01826a0de4cca593c731f812ace874924a8/src/MyLotrApi/Services/TheOneApiService.cs))
-## Exploring an alternative to implementing the interface `ITheOneApiService` with Refit
+### Exploring an alternative to implementing the interface `ITheOneApiService` with Refit
 
 I am pretty happy with how we improved and simplified the code thanks to the handler and the HTTP extensions methods. Yet I think I cannot end this article without mentioning [Refit](https://github.com/reactiveui/refit): the automatic type-safe REST library for .NET. The idea behind this [library](https://reactiveui.github.io/refit/) is that you only have to define the interface specifying the routes you want to query and the library will generate an implementation that does the calls for you with an HttpClient. No need to implement that yourself anymore, so less code to maintain for the same result.
 
@@ -133,6 +133,6 @@ Using Refit might not be appropriate to your use case when you have very specifi
 <img src="/posts/images/onceuponatime_refit_1.png" class="img-fluid centered-img">
 
 (This code can be found [here](https://github.com/TechWatching/MyLotrApi/blob/76f85099bdb8c747717bf3e61007c276d5055e6f/src/MyLotrApi/Startup.cs))
-# To conclude
+## To conclude
 
 In this article, we have seen how we can improve some .NET code while talking about records, delegating handlers, refit...

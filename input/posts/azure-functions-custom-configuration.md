@@ -12,7 +12,7 @@ The possibility to add configuration sources in Azure Functions has just been re
 
 But before deep dive into this topic, let's give a bit of context about configuration and secrets in Azure Functions (just skip the next section if you already are familiar with all that).
 
-# A quick reminder about configuration and secrets in Azure Functions
+## A quick reminder about configuration and secrets in Azure Functions
 
 Configuration used by functions in a Function App is stored in settings that can be set in the `Configuration` section of a Function App in Azure Portal. When developing locally you have to use a `local.settings.json` file that will contain copies of the settings stored in Azure portal. The settings from `local.settings.json` will be loaded as environment variables when debugging locally. But as its name suggests, the purpose of this file is to be used for local development only: its settings are not used when the function runs on Azure. Furthermore, this file should never be committed to avoid putting settings corresponding to secrets in source control.
 
@@ -24,7 +24,7 @@ Speaking of secrets, they should never be directly stored in the application set
 
 Key Vault references work for both App Services and Function Apps and are particularly useful for existing applications that have their secrets stored in settings because securing the secrets with Azure Key Vault references does not require any code change.
 
-# The downside of Key Vault references: the local debugging experience
+## The downside of Key Vault references: the local debugging experience
 
 Do you remember when I told you that the local settings file should not be committed to your git repository? Well, what you might not have realized is that it means when someone from your team clones the git repository containing your function he won't have this `local.settings.json` file which is mandatory to run your function app locally. And even if he creates manually the file, he will not necessarily know which settings to put in it. But we want to avoid him manually copying all the settings from the Azure portal or asking a colleague to send his local settings file by email (which is a really bad practice if it contains secrets). Hopefully, there are some ways to fill or generate this file. 
 
@@ -44,7 +44,7 @@ However, as you can see, the settings corresponding to secrets contain the Key V
 
 This is a terrible local debugging experience and honestly, you don't want that. What you want is that your function code just works when you or one of your colleagues clones or pulls a new version of the function app code. When debugging locally the code of an ASP.NET Core application deployed in an App Service you don't have this kind of problem because usually your code directly loads the secrets from the Key Vault thanks to [Key Vault configuration provider](https://docs.microsoft.com/en-us/aspnet/core/security/key-vault-configuration?view=aspnetcore-3.1).
 
-# Here comes `IFunctionsConfigurationBuilder`
+## Here comes `IFunctionsConfigurationBuilder`
 
 If you are already familiar with dependency injection in Azure Functions, you already know the `Microsoft.Azure.Functions.Extensions` NuGet package that allows you to inherit from the `FunctionStartup` abstract class and register the different services you want to inject into your functions (you can find more about that in the [documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection)). In the latest version of this NuGet package, a new virtual method has been added to `FunctionStartup`: `ConfigureAppConfiguration`. It allows you to specify additional configuration sources you would need in your functions.
 
@@ -56,7 +56,7 @@ What is awesome is that you can use all the configuration providers you are used
 
 This way, no more copying secret, no more storing secrets values locally, no more wondering if you have the latest version of a secret. Say goodbye to key vault references, pull the latest version of your code, press F5 and it will work!
 
-# The triggers case
+## The triggers case
 
 Well in my title I said *"you **almost** no longer need key vault references"* and the **almost** is important. As the [Azure Functions documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection#customizing-configuration-sources) about customizing configuration sources mentions:
 
@@ -64,6 +64,6 @@ Well in my title I said *"you **almost** no longer need key vault references"* a
 
 Therefore, if you use a trigger that needs a secret (the connection string of an EventHub trigger for instance), you have no other choice than to use a key vault reference. But for everything else you are good to go with Azure Key Vault configuration provider.
 
-# To conclude
+## To conclude
 
 To summarize, after a quick recall of how Azure Functions configuration works we have seen how Key Vault references can help to avoid having secret values in settings. We talked about the downside of this approach for the local development experience and how using the Azure Key Vault configuration provider solved that except when a secret is needed in a trigger. 
