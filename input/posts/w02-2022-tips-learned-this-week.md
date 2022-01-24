@@ -11,7 +11,7 @@ Tags:
   - tooling
 ---
 
-This is my first article of the [series "Tips I learned this week"](https://www.techwatching.dev/tags/tips-learned-this-week/) for 2022 🚀! And today we are going to see some tips about .NET, Azure, GitHub, and VS Code.
+This is my first article of the series [Tips I learned this week](https://www.techwatching.dev/tags/tips-learned-this-week/) for 2022 🚀! And today we are going to see some tips about .NET, Azure, GitHub, and VS Code.
 
 ## .NET tip of the week: changing the .NET CLI language
 
