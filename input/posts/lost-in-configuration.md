@@ -1,5 +1,5 @@
 Title: ASP.NET Core - Lost in configuration
-Lead: How should you use configuration providers in ASP.NET Core ?
+Lead: How should you use configuration providers in ASP.NET Core?
 Published: 27/09/2021
 Image: /images/tokyo.jpg
 Tags:
