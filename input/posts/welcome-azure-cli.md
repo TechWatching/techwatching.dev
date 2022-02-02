@@ -17,7 +17,7 @@ In this article about Azure CLI, we will talk about:
 Azure CLI can be installed by following the instructions on [this page](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
 
 ## 1 - Managing Azure resources
-Azure resources can be managed in different ways but the main ones are the [Azure Portal](https://portal.azure.com), [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/) and [Azure CLI](https://docs.microsoft.com/en-us/cli/azure). If you are new to Azure or if you are creating resources you are not familiar with, it is always nice to have a GUI to understand what you are doing and Azure Portal is the right way to go.  
+Azure resources can be managed in different ways but the main ones are the [Azure Portal](https://portal.azure.com), [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/), and [Azure CLI](https://docs.microsoft.com/en-us/cli/azure). If you are new to Azure or if you are creating resources you are not familiar with, it is always nice to have a GUI to understand what you are doing and Azure Portal is the right way to go.  
 
 <img src="/posts/images/azurecli_portal_1.png" class="img-fluid centered-img">
 
@@ -30,7 +30,7 @@ Until recently, when I was not using the Azure Portal I was more prompt to use A
 The Azure CLI Syntax is simple to understand. For instance, the command `az webapp list` will list the WebApps in the subscription you are currently logged in.
 
 An Azure CLI command has the following structure:
-- a **command group** which represents an Azure service and which can be the composition of subgroups
+- a **command group** that represents an Azure service and which can be the composition of subgroups
 - a **command** which is the action you want to do on the group / Azure service
 - **arguments** optionally which are a list of parameter names and values
 
@@ -64,7 +64,7 @@ By default, the output format of Azure CLI commands is JSON but there are other 
 Whether you choose to run your commands in Bash or PowerShell, you can use variables with Azure CLI, only the syntax for creating variables will change depending on the command-line shell you use. 
 >The samples in this article use the PowerShell syntax. 
 
-```
+```powershell
 $rgName = 'TestingAzureCLI'
 
 # Create a new resource group
@@ -150,7 +150,8 @@ Once you have understood how to use variables, commands output, and JMESPath wit
 
 Let's presume that we want to create a Web App for the IT Department in an existing App Service Plan of our subscription located in West Europe.
 We can do the following:
-```
+
+```powershell
 # Retrieve resource group name of IT Department in West Europe
 $itRgName = az group list --query "[?tags.Department=='IT' && location=='westeurope'].name" -o tsv
 
@@ -193,7 +194,7 @@ It also allows you to run commands in the integrated terminal or run them and sh
 
 ### Azure Cloud Shell
 
-I did not talk about Azure CLI installation but you can find everything you need in [Microsoft documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). Actually, Azure Cloud Shell provides you a way to use Azure CLI without installing anything.
+I did not talk about Azure CLI installation but you can find everything you need in [Microsoft documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). Actually, Azure Cloud Shell provides you with a way to use Azure CLI without installing anything.
 
 If we quote the documentation:
 >Azure Cloud Shell is an interactive, browser-accessible shell for managing Azure resources
@@ -232,6 +233,6 @@ As you can see in the example above, you can even use a JMESPath query on the pr
 
 ## To conclude
 
-Even if the title of this article suggests saying goodbye to Azure Portal, when you start using Azure CLI you are not going to stop completely using Azure Portal. You will always need a GUI for some tasks or to better visualize things. However, you will probably use less often Azure Portal as you are going to find yourself more productive with Azure CLI and will enjoy being able to script everything ✨.
+Even if the title of this article suggests saying goodbye to Azure Portal, when you start using Azure CLI you are not going to stop completely using Azure Portal. You will always need a GUI for some tasks or to better visualize things. However, you will probably Azure Portal use less often as you are going to find yourself more productive with Azure CLI and will enjoy being able to script everything ✨.
 
 There is still much to say about Azure CLI but that's already a long article so the best thing is that you try it by yourself!
