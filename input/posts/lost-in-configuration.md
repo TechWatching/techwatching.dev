@@ -159,7 +159,7 @@ Unlike the `appsettings` files, the `launchsettings.json` file is not used when 
 To know where to put your settings in an ASP.NET Core project you have to ask yourself some questions: is this setting secret or not, does its value depends on the environment, will it be shared with other applications... ?
 
 My point of view about how to handle the configuration in an ASP.NET Core project is the following:
-- put all your settings in the appsettings.json file (without necessarily putting the values of the settings) to have a global view of the configuration used by your application
+- put all your settings in the `appsettings.json` file (without necessarily putting the values of the settings) to have a global view of the configuration used by your application
 - keep a `appsettings.{EnvironmentName}.json` file by environment in your project with only the settings that are dependent on the environment
 - never store secrets in source code and use an Azure Key Vault to store the settings that are secrets
 - create different profiles in your `launchsettings.json`file to debug your application locally with different configurations
