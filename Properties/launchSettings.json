@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TechWatching.dev": {
+      "commandName": "Project",
+      "commandLineArgs": "preview"
+    }
+  }
+}
