@@ -24,7 +24,8 @@ One of the latest releases of Windows Terminal allows specifying startup actions
 
 <img src="/posts/images/w092021tips_terminal_1.png" class="img-fluid centered-img">  
 
-##A git config setting to make working with submodule easier.
+## A git config setting to make working with submodule easier.
+
 On the projects I am working on, we are using submodules to share some code between different components. NuGet packages are great to share code between different projects or applications but it is sometimes a bit complicated to handle when you simply want to share a few models and services between an API and an Azure Function for instance. In these situations, it is easier to use submodules for which you don't have to handle versioning (you just reference in your repository a commit or a branch of the submodule you want to use) nor set up source link (you can directly debug the code from the submodules in your project).
 
 However, one drawback of using submodules is that you have to learn and execute a few additional git commands to manipulate submodules. Typically when you do a `git pull` in your git repository, you have to do a `git submodule update` to update the submodules to their respective commit referenced in the "super" git repository. That is just one additional command but if you do that often it can quickly become boring 🥱.
