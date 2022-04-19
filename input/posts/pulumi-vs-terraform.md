@@ -158,7 +158,7 @@ I think generating the providers from the APIs is the right way of doing things.
 
 <img src="/posts/images/pulumivstf_providers_2.png" class="img-fluid centered-img">
 
-Another I appreciate a lot with these native providers:  you work with the same "models" as the ones of the corresponding cloud. On the contrary, because a Terraform provider is hand-coded you will have a more or less thin abstraction layer and potential differences between the models. That's not a big deal but can sometimes complicate things because you have to understand how the Terraform models map to the cloud API models.
+Another thing I appreciate a lot with these native providers:  you work with the same "models" as the ones of the corresponding cloud. On the contrary, because a Terraform provider is hand-coded you will have a more or less thin abstraction layer and potential differences between the models. That's not a big deal but can sometimes complicate things because you have to understand how the Terraform models map to the cloud API models.
 
 ###  More about providers
 
@@ -190,7 +190,7 @@ I truly believe that the proper way of adopting DevOps practices is to have mult
 
 Whatever the IaC solution you choose, you will have to learn new concepts that may not be obvious. Yet, writing the infrastructure code will be easy to learn if you are using a programming language you already know. On the contrary, if you use a DSL, it will add another thing for you to learn (especially HCL that I don't find very intuitive).
 
-Using Pulumi you will not only be able to use the programming language you know but also your favorite IDEs, as well as the libraries and the tools you are familiar with 🛠️. The programming languages supported by Pulumi (TypeScript/JavaScript, Python, Go, .NET languages and probably more to come) are used by lots of people for software development. Therefore IDE support (typing, static analysis, code completion....) is already great and tooling in general better than the tooling for an IaC DSL could ever be.
+Using Pulumi you will not only be able to use the programming language you know but also your favorite IDEs, as well as the libraries and the tools you are familiar with 🛠️. The programming languages supported by Pulumi (TypeScript/JavaScript, Python, Go, .NET languages, Java languages, and probably more to come) are used by lots of people for software development. Therefore IDE support (typing, static analysis, code completion....) is already great and tooling in general better than the tooling for an IaC DSL could ever be.
 
 <img src="/posts/images/pulumivstf_eveyonecancode.jpg" class="img-fluid centered-img">
 
@@ -220,7 +220,7 @@ Terraform has a great community that creates packages and tools for Terraform. A
 
 ### The future
 
-I have given several reasons why I think programming languages is the best way to do IaC. Today, the majority of people are using DSL based on YAML or JSON to write infrastructure code but things are changing at a great speed. Following the example of Pulumi, there are more and more IaC tools that support programming languages to write infrastructure code, [AWS CDK](https://aws.amazon.com/cdk/) for instance. Even Terraform itself is starting to see the limits of HCL and has launched its CDK in beta. Unfortunately it's still in preview since July 2020, has some limitations, and is not yet mature according to the [documentation](https://www.terraform.io/cdktf#project-maturity). Pulumi has a clear head start but it's very interesting to see the whole IaC ecosystem evolving in this direction.
+I have given several reasons why I think programming languages is the best way to do IaC. Today, the majority of people are using DSL based on YAML or JSON to write infrastructure code but things are changing at a great speed. Following the example of Pulumi, there are more and more IaC tools that support programming languages to write infrastructure code, [AWS CDK](https://aws.amazon.com/cdk/) for instance. Even Terraform itself is starting to see the limits of HCL and has launched its CDK in beta. Unfortunately at the time of writing it's still in preview since July 2020, has some limitations, and is not yet mature according to the [documentation](https://www.terraform.io/cdktf#project-maturity). Pulumi has a clear head start but it's very interesting to see the whole IaC ecosystem evolving in this direction.
 
 ## Final thoughts
 ### Summary
