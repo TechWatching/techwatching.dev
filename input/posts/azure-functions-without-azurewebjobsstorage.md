@@ -4,6 +4,7 @@ Image: /images/lightning_2.jpg
 Tags:
   - Azure Functions
   - Pulumi
+  - IaC
   - Azure Active Directory
   - Azure
 ---

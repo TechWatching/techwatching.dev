@@ -8,6 +8,7 @@ Tags:
   - Azure
   - .NET
   - Pulumi
+  - IaC
 ---
 
 In this article, we will talk about how to provision an Azure SQL Database with authentication restricted to Active Directory users/groups/applications. We will use Pulumi to do that.
