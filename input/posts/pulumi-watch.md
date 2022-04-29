@@ -4,6 +4,7 @@ Published: 02/01/2022
 Image: /images/cloud-lighthouse_1.jpg
 Tags:
   - Pulumi
+  - IaC
 ---
 
 Do you like using hot reload when developing applications? How about using hot reload when developing the cloud infrastructure of an application? Keep reading because that's what we are going to talk about.

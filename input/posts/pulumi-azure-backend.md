@@ -4,6 +4,7 @@ Published: 14/12/2021
 Image: /images/cloud-crave_1.jpg
 Tags:
   - Pulumi
+  - IaC
   - Azure CLI
   - Azure Storage
   - Azure Key Vault
