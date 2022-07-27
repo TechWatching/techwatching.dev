@@ -58,7 +58,7 @@ We then just have to filter the table to get only the lines with the Status `[go
 
 And the final script:
 ```bash
-git branch -vl '*/*' | lines | split column " " BranchName Hash Status --collapse-empty | where Status == '[gone]' | each { git branch -D $it.BranchName }
+git branch -vl '*/*' | lines | split column " " BranchName Hash Status --collapse-empty | where Status == '[gone]' | each { |it| git branch -D $it.BranchName }
 ```
 
 ## Make it a git alias.
