@@ -8,7 +8,31 @@ Tags:
   - shell
   - nushell
 ---
-When working on a git repository, I often have to manually delete old local branches that I don't use anymore. That's not a huge waste of time but still, that's something I have to do quite often so I decided to automate that.
+When using [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or the [HTTP Client of JetBrains' IDEs](https://www.jetbrains.com/help/rider/Http_client_in__product__code_editor.html), environment variables are stored in JSON files that can contain secrets. To share these files within a team, developers tend to send them by email or by messaging applications which is not very convenient nor secure. I though it would be a good idea to store these secrets directly in an Azure Key Vault and automate the generation of a JSON file containing the secrets using [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/) and [Nushell](), this is the topic of this article.
+
+## The problem: keep secrets secure while making HTTP requests
+
+If you have read my article "[Testing your API with REST Client](https://www.techwatching.dev/posts/testing-your-api-with-rest-client)", you know I am big fan of using the vscode extension "REST Client" to make HTTP requests intead of using GUI tools like Postman. With REST Client, you write your HTTP requests using the standard RFC 2616 in ``.http`or `.rest files and commit them in your git repository. You can have define environments and their associated variables in the workspace settings file of vscode (you can also store them in the user settings file but I don't recommand it as they would apply for every vscode workspace). If you have some secrets among your environment variables (like an API key for instance), you obviously can't commit this settings file (you should never commit secrets to a git repository). So sharing among your developer team the environment variables needed to run the requests can be difficult.
+
+I have been using recently the IDE [Rider](https://www.jetbrains.com/fr-fr/rider/), which has (like all the other JetBrains' IDEs) an integrated [HTTP Client]((https://www.jetbrains.com/help/rider/Http_client_in__product__code_editor.html). It's very similar to REST Client (same syntax for the requests that are written in `.http` or `.rest` files) with some extra features. With this HTTP Client, environment variables are stored to public JSON environment file `http-client.env.json` that can be committed, but secrets can be stored in a private JSON environment file `http-client.private.env.json` that will not be commit and whose values will override the values in the public file. It's well thought out, yet we still have the problem of sharing with our team the private file containing the secrets.
+
+When someone joins the team or new environments variables have been added, the developer in the team that has the latest version of the environment file usually share it by sending it by email or private message in Microsoft Teams, Slack... to those who need it. This is not very convenient and this is not a good practice because you don't want secrets floating around. So what can we do about that?
+
+> To be honnest, even if it bothered me a bit a little to do that, I only decided to think of a solution when a friend pointed out to me that the big challenge with tools like `REST Client` or `HTTP Client` from JetBrains was managing secrets.
+
+## The solution: use Azure Key Vault and scripting
+
+The solution is not complicated. I asked myself: where do you I usually store secrets? The answer is "a vault". Whether it is Azure Key Vault, AWS Secret Manager, Google Cloud Secret Manager or HashiCorp Vault it does not matter, secrets have to be stored somewhere safe, and it's precisely the purpose of a vault.
+
+
+## Let's script that with Azure CLI and Nushell!
+
+
+## Final thoughts
+
+I had fun
+They are probably other ways / services
+Thanks
 
 ## Why do I end up having outdated local branches on my git repositories?
 
@@ -61,7 +85,7 @@ And the final script:
 git branch -vl '*/*' | lines | split column " " BranchName Hash Status --collapse-empty | where Status == '[gone]' | each { |it| git branch -D $it.BranchName }
 ```
 
-## Make it a git alias.
+## Summary
 
 We can integrate this script into our git commands by creating a git alias. Let's say I want to create the alias `bcl` for branch clean up, we only need to add the following to our `.gitconfig`:
 

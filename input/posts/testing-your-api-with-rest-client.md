@@ -21,7 +21,7 @@ Seems to be the perfect tool you would say. Well, that's true if you want to qui
 
 Okay, I know that Postman paid plan allows you to share requests with other people of your team. And I am aware of the collection export feature on the free plan, but that's not enough. I don't really like to be too tied to a proprietary software and its GUI to do things. As a developer what I want is to be able to edit my requests in simple text files that I can put in version control. And here's come [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-## What is REST?
+## What is REST Client?
 
 <img src="/posts/images/restclient_vscode_1.png" class="img-fluid centered-img">
 
