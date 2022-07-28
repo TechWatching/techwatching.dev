@@ -1,6 +1,6 @@
 Title: Clean up your local git branches.
 Lead: Playing with Nushell to create a useful git alias to delete unused local git branches.
-Published: 06/04/2020
+Published: 29/07/2022
 Image: /images/branches_1.jpg
 Tags:
   - tooling
@@ -18,86 +18,82 @@ I have been using recently the IDE [Rider](https://www.jetbrains.com/fr-fr/rider
 
 When someone joins the team or new environments variables have been added, the developer in the team that has the latest version of the environment file usually share it by sending it by email or private message in Microsoft Teams, Slack... to those who need it. This is not very convenient and this is not a good practice because you don't want secrets floating around. So what can we do about that?
 
-> To be honnest, even if it bothered me a bit a little to do that, I only decided to think of a solution when a friend pointed out to me that the big challenge with tools like `REST Client` or `HTTP Client` from JetBrains was managing secrets.
+> To be honest, even if sharing secrets like that bothered me a bit, I only decided to think of a solution when a friend pointed out to me that the big challenge with tools like `REST Client` or `HTTP Client` from JetBrains was managing secrets.
 
 ## The solution: use Azure Key Vault and scripting
 
-The solution is not complicated. I asked myself: where do you I usually store secrets? The answer is "a vault". Whether it is Azure Key Vault, AWS Secret Manager, Google Cloud Secret Manager or HashiCorp Vault it does not matter, secrets have to be stored somewhere safe, and it's precisely the purpose of a vault.
+The solution is not complicated. I asked myself: where do you I usually store secrets? The answer is "a vault". Whether it is Azure Key Vault, AWS Secret Manager, Google Cloud Secret Manager or HashiCorp Vault it does not matter, secrets have to be stored somewhere safe, and it's precisely the purpose of a vault. I personally use Azure Key Vault when developing applications so that's what I am going to use. If I want my team to be able to retrieve the secrets I just have to ensure everyone has access to the Key Vault. 
 
+> By the way, I like to create an Azure AD Group for my team so that all the permissions given in Azure (for the project the team is working on) are assigned to this group instead of to each developer. When someone joins or leaves the team, we then can simply add him in the group or remove him from it.
+
+If the secrets are stored in an Azure Key Vault, we can let each developer retrieve the secrets from the vault and put them in their private environment file. But honestly, it's not convenient especially with many secrets. A better solution is to make a script that automatically retrieves the secrets and generate the JSON file. That way the git repository will contain the HTTP requests, the public environment file and a script to generate the private environment file, so that any new joiner will have everything he needs to get started and run the requests.
 
 ## Let's script that with Azure CLI and Nushell!
 
+I have chosen to script that using Azure CLI and Nushell because these are 2 tools I like and I am confident the resulting script will be concise and not too difficult to write. If you are not familiar with Azure CLI, you can check my article "[Goodbye Azure Portal, Welcome Azure CLI](https://www.techwatching.dev/posts/welcome-azure-cli)". If you don't know Nushell you can check their [website](https://www.nushell.sh/) or follow along this article to see how nice this shell is.
+
+I have already created an Azure Key Vault and set 3 secrets in it. 
+
+What I am trying to achieve is to produce the following file:
+```json
+{
+  "development":
+  {
+    "ApiKey": "12345678",
+    "Username": "admin",
+    "UserPassword": "Password"
+  }
+}
+```
+
+First, let's list the secrets in my Key Vault:
+
+<img src="/posts/images/httpclientssecrets_script_1.png" class="img-fluid centered-img">
+
+The output of the command is not that easy to read because it's JSON and there are some properties we are not interested in. However, Azure CLI supports different output formats and can be used with JMESPath expressions to query the output of a command like this:
+
+<img src="/posts/images/httpclientssecrets_script_2.png" class="img-fluid centered-img">
+
+It's nice but I won't need to use this because I can use Nushell (aka Nu) pipelines where everything is structured data that can be filtered, selected and sorted. To bring the Azure CLI command output into a Nu pipeline, I can use the `from json` command. Nu has many `from` commands to convert data from different formats to structured data/table.
+
+<img src="/posts/images/httpclientssecrets_script_3.png" class="img-fluid centered-img">
+
+You probably have noticed that the Azure CLI command we used lists the secrets but does not provide their values. To retrieve the secret values we have to call another command for each secret using the id of the secret like this: `az keyvault secret show --id $secretId`.
+
+<img src="/posts/images/httpclientssecrets_script_4.png" class="img-fluid centered-img">
+
+Again we can use the `from json` command, and the `get` command to only retrieve the value of a secret.
+
+<img src="/posts/images/httpclientssecrets_script_5.png" class="img-fluid centered-img">
+
+Now we now how to retrieve our individual secret values, we can insert a new column `value` into our table that will be filled with the value of each secret retrieved by using the previous command: 
+
+<img src="/posts/images/httpclientssecrets_script_6.png" class="img-fluid centered-img">
+
+The `{|secret| (az keyvault secret show --id $secret.id | from json | get value)}` part is a block that is executed for each row. The `secret` is the parameter of the block which represents the row, with the values of the columns for this row being available as properties of the variable `$secret`. As the command started to become long, we have wrapped it in parentheses which allow us to write the command on multiple lines.
+
+As we are only interested in the columns name and value, we only select them.
+
+<img src="/posts/images/httpclientssecrets_script_7.png" class="img-fluid centered-img">
+
+We have to reorganize the data to make key value pairs where keys come from the column name and values from the column value. We can use the `transpose` with the proper flags to do that:
+
+<img src="/posts/images/httpclientssecrets_script_8.png" class="img-fluid centered-img">
+
+Then we wrap the key value pairs JSON object corresponding to the the development environment:
+
+<img src="/posts/images/httpclientssecrets_script_9.png" class="img-fluid centered-img">
+
+We can check we get the JSON we want with the `to json` command.
+
+<img src="/posts/images/httpclientssecrets_script_10.png" class="img-fluid centered-img">
+
+And finally, we can save the data in a `http-client.private.env.json` file.
+
+<img src="/posts/images/httpclientssecrets_script_11.png" class="img-fluid centered-img">
 
 ## Final thoughts
 
-I had fun
+I had fun playing with Azure CLI and Nushell to write script. But that does not mean it's the best solution.
 They are probably other ways / services
 Thanks
-
-## Why do I end up having outdated local branches on my git repositories?
-
-First, let's talk about how I end up having many useless local git branches. That's something quite usual and directly linked with the way I work with git but chances are that you are having the same issue.
-
-At work I am working in a small team of developers, we host our git repositories in [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/repos/) and we try to respect the following practices in our daily development:
-- having a main branch (master) on which nobody can commit directly
-- always create a short-lived branch (also called feature branch) when developing a new feature of the application
-- only merge a feature branch on the main branch through an Azure DevOps pull request
-  - the PR triggers a pipeline that ensures the code build correctly, follow some conventions (with a Sonar analysis for instance) and that unit tests pass
-  - the PR can only be completed after a code review of at least one member of the team
-  
-These practices allow us to keep good quality in our code base, not to mess with our git repositories, and ensure the main branch always builds.
-
-However, each week we are creating a lot of branches that need to be deleted as once merged we no longer need to have them. When a pull request is approved and we decide to complete it, Azure DevOps takes care of automatically merging the associated feature branch into master and deleting it from the repository. Once that's done, I can do a `git fetch --prune` on my laptop to have the feature branch removed from the remote of my local repository (by the way, I recommend you to directly set the fetch command to prune by default in your git config 👌). Nevertheless, this does not delete the local version of the feature branch thus our problem: over time if we do not think of deleting all these outdated branches, they become too many and we don't even know which branch should be kept or not.
-
-## Git commands to identify and delete outdated branches.
-
-As my outdated branches are already removed from my remote (thanks to `git fetch --prune`) it should not be too complicated to use some git commands to guess which branches are not useful anymore. But as it's Azure DevOps that took care of merging them (sometimes with a squash) I cannot use the `git branch --merged` command.
-
-If I take my blog repository as an example I have a bunch of branches: some that could be useful (articles I have started to write but did not finish yet and I don't know if I will one day 😋) and some that are already merged into my master branch through a PR.
-
-<img src="/posts/images/cleaningbranches_shell_1.png" class="img-fluid centered-img">
-
-The command `git branch -vl` (which lists in a verbose way the local git branches) gives us an interesting view as it shows the branches for which the remote has been deleted specifying a `[gone]` for them. These branches correspond to the outdated branches we want to delete.
-
-<img src="/posts/images/cleaningbranches_shell_2.png" class="img-fluid centered-img">
-
-We know how to identify the outdated branches but we need a command to delete them which is the `git branch -D` command. Now we only need a script to associate the output and input of these two commands to automate the deletion.
-
-You can find on Stackoverflow some posts like [this one](https://stackoverflow.com/questions/7726949/remove-tracking-branches-no-longer-on-remote) that show different solutions using bash that work perfectly but I thought it would be interesting to try to script that using another shell. Indeed I recently started to use a shell called [nushell](https://github.com/nushell/nushell) which is a pretty powerful yet simple cross-platform shell. It is still in preview at the time of writing but if you have not heard of it I suggest you read the [introduction post](https://www.jonathanturner.org/2019/08/introducing-nushell.html) of Jonathan Turner.
-
-## Let's script that with nushell!
-
-Enough of talking, let's script.
-To start with, we can use the nu lines command to create a table from the lines of the `git branch -vl` output (we added an extra `*/*` argument as we are only interested in posts branches).
-
-<img src="/posts/images/cleaningbranches_shell_3.png" class="img-fluid centered-img">
-
-Then we can split the different lines into columns that we can name with the `split column` command. We use spaces to correctly split a line and the option `--collapse-empty` to remove the empty columns.
-
-<img src="/posts/images/cleaningbranches_shell_4.png" class="img-fluid centered-img">
-
-We then just have to filter the table to get only the lines with the Status `[gone]`.
-
-<img src="/posts/images/cleaningbranches_shell_5.png" class="img-fluid centered-img">
-
-And the final script:
-```bash
-git branch -vl '*/*' | lines | split column " " BranchName Hash Status --collapse-empty | where Status == '[gone]' | each { |it| git branch -D $it.BranchName }
-```
-
-## Summary
-
-We can integrate this script into our git commands by creating a git alias. Let's say I want to create the alias `bcl` for branch clean up, we only need to add the following to our `.gitconfig`:
-
-```git
-[alias]
-	bcl = !nu \"D:\\gitalias_bcl.nu\"
-```
-
-where `gitalias_bcl.nu` is the nu script file we created earlier (it's located here in the `D://` drive but can be created anywhere). 
-
-Now we can simply do a `git bcl` to clean our outdated local git branches.
-
-<img src="/posts/images/cleaningbranches_shell_6.png" class="img-fluid centered-img">
-
-That's it, nothing revolutionary but that was the opportunity to automate the boring task of deleting outdated local branches while playing with nushell.
