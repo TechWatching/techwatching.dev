@@ -3,7 +3,11 @@ Lead: A git repository, 2 packages managers, a little bit of scripting, and here
 Published: 02/09/2022
 Image: /images/laptop_2.jpg
 Tags:
-  - thoughts
+  - development box setup
+  - PowerShell
+  - winget
+  - package manager
+  - tooling
 ---
 In this article, I talked about my latest project: how I built a script to automate the setup of my developer machine using Boxstarter, Chocolatey, Winget, and PowerShell... and how I learned a few things along the way.
 
