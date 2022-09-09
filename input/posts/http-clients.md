@@ -1,4 +1,4 @@
-Title: Discussion around API clients
+Title: Discussion about API clients
 Lead: What should you consider when choosing an API client?
 Published: 08/09/2022
 Image: /images/tools_1.jpg
