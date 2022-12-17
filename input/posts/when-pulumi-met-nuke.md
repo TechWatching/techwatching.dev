@@ -89,7 +89,7 @@ I will show later how to modify the code of the template to provision an App Ser
 
 >You can check Pulumi [Getting Started with Azure](https://www.pulumi.com/docs/get-started/azure/) tutorial to see how to set up your environment and start creating Azure resources in C# (or in another language).
 
-To initialize the build project, we can use Nuke's .NET global tool as explained in the [documentation]([Build Setup | NUKE](https://nuke.build/docs/getting-started/setup/)):
+To initialize the build project, we can use Nuke's .NET global tool as explained in the [documentation](https://nuke.build/docs/getting-started/setup/):
 
 ```bash
 nuke :setup
@@ -180,7 +180,7 @@ The publish target uses the `dotnet publish` command and then creates a zip `api
 
 ```csharp
 Target Publish => _ => _  
-    .DependsOn(Compile)  
+    .DependsOn(Clean, Compile)  
     .Executes(() =>  
     {  
         DotNetPublish(_ => _  
@@ -195,7 +195,7 @@ Target Publish => _ => _
 
 > 💡If you need more compressing archives options, you can check [Nuke documentation](https://nuke.build/docs/common/compression/#compressing-archives), they have some utilities to do more complex scenarios.
 
-You may have noted on the line where I set the project that I have [strong-typed access to the projects in my solutions](https://nuke.build/docs/common/solution-project-model/#strong-typed-project-access). This is possible by adding this field with the `Solution` attribute and its `GenerateProjects` property set to true. 
+You may have noted on the line where I set the project that I have [strong-typed access to the projects in my solution](https://nuke.build/docs/common/solution-project-model/#strong-typed-project-access). This is possible by adding this field with the `Solution` attribute and its `GenerateProjects` property set to true. 
 
 ```csharp
 [Solution(GenerateProjects = true)]  
@@ -212,7 +212,7 @@ By default, the infrastructure code is contained in the `Program.cs` file of our
 
 <img src="/posts/images/pulumi_met_nuke_10.png" class="img-fluid centered-img">
 
-> 💬The project uses the top-level statement feature of C#.
+> 💬 The project uses the top-level statement feature of C#.
 
 As we don't have many resources to declare for our scenario we will keep all the code in the `Program.cs` file but that is not what you would do in a more complex project.
 
@@ -250,7 +250,7 @@ The code is quite simple, and because we are writing C# in our IDE, we have auto
 
 ### Stack outputs
 
-Provisioning the cloud resources we need is great we have to think about the next step which is to deploy our API on these resources. So what will we need for that?
+Provisioning the cloud resources we need is great but we have to think about the next step which is to deploy our API on these resources. So what will we need for that?
 
 First, we will need to have the name of the provisioned App Service. That's easy it's the property Name of the `appService` variable.
 
@@ -277,7 +277,7 @@ return new Dictionary<string, object?>
 };
 ```
 
-You might notice that we use the `Output.CreateSecret` method to create outputs for our publishing credentials. The aim is to tell Pulumi to treat these values as secrets what it will do by encrypting them in the state file for extra protection (that is not something Terraform does by the way).
+You might notice that we use the `Output.CreateSecret` method to create outputs for our publishing credentials. The aim is to tell Pulumi to treat these values as secrets, and that's what it will do by encrypting them in the state file for extra protection (that is not something Terraform does by the way).
 
 ### Implementing the Provision Infrastructure step
 
@@ -350,6 +350,8 @@ If I fold everything, the pipeline code we created looks like that:
 I think it is quite clear with the different steps/targets defined with their dependencies/order. Yet if this is not clear enough for you, you can use the `nuke --plan` command to display a visual representation of the pipeline (how cool is that !?)
 
 <img src="/posts/images/pulumi_met_nuke_12.png" class="img-fluid centered-img">
+
+> 💬 You can see that the execution plan is almost identical to the pipelines steps we talked about in the beginning of the article. The only difference is that we added to the Publish step a dependence on Clean.
 
 Let's execute the complete pipeline:
 
