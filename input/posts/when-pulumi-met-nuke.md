@@ -67,7 +67,7 @@ I put all the code in the same Git repository because:
 
 I chose to organize my repository with the following folders:
 - 📁 src ➡️ for the application code of the API
-- 📁 infrastructure ➡️ for the infrastructure code that provisions the App Service
+- 📁 infra ➡️ for the infrastructure code that provisions the App Service
 - 📁 build ➡️ for pipeline code that builds and deploys the application
 - 📁 artifacts ➡️ for the package created by the pipeline
 
