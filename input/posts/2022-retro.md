@@ -75,7 +75,7 @@ The topics I talked the most about in my articles this year were .NET, Azure, to
 Blogging can also be rewarding when you participate in writeathons like the ones Hashnode organizes regularly. I am particularly  glad to have participated in the ["4 articles 4 weeks" writeathon](https://townhall.hashnode.com/4articles4weeks-writeathon-the-winners) and to have been part of the 5 top winners. It was the opportunity to:
 - write about non-technical topics
 - gain new followers
-- have a post featured on hashnode for the 1st time
+- have a post featured on Hashnode for the 1st time
 - challenge me and publish 4 articles in 4 weeks
 - discover other blogs 
 
@@ -91,11 +91,11 @@ I was a speaker at Cloud Ouest, which took place online in June 2022. I did a ta
 
 <img src="/posts/images/2022_retro_4.png" class="img-fluid centered-img">
 
-I wish I could have given the same talk at other developer conferences (and especially in-person ones). Unfortunately, my proposals at different Call For Papers were not accepted. To be honest I found it challenging to become a speaker at a developer conference. First, you have to find a topic, and prepare your talk without knowing if will ever be selected. Then you have to submit it to different CFPs hoping it will catch the attention of the selection committee which already receives lots of proposals, including some from well-known speakers. All that requires a bit of work and maybe for nothing.
+I wish I could have given the same talk at other developer conferences (and especially in-person ones). Unfortunately, my proposals at different Call For Papers were not accepted. To be honest I found it challenging to become a speaker at a developer conference. First, you have to find a topic and prepare your talk without knowing if will ever be selected. Then you have to submit it to different CFPs hoping it will catch the attention of the selection committee which already receives lots of proposals, including some from well-known speakers. All that requires a bit of work and maybe for nothing.
 
-Nevertheless, speaking at a developer conferences is still a goal for 2023. Public speaking is something I want to do, something I want to be better at it, and the opportunity to meet nice people at events and chat with fellow developers. So I will keep submitting proposals to CFPs and see what will happen. I have a few topics in mind around .NET and Azure (which are my 2 fields of predilection) thus I should create new talk proposals. What bothers me a little is that there seem to be few conferences in France dedicated to .NET or Azure in France, but maybe I am not looking properly.
+Nevertheless, speaking at a developer conference is still a goal for 2023. Public speaking is something I want to do, something I want to be better at it, and the opportunity to meet nice people at events and chat with fellow developers. So I will keep submitting proposals to CFPs and see what will happen. I have a few topics in mind around .NET and Azure (which are my 2 fields of predilection) thus I should create new talk proposals. What bothers me a little is that there seem to be few conferences in France dedicated to .NET or Azure in France, but maybe I am not looking properly.
 
-I almost forgot to mention that in 2022 I participated in a live debate "Pulumi vs Terraform" organized by Microsoft Tech Group France. It was recorded so you can find it [here](https://youtu.be/7raXBE5XH7Y) (again it's in French). It was the first time I was doing a live on YouTube like that and this is not an easy exercise. Because it was a debate, you have to be ready to improvise to counter-argue. It's very different from a talk where you know exactly what you are going to say and when. But it was fun and I am grateful to [Microsoft Tech Group](https://www.youtube.com/@MTGFrance_org) for giving me the opportunity to participate in this debate. 
+I almost forgot to mention than in 2022 I participated in a live debate "Pulumi vs Terraform" organized by Microsoft Tech Group France. It was recorded so you can find it [here](https://youtu.be/7raXBE5XH7Y) (again it's in French). It was the first time I was doing a live on YouTube like that and this is not an easy exercise. Because it was a debate, you have to be ready to improvise to counter-argue. It's very different from a talk where you know exactly what you are going to say and when. But it was fun and I am grateful to [Microsoft Tech Group](https://www.youtube.com/@MTGFrance_org) for giving me the opportunity to participate in this debate. 
 
 ## What's next?
 
