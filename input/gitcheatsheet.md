@@ -1,5 +1,8 @@
 Title: Git Cheat Sheet
-Lead: Useful git commands 
+Lead: Useful git commands
+IsPage: true
+ShowInNavbar: true
+Order: 200
 ---
 You can find many nice git cheat sheets everywhere on the web, but let's just quote GitHub's [git cheat sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf) which provides you with most useful git commands. That is not my intent, I won't enumerate all basic commands everybody knows and uses everyday, but list some commands that I use less often and that I want to remind myself of, often because I can never remember their exact syntax.
 

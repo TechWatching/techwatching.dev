@@ -7,3 +7,8 @@
 
   gtag('config', 'UA-135785322-1');
 </script>
+@if (Document.ContainsKey(CustomWebKeys.TwitterCreator))
+{
+    var twitterCreator = $"@{Document.GetString("TwitterCreator")}";
+  <meta property="twitter:creator" content="@twitterCreator">
+}
