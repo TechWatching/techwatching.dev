@@ -1,0 +1,7 @@
+FeedSources: => GetString("PostSources")
+FeedFilter: => GetBool("IsPost") && GetList<string>("Tags").Contains(".NET")
+FeedOrderKey: Published
+FeedOrderDescending: true
+FeedSize: 15
+FeedRss: true
+FeedAtom: true
