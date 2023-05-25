@@ -1,0 +1,37 @@
+Title: Manage multiple Node.js versions
+Lead: pnpm env
+Published: 25/05/2023
+Image: /images/pnpm.png
+Tags:
+  - pnpm
+  - package manager
+  - tooling
+Canonical: https://bordeauxcoders.com/manage-multiple-nodejs-versions
+---
+If you are working on various projects, you have likely encountered situations where you need to have multiple versions of Node.js installed on your computer.
+
+You might not know it, but managing multiple Node.js versions is something you can do with pnpm, using the [`pnpm env`](https://pnpm.io/fr/cli/env) command.
+
+## An example
+
+```bash
+pnpm env use -g lts 
+```
+
+This example demonstrates how to install the LTS version of Node.js.
+
+Additionally, you can install specific versions of Node.js, view the versions already present on your computer, or remove one.
+
+## Why use pnpm as your Node version manager?
+
+Because managing your Node.js version is built into pnpm: if you already use pnpm as your npm package manager, you don't need to install another tool.
+
+But there is absolutely nothing wrong with using another Node version manager if you prefer. I was using [nvm-windows](https://github.com/coreybutler/nvm-windows) before and I was happy with it. I just don't see the point of installing it anymore as similar functionality is already available in pnpm.
+
+## Good to know
+
+To specify a Node.js version to use in a project/folder, you can add an [`.npmrc`](https://pnpm.io/fr/npmrc) file `use-node-version`[​](https://pnpm.io/fr/npmrc#use-node-version) setting, like that:
+
+```bash
+use-node-version=16.16.0
+```
