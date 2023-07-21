@@ -197,7 +197,7 @@ With this configuration, the GitHub Actions workflow we create next will be able
 
 If you are interested in gaining a better understanding of how all this works, you can refer to [this diagram](https://learn.microsoft.com/en-us/azure/active-directory/workload-identities/workload-identity-federation#how-it-works) from Microsoft's documentation (with GitHub serving as the external identity provider in our case).
 
-<img src="/posts/images/azurereadygithub_overview_1.webp" class="img-fluid centered-img" alt="Sequence diagram explaining Azure OIDC.">
+<img src="/posts/images/azurereadygithub_identityfederation.webp" class="img-fluid centered-img" alt="Sequence diagram explaining Azure OIDC.">
 
 ### Authorize the Service Principal to provision resources on the subscription
 
