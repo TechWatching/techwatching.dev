@@ -6,6 +6,7 @@ Tags:
   - HTTP
   - rest
   - ASP.NET Core
+  - .NET
 ---
 In our daily job, we often have to query secure REST APIs that require our HTTP requests to have a valid access token in their Authorization header. 
 Of course, many APIs come with an SDK that makes the job easier for us as it directly takes care of retrieving a token and sending the authenticated HTTP requests.
