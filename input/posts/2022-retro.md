@@ -1,6 +1,6 @@
 Title: A year of learning and sharing - Dev Retro 2022
 Lead: Challenges and achievements of 2022
-Published: 02/01/2023
+Published: 03/01/2023
 Image: /images/review_1.jpg
 Tags:
   - thoughts
