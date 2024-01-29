@@ -5,8 +5,8 @@ Image: /images/review_1.jpg
 Tags:
   - thoughts
   - learning
-ImageAttribution: Photo de <a href="https://unsplash.com/fr/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Markus Winkler</a> sur <a href="https://unsplash.com/fr/photos/-fRAIQHKcc0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  
+ImageAttribution: Picture of <a href="https://unsplash.com/fr/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Markus Winkler</a> on <a href="https://unsplash.com/fr/photos/-fRAIQHKcc0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
 ---
 
 Last year, I wrote my [first annual retrospective](https://www.techwatching.dev/posts/2022-retro). It was an interesting exercise that I intend to do every year. So for 2023, here is my year in review.
