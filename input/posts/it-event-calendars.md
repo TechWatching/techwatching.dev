@@ -1,0 +1,285 @@
+Title: Having Fun With IT Event Calendars
+Lead: Playing with AngleSharp
+Published: 04/03/2024
+Image: /images/calendar_1.webp
+Tags:
+  - .NET
+  - AngleSharp
+ImageAttribution: Picture of <a href="https://unsplash.com/fr/@towfiqu999999">Towfiqu barbhuiya on <a href="https://unsplash.com/fr/photos/un-calendrier-avec-des-boutons-poussoirs-rouges-epingles-bwOAixLG0uc">Unsplash</a>
+
+---
+
+In this post, we will discuss how to write a small .NET program that retrieves events from an IT event calendar and submits them to another one using AngleSharp.
+
+## Some context
+
+There are plenty of websites that list IT events in the world. One that is particularly popular is the [developers conferences agenda](https://github.com/scraly/developers-conferences-agenda) Github repository that was created by Aurélie Vache, a well-known French DevRel. This repository is an excellent resource where numerous tech conferences and CFPs (Call for Papers) are listed. Adding a new conference/CFP is very easy for any developer because you just have add it in the readme that contains all the conferences and make a PR. Additionally, there is now a [website](https://developers.events/) available to easily view the list of conferences.
+
+Another one I like is the [Tech Community Calendar](https://techcommunitycalendar.com/) created by Lee Englestone, a Microsoft MVP. What I find interesting it that it does not just list conferences and call for papers but also other tech events like hackathon or meetups. Events are displayed on small cards with thumbnails of the events websites, and you can filter them by country or type of event. Yet, it is less popular than the developers conferences agenda I mentioned before, so there are fewer events listed. There is a form to suggest new events, and I have been submitted events from time to time. However, most events I submit are developer conferences and CFPs that people have already added in the developer conferences agenda.
+
+So I thought, what if I automate the process of retrieving events from the developer conferences agenda and submitting them to the tech community calendar?
+
+## It's just a PoC!
+
+At first, I spent too much time thinking about how to schedule and host the program I hadn't even started writing 😁. Of course, time-triggered [Azure Functions](https://azure.microsoft.com/fr-fr/products/functions) came to my mind, I even considered Durable Functions to break down the process into steps (retrieve events, check for existing events, submitting each event...). Then I thought about [Jobs in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/jobs), or Dapr with Azure Container Apps and even [Dapr Workflows](https://docs.dapr.io/developing-applications/building-blocks/workflow/workflow-overview/). Eventually, I realized it did not matter much since it was just a proof of concept. I decided to postpone the choice for later (if ever it goes beyond the poc) and just start coding.
+
+I often like writing .NET tools or small programs using the Worker Service template because it's straightforward and includes useful features like dependency injection and configuration. However, this time I decided to keep things simple: just a .NET console application and all the code in Program.cs file. With [top level statement](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements), it feels similar to writing a Bash or PowerShell script, making it quite convenient for experimenting. Of course, this approach isn't what I would use for a real project.
+
+## Retrieve Developer Conferences
+
+In addition to the readme file, the developers conferences agenda exposes all the data publicly in JSON [here](https://developers.events/all-events.json).
+
+Developer conferences can be easily represented with a record (I only kept the properties I needed):
+
+```csharp
+public record DeveloperEvent(
+    string Name,
+    long[] Date,
+    string Hyperlink,
+    string Location,
+    string City,
+    string Country
+);
+```
+
+We can use an `HttpClient` to retrieve the events. The namespace `System.Net.Http.Json` contains an interesting method to make the `GET` HTTP call and deserialize the data using `System.Text.Json`.
+
+```csharp
+using var httpClient = new HttpClient()
+{
+    BaseAddress = new Uri("https://developers.events/")
+};
+
+var events = await httpClient.GetFromJsonAsync<DeveloperEvent[]>("all-events.json");
+```
+
+## Convert Events To The Proper Format
+
+The form to submit events in the Tech Community Calendar look likes that:
+
+<img src="/posts/images/iteventcalendar_tcc.webp" class="img-fluid centered-img" alt="Form to submit events to tech community calendar">
+
+The Tech Community Calendar events can be represented with the following record :
+
+```csharp
+public record TechCommunityCalendarEvent(
+    string Name,
+    string Url,
+    DateTimeOffset StartDate,
+    DateTimeOffset EndDate,
+    EventType EventType,
+    EventFormat EventFormat,
+    string Country,
+    string City
+)
+{
+    public string? TwitterHandle { get; set; }
+}; 
+```
+
+>💬 Positional parameters in a record are init-only. As I want to set the Twitter URL after the event has been created, I use a read-write property for it.
+
+We can write a method to convert a `DeveloperEvent` to a `TechCommunityCalendarEvent`:
+
+```csharp
+TechCommunityCalendarEvent ConvertToTechEvent(DeveloperEvent developerEvent)
+{
+    var startingDate = DateTimeOffset.FromUnixTimeMilliseconds(developerEvent.Date.First());
+    var endingDate = DateTimeOffset.FromUnixTimeMilliseconds(developerEvent.Date.Last());
+    var eventNameContainsYear = int.TryParse(developerEvent.Name.Split(" ").LastOrDefault(), out var year) 
+                                && year == startingDate.Year;
+    return new TechCommunityCalendarEvent(
+        eventNameContainsYear ? developerEvent.Name : $"{developerEvent.Name} {startingDate.Year}",
+        developerEvent.Hyperlink,
+        startingDate,
+        endingDate,
+        EventType.Conference,
+        developerEvent.Country is "Online" ? EventFormat.Virtual : EventFormat.In_Person,
+        developerEvent.Country,
+        developerEvent.City
+    );
+}
+```
+
+It allows us to convert all retrieved events after filtering on their date to only keep upcoming events.
+
+```csharp
+var upcomingEvents =  events
+    .Where(e => e.Date.FirstOrDefault() > DateTimeOffset.UtcNow.ToUnixTimeMilliseconds())
+    .Select(ConvertToTechEvent)
+    .ToList();
+```
+
+## Retrieve An Event Twitter Profile Link
+
+In the submission form, there's an optional field for entering the Twitter Profile Link of an event. That's not something the events from the developers conferences agenda have but that's interesting data that could be useful to supply. All events have an associated website and most of them contain a link to their Twitter Profile on it.
+
+This is where a library like [AngleSharp](https://github.com/AngleSharp/AngleSharp), which can parse HTML according to W3C specifications, becomes useful. Although I have not used this library before, creating a method to find the Twitter URL on an event's webpage is straightforward.
+
+```csharp
+async Task<string?> RetrieveEventTwitterProfileLink(string eventUrl)
+{
+    var context = BrowsingContext.New(Configuration.Default.WithDefaultLoader());
+    var queryDocument = await context.OpenAsync(eventUrl);
+
+    var twitterSelector = "a[href*='twitter.com'], a[href*='https://x.com']";
+    var twitterSocialLink = queryDocument.QuerySelector(twitterSelector)
+        ?.GetAttribute("href");
+
+    return Uri.TryCreate(twitterSocialLink, UriKind.Absolute, out var twitterProfileUri) ?
+        // Normalize X/Twitter profile URL by removing query parameters and fragments
+        $"{twitterProfileUri.Scheme}://{twitterProfileUri.Host}{twitterProfileUri.AbsolutePath}" : null;
+}
+```
+
+>💬 As the DOM API exposed follows the W3C specifications, it is very convenient. If you can retrieve something with `document.querySelector` in your browser console, you will be able to retrieve it using the same selector in your AngleSharp code.
+
+## Submit An Event
+
+Submitting forms is also possible using AngleSharp. We first have to retrieve the form element in the HTML document using the query sector `form[action="/addevent/"]`. Then we can directly submit the event.
+
+```csharp
+async Task SubmitEventToTechCommunityCalendar(TechCommunityCalendarEvent techCommunityCalendarEvent)
+{
+    var context = BrowsingContext.New(Configuration.Default.WithDefaultLoader());
+    var queryDocument = await context.OpenAsync("https://techcommunitycalendar.com/addevent/");
+    var form = queryDocument.QuerySelector<IHtmlFormElement>("""form[action="/addevent/"]""");
+    if (form is not null)
+    {
+        var response = await form.SubmitAsync(techCommunityCalendarEvent);
+    }
+}
+```
+
+>💬 I intentionally named the properties in the `TechCommunityCalendarEvent` record with the same names as the fields in the form. This way, I can directly submit the event without any transformation. Otherwise, I would have to convert the event to an anonymous object with the correct names.
+
+## The Full Program
+
+Here is the content of the complete `Program.cs` file.
+
+```csharp
+using System.Net.Http.Json;
+using AngleSharp;
+using AngleSharp.Dom;
+using AngleSharp.Html.Dom;
+
+using var httpClient = new HttpClient()
+{
+    BaseAddress = new Uri("https://developers.events/")
+};
+
+var events = await httpClient.GetFromJsonAsync<DeveloperEvent[]>("all-events.json");
+var upcomingEvents =  events
+    .Where(e => e.Date.FirstOrDefault() > DateTimeOffset.UtcNow.ToUnixTimeMilliseconds())
+    .Select(ConvertToTechEvent)
+    .ToList();
+
+foreach (var upcomingEvent in upcomingEvents)
+{
+    upcomingEvent.TwitterHandle = await RetrieveEventTwitterProfileLink(upcomingEvent.Url);
+    await SubmitEventToTechCommunityCalendar(upcomingEvent);
+}
+
+async Task<string?> RetrieveEventTwitterProfileLink(string eventUrl)
+{
+    var context = BrowsingContext.New(Configuration.Default.WithDefaultLoader());
+    var queryDocument = await context.OpenAsync(eventUrl);
+
+    var twitterSelector = "a[href*='twitter.com'], a[href*='https://x.com']";
+    var twitterSocialLink = queryDocument.QuerySelector(twitterSelector)
+        ?.GetAttribute("href");
+
+    return Uri.TryCreate(twitterSocialLink, UriKind.Absolute, out var twitterProfileUri) ?
+        // Normalize X/Twitter profile URL by removing query parameters and fragments
+        $"{twitterProfileUri.Scheme}://{twitterProfileUri.Host}{twitterProfileUri.AbsolutePath}" : null;
+}
+
+async Task SubmitEventToTechCommunityCalendar(TechCommunityCalendarEvent techCommunityCalendarEvent)
+{
+    var context = BrowsingContext.New(Configuration.Default.WithDefaultLoader());
+    var queryDocument = await context.OpenAsync("https://techcommunitycalendar.com/addevent/");
+    var form = queryDocument.QuerySelector<IHtmlFormElement>("""form[action="/addevent/"]""");
+    if (form is not null)
+    {
+        var response = await form.SubmitAsync(techCommunityCalendarEvent);
+    }
+}
+
+TechCommunityCalendarEvent ConvertToTechEvent(DeveloperEvent developerEvent)
+{
+    var startingDate = DateTimeOffset.FromUnixTimeMilliseconds(developerEvent.Date.First());
+    var endingDate = DateTimeOffset.FromUnixTimeMilliseconds(developerEvent.Date.Last());
+    var eventNameContainsYear = int.TryParse(developerEvent.Name.Split(" ").LastOrDefault(), out var year) 
+                                && year == startingDate.Year;
+    return new TechCommunityCalendarEvent(
+        eventNameContainsYear ? developerEvent.Name : $"{developerEvent.Name} {startingDate.Year}",
+        developerEvent.Hyperlink,
+        startingDate,
+        endingDate,
+        EventType.Conference,
+        developerEvent.Country is "Online" ? EventFormat.Virtual : EventFormat.In_Person,
+        developerEvent.Country,
+        developerEvent.City
+    );
+}
+
+public record DeveloperEvent(
+    string Name,
+    long[] Date,
+    string Hyperlink,
+    string Location,
+    string City,
+    string Country
+);
+
+public record TechCommunityCalendarEvent(
+    string Name,
+    string Url,
+    DateTimeOffset StartDate,
+    DateTimeOffset EndDate,
+    EventType EventType,
+    EventFormat EventFormat,
+    string Country,
+    string City
+)
+{
+    public string? TwitterHandle { get; set; }
+};
+
+public enum EventFormat
+{
+    Unknown = 1,
+    Virtual = 2,
+    In_Person = 3,
+    Hybrid = 4
+}
+
+public enum EventType
+{
+    Any = 0,
+    Unknown = 1,
+    Conference = 2,
+    Meetup = 3,
+    Hackathon = 4,
+    Call_For_Papers = 5,
+    Website = 6,
+}
+```
+
+Keep it mind that it's a quick experiment to automate the submission of developer conferences to the Tech Community Calendar, not production-ready code.
+
+## Final Thoughts
+
+I think this PoC is a good starting point to create a scheduled process that automatically submit the events from the developers conferences agenda to the tech community calendar.
+
+>💡Of course it would be great to do the opposite as well (automatically import events from the tech community calendar to the developers conferences agenda) but it seems complicated as events in the tech community calendar are stored in a database I don't have access to and it would involved parsing and writing in the README file of the developers conferences agenda repository.
+
+Some ideas for improvement:
+
+* store somewhere the events already submitted to only process new events on each run
+* parallelize the processing of events as retrieving the twitter URL of submitting an event can take some time
+* reorganize the code
+
+It was the first time I used AngleSharp, and I was happy with the result. It's a nice library that I would use again for similar needs.
+
+A big thank you to the contributors of these IT event calendars. As someone who tries to attend tech events and speak at developer conferences, I find them incredibly useful. A special shoutout to Aurélie Vache and her developer conferences agenda for making this data openly available (JSON files with CFPs and conferences publicly accessible).

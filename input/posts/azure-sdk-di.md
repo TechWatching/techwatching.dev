@@ -6,6 +6,8 @@ Tags:
   - Azure
   - Azure SDK
   - .NET
+ImageAttribution: Picture of <a href="https://unsplash.com/fr/@sarabakhshi">Sara Bakhshi</a> on <a href="https://unsplash.com/fr/photos/pomme-fruit-avec-des-seringues-en-plastique-MfnX4XtGnvU">Unsplash</a>
+
 ---
 
 I love how the Azure SDKs have evolved over the years. In the past, there was no consistency between the various Azure SDKs. However, that's not longer the case (at least for most Azure libraries), as they now adhere to the same principles and follow a set of well-defined [guidelines](https://azure.github.io/azure-sdk/general_introduction.html).
