@@ -59,7 +59,7 @@ And to be clear, when you start a new Vue.js project you don't want to use the V
 
 > 💬 I think it's important to mention it because I still see new blog posts talking about creating new projects using Vue CLI.
 
-So nothing specific in the code of the application we will build and deploy, just the basic things you get when you run the `pnpm create vue@3` command with:
+So nothing specific in the code of the application we will build and deploy, just the basic things you get when you run the `pnpm create vue@latest` command with:
 
 * TypeScript enabled ➡️ it's 2023, I don't see any valid reason why to choose Vanilla JS instead of TypeScript so if you are not using TypeScript you probably should
     
