@@ -11,7 +11,7 @@ ImageAttribution: Picture of <a href="https://unsplash.com/fr/@drice22">Danielle
   
 ---
 
-I have written several [blog posts](https://www.techwatching.dev/posts/http-clients) about HTTP clients in the past. I am a big fan of using HTTP text files versioned in a git repository alongside API code and executed by an IDE tooling. However, there was one use case where a GUI tool like Postman or a swagger page was more convenient: retrieving OAuth 2.0 users' tokens. Thanks to the latest [OAuth 2.0 feature](https://www.jetbrains.com/help/idea/oauth-2-0-authorization.html) in JetBrains' IDE built-in HTTP client, this is not longer an issue.
+I have written several [blog posts](https://www.techwatching.dev/posts/http-clients) about HTTP clients in the past. I am a big fan of using HTTP text files versioned in a git repository alongside API code and executed by an IDE tooling. However, there was one use case where a GUI tool like Postman or a swagger page was more convenient: retrieving OAuth 2.0 users' tokens. Thanks to the latest [OAuth 2.0 feature](https://www.jetbrains.com/help/idea/oauth-2-0-authorization.html) in JetBrains' IDE built-in HTTP client, this is no longer an issue.
 
 ## Context
 
@@ -121,7 +121,7 @@ You can check the [JetBrains documentation](https://www.jetbrains.com/help/idea/
 
 Once the configuration is set, retrieving an access token can be done with a simple click in the configuration file.
 
-The authentication process is logged so we can check the requests made and identify any mistake made in the configuration.
+The authentication process is logged so we can check the requests made and identify any mistakes made in the configuration.
 
 <img src="/posts/images/httpclientsoauht2_1.webp" class="img-fluid centered-img" alt="HTTP authentication log.">
 
