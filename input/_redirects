@@ -1,2 +1,0 @@
-# Redirect default Netlify subdomain to primary domain
-https://techwatching.netlify.com/* https://www.techwatching.dev/:splat 301!
