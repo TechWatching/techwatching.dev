@@ -1,0 +1,41 @@
+navigation.icon: i-ph-microphone-stage
+events:
+  - name: Pulumi vs. Terraform
+    date: 2022-03-22
+    type: online
+    image:
+    conference: Cloud Ouest 2022
+    url: https://www.youtube.com/live/7raXBE5XH7Y?si=7hYJu702DxMSZBjo
+  - name: Infrastructure as Code or Infrastructure as Software
+    date: 2022-06-30
+    type: conference
+    image:
+    conference: Cloud Ouest 2022
+    url:
+  - name: How Pulumi is revolutionizing infrastructure deployment in Azure?s
+    date: 2023-05-13
+    type: conference
+    image:
+    conference: Global Azure France 2023
+    url:
+  - name: IaC to the future with Pulumi
+    date: 2023-06-20
+    type: conference
+    image:
+    conference: Cloud Est 2023
+    url:
+  - name: Infrastructure as Code or Infrastructure as Software
+    date: 2023-06-29
+    type: conference
+    image:
+    conference: BreizhCamp 2023
+    url: https://youtu.be/vhJfNetCp9Y?si=fkbiyM00DSwNGj6G
+  - name: Oops I forgot to make my slides
+    date: 2023-06-29
+    type: conference
+    image:
+    conference: BDX I/O 2023
+    location: Bordeaux
+    url: https://youtu.be/XZAIb5CLqok?si=wrQ2Ive-o9DjlNZV
+    speakers:
+  -
