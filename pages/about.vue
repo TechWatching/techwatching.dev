@@ -1,4 +1,6 @@
 ﻿<script setup lang="ts">
+import {NuxtImg} from "#components";
+
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 if (!page.value) {
@@ -37,6 +39,7 @@ useSeoMeta({
           size="3xl"
           :ui="{size: {'3xl': 'h-44 w-44 text-3xl' } }"
           class="w-full"
+          :as="NuxtImg"
         />
       </UPageBody>
     </UPage>

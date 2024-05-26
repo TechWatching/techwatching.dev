@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {NuxtImg} from "#components";
+
 const {data: page} = await useAsyncData('index', () => queryContent('/').findOne())
 if (!page.value) {
   throw createError({statusCode: 404, statusMessage: 'Page not found', fatal: true})
@@ -22,6 +24,7 @@ useSeoMeta({
           src="/images/profile.png"
           alt="Picture of Alexandre Nédélec"
           size="3xl"
+          :as="NuxtImg"
           :ui="{size: {'3xl': 'h-72 w-72' } }"
         />
       </template>

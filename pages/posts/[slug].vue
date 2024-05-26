@@ -2,6 +2,7 @@
 import { withoutTrailingSlash, joinURL } from 'ufo'
 import type { BlogPost } from '~/types'
 import Giscus from '@giscus/vue'
+import {NuxtImg} from "#components";
 
 const route = useRoute()
 
@@ -74,7 +75,7 @@ const theme = computed(() => colorMode.value == "dark" ? "" : "light")
           target="_blank"
           size="sm"
         >
-          <UAvatar v-bind="author.avatar" :alt="author.name" size="2xs" />
+          <UAvatar v-bind="author.avatar" :alt="author.name" size="2xs" :as="NuxtImg"/>
 
           {{ author.name }}
         </UButton>

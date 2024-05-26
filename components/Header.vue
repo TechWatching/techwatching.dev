@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type {NavItem} from '@nuxt/content/dist/runtime/types'
+import {NuxtImg} from "#components";
 
 const navigation = inject<Ref<NavItem[]>>('navigation', ref([]))
 
@@ -32,6 +33,7 @@ const {metaSymbol} = useShortcuts()
         src="/images/profile.png"
         alt="Picture of Alexandre Nédélec"
         class="sm:w-10 sm:h-10"
+        :as="NuxtImg"
       />
       Alexandre Nédélec
     </template>
