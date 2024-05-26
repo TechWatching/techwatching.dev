@@ -13,7 +13,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-og-image',
     "@stefanobartoletti/nuxt-social-share",
-    "@nuxtjs/seo"
+    "@nuxtjs/seo",
+    '@unlighthouse/nuxt'
   ],
   content: {
     highlight: {

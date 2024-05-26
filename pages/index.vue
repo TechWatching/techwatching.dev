@@ -53,7 +53,7 @@ useSeoMeta({
       :features="section.features"
     >
       <NuxtLink v-if="section.image?.src" :to="section.image.to" :target="section.image.target">
-        <NuxtImg :src="section.image.src" sizes="10vw" :alt="section.image.alt"/>
+        <NuxtImg :src="section.image.src" sizes="10vw" :alt="section.image.alt" width="600"/>
       </NuxtLink>
     </ULandingSection>
 
