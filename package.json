@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.3.13",
-    "@nuxthq/studio": "^1.1.2",
+    "@nuxthq/studio": "^2.0.3",
     "@nuxtjs/seo": "2.0.0-rc.10",
     "@stefanobartoletti/nuxt-social-share": "^0.7.0",
     "@unlighthouse/nuxt": "^0.10.6",
