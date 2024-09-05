@@ -35,7 +35,7 @@
     "@nuxt/eslint-config": "^0.5.6",
     "@nuxthq/studio": "^1.1.2",
     "@nuxtjs/seo": "2.0.0-rc.21",
-    "@stefanobartoletti/nuxt-social-share": "^0.7.1",
+    "@stefanobartoletti/nuxt-social-share": "^1.0.1",
     "@unlighthouse/nuxt": "^0.10.6",
     "eslint": "^8.57.0",
     "nuxt": "^3.11.2",
