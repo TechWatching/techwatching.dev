@@ -4,6 +4,14 @@ export default defineNuxtConfig({
   experimental: {
     viewTransition: true
   },
+  // solve build issue on netlify
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+      cssnano: process.env.NODE_ENV === 'production' ? {preset: ['default', {discardComments: {removeAll: true}}]} : false,
+    }
+  },
   modules: [
     '@nuxt/content',
     '@nuxt/image',
