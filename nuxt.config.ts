@@ -4,14 +4,6 @@ export default defineNuxtConfig({
   experimental: {
     viewTransition: true
   },
-  // solve build issue on netlify
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-      cssnano: process.env.NODE_ENV === 'production' ? {preset: ['default', {discardComments: {removeAll: true}}]} : false,
-    }
-  },
   modules: [
     '@nuxt/content',
     '@nuxt/image',
@@ -22,7 +14,6 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     "@stefanobartoletti/nuxt-social-share",
     "@nuxtjs/seo",
-    '@unlighthouse/nuxt',
     "@nuxtjs/mdc"
   ],
   content: {
@@ -76,5 +67,6 @@ export default defineNuxtConfig({
         useNuxtImage : true
       }
     }
-  }
+  },
+  compatibilityDate: '2024-09-05'
 })

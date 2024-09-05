@@ -22,7 +22,7 @@
     "@nuxt/image": "^1.8.0",
     "@nuxt/ui-pro": "^1.4.1",
     "@nuxtjs/mdc": "^0.8.3",
-    "@vueuse/nuxt": "^10.11.1",
+    "@vueuse/nuxt": "^11.0.3",
     "feed": "^4.2.2",
     "just-kebab-case": "^4.2.0",
     "nuxt-og-image": "^3.0.0-rc.66",
@@ -35,10 +35,9 @@
     "@nuxt/eslint-config": "^0.5.6",
     "@nuxthq/studio": "^2.0.3",
     "@nuxtjs/seo": "2.0.0-rc.21",
-    "@stefanobartoletti/nuxt-social-share": "^0.7.1",
-    "@unlighthouse/nuxt": "^0.10.6",
+    "@stefanobartoletti/nuxt-social-share": "^1.0.1",
     "eslint": "^8.57.0",
-    "nuxt": "^3.11.2",
+    "nuxt": "^3.13.1",
     "vue-tsc": "^2.1.6"
   }
 }
