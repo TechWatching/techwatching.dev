@@ -38,7 +38,7 @@
     "@stefanobartoletti/nuxt-social-share": "^0.7.1",
     "@unlighthouse/nuxt": "^0.10.6",
     "eslint": "^8.57.0",
-    "nuxt": "^3.11.2",
+    "nuxt": "^3.13.1",
     "vue-tsc": "^2.1.6"
   }
 }
