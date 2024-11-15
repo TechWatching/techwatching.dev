@@ -37,7 +37,7 @@
     "@nuxthq/studio": "^2.1.1",
     "@nuxtjs/seo": "2.0.0-rc.23",
     "@stefanobartoletti/nuxt-social-share": "^1.1.5",
-    "eslint": "^8.57.1",
+    "eslint": "^9.15.0",
     "nuxt": "^3.13.1",
     "vue-tsc": "^2.1.6"
   }
