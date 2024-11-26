@@ -25,6 +25,9 @@ export default defineNuxtConfig({
     url: 'https://techwatching.dev',
     name: 'Alexandre Nédélec\'s personal website'
   },
+  socialShare: {
+    baseUrl: 'https://techwatching.dev'
+  },
   sitemap: {
     sources: [
       '/api/__sitemap__/urls'
