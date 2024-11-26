@@ -1,9 +1,7 @@
-﻿import { defineEventHandler } from 'h3'
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
+﻿import type { ParsedContent } from '@nuxt/content/'
 import { serverQueryContent } from '#content/server'
 import { asSitemapUrl, defineSitemapEventHandler } from '#imports'
 import {getTagRoute} from "~/utils/tag";
-import {SitemapUrlInput} from "#sitemap";
 
 export default defineSitemapEventHandler(async (e) => {
   const contentList = (await serverQueryContent(e).find()) as ParsedContent[]

@@ -28,14 +28,14 @@ const loaded = ref(false)
 const tweetNotFound = ref(false)
 
 async function create(retries = 10) {
-  // @ts-expect-error global
+  // @ts-expect-error global external script injected
   if (!window.twttr?.widgets?.createTweet) {
     if (retries <= 0)
       return console.error('Failed to load Twitter widget after 10 retries.')
     setTimeout(() => create(retries - 1), 1000)
     return
   }
-  // @ts-expect-error global
+  // @ts-expect-error global external script injected
   const element = await window.twttr.widgets.createTweet(
     props.id.toString(),
     tweet.value,

@@ -9,6 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
@@ -32,13 +33,14 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@iconify-json/vscode-icons": "^1.2.2",
-    "@nuxt/eslint-config": "^0.6.0",
+    "@nuxt/eslint": "^0.7.2",
     "@nuxthq/studio": "^2.2.1",
     "@nuxtjs/seo": "2.0.2",
     "@stefanobartoletti/nuxt-social-share": "^1.2.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.15.0",
     "nuxt": "^3.14.1592",
+    "typescript": "^5.7.2",
     "vue-tsc": "^2.1.10"
-  }
+  },
+  "packageManager": "pnpm@9.12.0"
 }

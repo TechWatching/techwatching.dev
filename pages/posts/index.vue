@@ -18,11 +18,7 @@ useSeoMeta({
   ogDescription: page.value.description
 })
 
-defineOgImage({
-  component: 'Saas',
-  title: page.value.title,
-  description: page.value.description
-})
+defineOgImageComponent('Saas')
 const activePost = useState()
 </script>
 
@@ -34,8 +30,8 @@ const activePost = useState()
 
     <UPageBody>
       <UBlogList>
-        <UBlogPost @click="activePost = index"
-          v-for="(post, index) in posts"
+        <UBlogPost
+v-for="(post, index) in posts"
           :key="index"
           :to="post._path"
           :title="post.title"
@@ -49,6 +45,7 @@ const activePost = useState()
           :ui="{
             description: 'line-clamp-2'
           }"
+          @click="activePost = index"
         >
           <!-- <template #date>
               <time :datetime="post.date" class="ext-sm text-gray-500 dark:text-gray-400 font-medium pointer-events-none">

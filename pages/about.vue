@@ -28,7 +28,7 @@ useSeoMeta({
       <img
         src="/images/bordeaux_1.jpg"
         class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
-        alt="Picture of Place de la Bourse (Bordeaux) at night."/>
+        alt="Picture of Place de la Bourse (Bordeaux) at night.">
     </UPageHero>
     <UPage>
       <UPageBody prose>

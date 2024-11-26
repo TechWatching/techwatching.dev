@@ -7,7 +7,8 @@ defineProps<{ tags: string[] }>()
 <template>
   <UDivider type="dashed" label="Tags"/>
   <div class="flex flex-wrap w-full items-center gap-3 mt-5">
-    <UBadge v-for="(tag, index) in tags"
+    <UBadge
+v-for="(tag, index) in tags"
             :key="index"
             :ui="{base: 'text-center justify-center'}">
       <NuxtLink :to="`/tags/${getTagSlug(tag)}`">{{tag}}</NuxtLink>

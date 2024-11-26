@@ -46,8 +46,7 @@ useSeoMeta({
           :ui="{
             description: 'line-clamp-2'
           }"
-        >
-        </UBlogPost>
+        />
       </UBlogList>
     </UPageBody>
   </UContainer>

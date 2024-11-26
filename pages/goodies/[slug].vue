@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { withoutTrailingSlash, joinURL } from 'ufo'
 import type { BlogPost } from '~/types'
-import Giscus from '@giscus/vue'
 
 const route = useRoute()
 
@@ -35,16 +34,10 @@ if (post.value.image?.src) {
     twitterImage: joinURL(site.url, post.value.image.src)
   })
 } else {
-  defineOgImage({
-    component: 'Saas',
-    title,
-    description,
-    headline: 'Blog'
-  })
+  defineOgImageComponent('Saas', {
+    headline: 'Blog'})
 }
 
-const colorMode = useColorMode()
-const theme = computed(() => colorMode.value == "dark" ? "" : "light")
 </script>
 
 <template>

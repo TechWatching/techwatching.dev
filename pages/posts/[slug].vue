@@ -3,6 +3,7 @@ import { withoutTrailingSlash, joinURL } from 'ufo'
 import type { BlogPost } from '~/types'
 import Giscus from '@giscus/vue'
 import {NuxtImg} from "#components";
+import PostsTags from "~/components/PostsTags.vue";
 
 const route = useRoute()
 
@@ -44,10 +45,7 @@ if (post.value.image?.src) {
     twitterImage: joinURL(site.url, post.value.image.src)
   })
 } else {
-  defineOgImage({
-    component: 'Saas',
-    title,
-    description,
+  defineOgImageComponent('Saas', {
     headline: 'Blog'
   })
 }
@@ -87,7 +85,7 @@ const theme = computed(() => colorMode.value == "dark" ? "" : "light")
         <ContentRenderer v-if="post && post.body" :value="post" class="prose prose-primary dark:prose-invert max-w-none" />
 
         <div class="block sm:hidden">
-          <Tags :tags="post.tags"></Tags>
+          <PostsTags :tags="post.tags"/>
           <SocialsShare/>
         </div>
 
@@ -100,7 +98,7 @@ const theme = computed(() => colorMode.value == "dark" ? "" : "light")
       <template #right>
         <UContentToc v-if="post.body && post.body.toc" :links="post.body.toc.links" :ui="{ wrapper: ''}"/>
         <div class="hidden sm:block">
-          <Tags :tags="post.tags"></Tags>
+          <PostsTags :tags="post.tags"/>
           <SocialsShare/>
         </div>
       </template>
@@ -117,8 +115,7 @@ const theme = computed(() => colorMode.value == "dark" ? "" : "light")
       input-position="top"
       :theme="theme"
       loading="lazy"
-      crossorigin="anonymous">
-    </Giscus>
+      crossorigin="anonymous"/>
   </UContainer>
 </template>
 

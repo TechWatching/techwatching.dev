@@ -19,7 +19,7 @@ const tagOccurences = computed(() => {
         return acc;
       }, new Map<string, number>()) ?? new Map<string, number>()
     return [...occurences.entries()]
-      .sort(([tagA, occurenceA], [tagB, occurenceB]) => occurenceB - occurenceA)
+      .sort(([_tagA, occurenceA], [_tagB, occurenceB]) => occurenceB - occurenceA)
   });
 
 const title = 'Tags'
@@ -40,7 +40,7 @@ useSeoMeta({
       <UPageHeader :title="title" :description="description"/>
       <UPageBody>
         <div class="flex flex-wrap place-content-evenly gap-5 mt-4">
-          <UChip size="2xl" v-for="[tag, occurence] in tagOccurences" :key="tag" :text="occurence">
+          <UChip v-for="[tag, occurence] in tagOccurences" :key="tag" size="2xl" :text="occurence">
             <UButton color="white" :to="getTagRoute(tag)">{{tag}}</UButton>
           </UChip>
         </div>

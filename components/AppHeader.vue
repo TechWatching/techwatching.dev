@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type {NavItem} from '@nuxt/content/dist/runtime/types'
-import {NuxtImg} from "#components";
+import type {NavItem} from '@nuxt/content'
+import {NuxtImg} from '#components'
 
 const navigation = inject<Ref<NavItem[]>>('navigation', ref([]))
 

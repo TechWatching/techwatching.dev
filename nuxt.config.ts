@@ -14,7 +14,8 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     "@stefanobartoletti/nuxt-social-share",
     "@nuxtjs/seo",
-    "@nuxtjs/mdc"
+    "@nuxtjs/mdc",
+    '@nuxt/eslint'
   ],
   content: {
     highlight: {

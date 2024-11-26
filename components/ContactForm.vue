@@ -24,7 +24,6 @@ const submitJsonApiKey = config.public.submitJsonApiKey
 const sj = new SubmitJSON({ apiKey: submitJsonApiKey, endpoint: '3blcoDHQS' })
 const toast = useToast()
 async function onSubmit (event: FormSubmitEvent<Schema>) {
-  let toastMessage = ''
   try {
     await sj.submit(event.data)
     toast.add({
@@ -34,7 +33,7 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
     })
     await navigateTo({ path: '/' })
   }
-  catch (error) {
+  catch {
     toast.add({
       title: 'Oops',
       description: 'Sorry, your message was not successfully sent, try again or contact me by message on LinkedIn/BueSky/Mastodon.',

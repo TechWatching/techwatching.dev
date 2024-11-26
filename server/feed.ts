@@ -1,7 +1,7 @@
 ﻿import {joinURL} from "ufo";
 import {Feed} from "feed";
 import {serverQueryContent} from "#content/server";
-import {EventHandlerRequest, H3Event} from "h3";
+import type {EventHandlerRequest, H3Event} from "h3";
 
 export async function generateFeed(event: H3Event<EventHandlerRequest>) {
   const baseUrl = 'https://techwatching.dev'

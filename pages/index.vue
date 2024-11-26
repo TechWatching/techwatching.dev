@@ -17,7 +17,8 @@ useSeoMeta({
 
 <template>
   <div v-if="page">
-    <ULandingHero :title="page.hero.title" :description="page.hero.description" :links="page.hero.links"
+    <ULandingHero
+:title="page.hero.title" :description="page.hero.description" :links="page.hero.links"
                   :ui="{description: 'text-primary dark:text-primary'}">
       <template #headline>
         <UAvatar
@@ -30,10 +31,12 @@ useSeoMeta({
       </template>
     </ULandingHero>
 
-    <ULandingSection :title="page.roles.title" :description="page.roles.description"
+    <ULandingSection
+:title="page.roles.title" :description="page.roles.description"
                      :ui="{description: 'text-primary dark:text-primary'}">
       <UPageGrid>
-        <ULandingCard v-for="(item, index) in page.roles.items" :key="index" v-bind="item"
+        <ULandingCard
+v-for="(item, index) in page.roles.items" :key="index" v-bind="item"
                       :ui="{ icon: { base: 'text-primary dark:text-primary' } }"/>
       </UPageGrid>
     </ULandingSection>
