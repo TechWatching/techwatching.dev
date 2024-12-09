@@ -4,9 +4,6 @@
   <ULink to="https://www.linkedin.com/in/alexandre-n%C3%A9d%C3%A9lec-24565549/" target="_blank">
     <UIcon name="i-simple-icons-linkedin" class="w-10 h-10 flex-shrink-0"/>
   </ULink>
-  <ULink to="https://twitter.com/TechWatching" target="_blank">
-    <UIcon name="i-simple-icons-x" class="w-10 h-10 flex-shrink-0"/>
-  </ULink>
   <ULink to="https://mas.to/@techwatching" target="_blank">
     <UIcon name="i-simple-icons-mastodon" class="w-10 h-10 flex-shrink-0"/>
   </ULink>
