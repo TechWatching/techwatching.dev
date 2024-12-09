@@ -32,12 +32,12 @@ useSeoMeta({
     </ULandingHero>
 
     <ULandingSection
-:title="page.roles.title" :description="page.roles.description"
-                     :ui="{description: 'text-primary dark:text-primary'}">
+      :title="page.roles.title" :description="page.roles.description"
+      :ui="{description: 'text-primary dark:text-primary'}">
       <UPageGrid>
         <ULandingCard
-v-for="(item, index) in page.roles.items" :key="index" v-bind="item"
-                      :ui="{ icon: { base: 'text-primary dark:text-primary' } }"/>
+          v-for="(item, index) in page.roles.items" :key="index" v-bind="item"
+          :ui="{ icon: { base: 'text-primary dark:text-primary' } }"/>
       </UPageGrid>
     </ULandingSection>
 
@@ -56,7 +56,7 @@ v-for="(item, index) in page.roles.items" :key="index" v-bind="item"
       :features="section.features"
     >
       <NuxtLink v-if="section.image?.src" :to="section.image.to" :target="section.image.target">
-        <NuxtImg :src="section.image.src" sizes="10vw" :alt="section.image.alt" width="600"/>
+        <NuxtImg :src="section.image.src" sizes="10vw" :alt="section.image.alt" class="mx-auto" :width="section.image.width ?? 600"/>
       </NuxtLink>
     </ULandingSection>
 
