@@ -17,30 +17,30 @@
     "@iconify-json/fluent-emoji-flat": "^1.2.1",
     "@iconify-json/heroicons": "^1.2.1",
     "@iconify-json/ph": "^1.2.1",
-    "@iconify-json/simple-icons": "^1.2.13",
+    "@iconify-json/simple-icons": "^1.2.15",
     "@nuxt/content": "^2.13.4",
-    "@nuxt/fonts": "^0.10.2",
+    "@nuxt/fonts": "^0.10.3",
     "@nuxt/image": "^1.8.1",
-    "@nuxt/ui-pro": "^1.4.4",
-    "@nuxtjs/mdc": "^0.9.5",
+    "@nuxt/ui-pro": "^1.6.0",
+    "@nuxtjs/mdc": "^0.11.1",
     "@vueuse/nuxt": "^11.3.0",
     "feed": "^4.2.2",
     "just-kebab-case": "^4.2.0",
-    "nuxt-og-image": "^3.0.6",
-    "posthog-js": "^1.188.1",
+    "nuxt-og-image": "^3.1.1",
+    "posthog-js": "^1.195.0",
     "submitjson": "^0.10.0",
     "ufo": "^1.5.4",
-    "zod": "^3.23.8"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.7.2",
     "@nuxthq/studio": "^2.2.1",
     "@nuxtjs/seo": "2.0.2",
     "@stefanobartoletti/nuxt-social-share": "^1.2.0",
-    "eslint": "^9.15.0",
+    "eslint": "^9.16.0",
     "nuxt": "^3.14.1592",
     "typescript": "^5.7.2",
     "vue-tsc": "^2.1.10"
   },
-  "packageManager": "pnpm@9.12.0"
+  "packageManager": "pnpm@9.15.0"
 }
