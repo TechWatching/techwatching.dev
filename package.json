@@ -42,5 +42,14 @@
     "typescript": "^5.7.2",
     "vue-tsc": "^2.1.10"
   },
-  "packageManager": "pnpm@9.12.0"
+  "packageManager": "pnpm@10.4.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "core-js",
+      "esbuild",
+      "sharp",
+      "vue-demi"
+    ]
+  }
 }
