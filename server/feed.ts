@@ -3,7 +3,7 @@ import {Feed} from "feed";
 import {serverQueryContent} from "#content/server";
 import type {EventHandlerRequest, H3Event} from "h3";
 
-export async function generateFeed(event: H3Event<EventHandlerRequest>) {
+export async function generateFeed(event: H3Event<EventHandlerRequest>, tags: string[] = []): Promise<Feed> {
   const baseUrl = 'https://techwatching.dev'
   const siteUrl = joinURL(baseUrl, 'posts')
   const feed = new Feed({
@@ -24,7 +24,7 @@ export async function generateFeed(event: H3Event<EventHandlerRequest>) {
     .where({ _partial: false, _draft: false, _type: 'markdown' })
     .find()
 
-  for (const article of articles) {
+  for (const article of articles.filter(article => tags.length === 0 || article.tags.some((tag: string) => tags.includes(tag)))) {
     feed.addItem({
       link: joinURL(baseUrl, article._path ?? ''),
       image: joinURL(baseUrl, article.image.src),

@@ -53,6 +53,8 @@ export default defineNuxtConfig({
     '/api/search.json': { prerender: true },
     '/feed.atom': {prerender: true},
     '/feed.rss': {prerender: true},
+    '/dotnet_feed.atom': {prerender: true},
+    '/dotnet_feed.rss': {prerender: true},
     '/gitcheatsheet': {redirect: '/goodies/gitcheatsheet', prerender: true},
   },
   devtools: {
