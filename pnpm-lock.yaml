@@ -51,8 +51,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(magicast@0.3.5)(rollup@4.27.4)(vite@6.0.7(@types/node@22.10.0)(jiti@2.4.2)(terser@5.36.0)(yaml@2.6.1))(vue@3.5.13(typescript@5.8.2))
       posthog-js:
-        specifier: ^1.225.0
-        version: 1.225.0(@rrweb/types@2.0.0-alpha.17)
+        specifier: ^1.225.1
+        version: 1.225.1(@rrweb/types@2.0.0-alpha.17)
       submitjson:
         specifier: ^0.10.0
         version: 0.10.0
@@ -4628,8 +4628,8 @@ packages:
     resolution: {integrity: sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.225.0:
-    resolution: {integrity: sha512-pJY8zz7+QKNvx/SquqYHCg1IHrq/ubstnQ44VcWxdbvKZuuxL6XFTQeDhQryE1SIP6qzK3wzRvr5OYSKwjQP6Q==}
+  posthog-js@1.225.1:
+    resolution: {integrity: sha512-JO12aGlKbznD91osyNPgsQXP4jwLYdDtGrEL6idjGBb4ETFpud6tfe2Jdaow3672c3fNjFFNyu2ybXC3793VOA==}
     peerDependencies:
       '@rrweb/types': 2.0.0-alpha.17
 
@@ -12096,7 +12096,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  posthog-js@1.225.0(@rrweb/types@2.0.0-alpha.17):
+  posthog-js@1.225.1(@rrweb/types@2.0.0-alpha.17):
     dependencies:
       '@rrweb/types': 2.0.0-alpha.17
       core-js: 3.39.0
