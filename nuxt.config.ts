@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   ],
   content: {
     highlight: {
-      langs: ['json', 'js', 'ts', 'html', 'xml', 'css', 'vue', 'shell', 'mdc', 'md', 'yaml', 'csharp', 'powershell', 'http', 'nushell', 'razor', 'powershell', 'sql']
+      langs: ['json', 'js', 'ts', 'html', 'xml', 'css', 'vue', 'shell', 'mdc', 'md', 'yaml', 'csharp', 'powershell', 'http', 'nushell', 'razor', 'powershell', 'sql'],
     },
   },
   site: {
