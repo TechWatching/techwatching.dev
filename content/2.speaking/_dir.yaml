@@ -4,7 +4,7 @@ events:
     date: 2022-03-22
     type: online
     image:
-    conference: Cloud Ouest 2022
+    conference: Clash
     url: https://www.youtube.com/live/7raXBE5XH7Y?si=7hYJu702DxMSZBjo
   - name: Infrastructure as Code or Infrastructure as Software
     date: 2022-06-30
@@ -38,4 +38,14 @@ events:
     location: Bordeaux
     url: https://youtu.be/XZAIb5CLqok?si=wrQ2Ive-o9DjlNZV
     speakers:
-  -
+  - name: Industrialize the configuration of your GitHub repositories using IaC
+    type: conference
+    location: virtual
+    conference: PulumiUP 2024
+  - name:
+    type: conference
+    conference: Cloud Nord 2024
+  - name:
+    type: conference
+    conference: BDX I/O 2024
+
