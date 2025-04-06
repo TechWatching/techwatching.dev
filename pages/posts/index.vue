@@ -31,7 +31,7 @@ const activePost = useState()
     <UPageBody>
       <UBlogList>
         <UBlogPost
-v-for="(post, index) in posts"
+          v-for="(post, index) in posts"
           :key="index"
           :to="post._path"
           :title="post.title"
@@ -46,13 +46,7 @@ v-for="(post, index) in posts"
             description: 'line-clamp-2'
           }"
           @click="activePost = index"
-        >
-          <!-- <template #date>
-              <time :datetime="post.date" class="ext-sm text-gray-500 dark:text-gray-400 font-medium pointer-events-none">
-                {{  new Date(post.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' }) }}
-              </time>
-          </template> -->
-        </UBlogPost>
+        />
       </UBlogList>
     </UPageBody>
   </UContainer>

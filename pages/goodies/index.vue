@@ -23,9 +23,8 @@ const activeArticle = useState()
   <UContainer>
     <UPageHeader :title="title" :description="description"/>
     <UPageBody>
-      <UBlogList>
         <UBlogPost
-v-for="(article, index) in articles"
+          v-for="(article, index) in articles"
           :key="index"
           :to="article._path"
           :title="article.title"
@@ -37,7 +36,6 @@ v-for="(article, index) in articles"
           :ui="{ title: 'text-3xl', description: 'text-xl'}"
           @click="activeArticle = index"
         />
-      </UBlogList>
     </UPageBody>
   </UContainer>
 </template>
