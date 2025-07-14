@@ -22,7 +22,8 @@ const links = [{
   to: '/about'
 }]
 
-const {metaSymbol} = useShortcuts()
+// const {metaSymbol} = useShortcuts()
+const metaSymbol = '⌘' // Fallback for shortcuts display
 
 </script>
 

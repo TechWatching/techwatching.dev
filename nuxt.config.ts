@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: [process.env.NUXT_UI_PRO_PATH || '@nuxt/ui-pro'],
   experimental: {
     viewTransition: true
   },
@@ -8,6 +7,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/image',
     '@nuxt/ui',
+    '@nuxt/ui-pro',
     '@nuxt/fonts',
     '@nuxthq/studio',
     '@vueuse/nuxt',
