@@ -1,0 +1,103 @@
+title: Alexandre Nédélec's personal website
+description: Techwatching.dev is the personal website of Alexandre Nédélec, developer.
+navigation: false
+hero:
+  title: Hi, I'm Alexandre
+  description: Welcome to my personal website.
+  links:
+    - label: See my blog
+      to: '/posts'
+      size: xl
+      color: black
+      icon: i-heroicons-arrow-right-20-solid
+      trailing: true
+    - label: Check the code
+      icon: i-simple-icons-github
+      size: xl
+      color: gray
+      to: https://github.com/TechWatching/techwatching.dev
+      target: _blank
+roles:
+  title: Who am I?
+  description: I write code, but that's not all I do.
+  items:
+    - title: Developer
+      description: I'm primarily coding in C# and TypeScript but I'm interested in other languages too.
+      icon: i-heroicons-code-bracket-20-solid
+      to: https://github.com/TechWatching
+      target: _blank
+    - title: Blogger
+      description: I write technical articles on my blog, sharing what I learn throughout my journey as a developer.
+      icon: i-ph-pen-nib-fill
+      to: /posts
+    - title: Teacher
+      description: I teach a software engineering optional course about DevOps practices at my former graduate engineering school, the ENSEIRB-MATMECA.
+      icon: i-ph-chalkboard-teacher
+      to: https://enseirb-matmeca.bordeaux-inp.fr/fr
+      target: _blank
+    - title: Speaker
+      description: When I get the chance, I give talks at developer conferences and meetups.
+      icon: i-ph-microphone-stage
+      to: /speaking
+    - title: Eternal learner
+      description: Learning, especially in IT, is a never-ending journey that I'm happy to take. I want to keep learning to become a better developer.
+      icon: i-heroicons-academic-cap
+    - title: Meetup organizer
+      description: I created the Microsoft Tech Group Bordeaux with some friends in early 2024. We organize meetups about Microsoft related technologies.
+      icon: i-simple-icons-meetup
+      to: https://www.meetup.com/mtg-bordeaux/
+      target: _blank
+sections:
+  - title: I'm a Microsoft MVP.
+    description: "In December 2024, I was awarded the Microsoft MVP title in the Microsoft Azure category."
+    id: mvp
+    align: center
+    image:
+      src: mvp-badge.png
+      alt: Microsoft MVP badge.
+      to: https://mvp.microsoft.com/en-US/mvp/profile/b6deecb6-7760-406e-84cb-8206f051f8e5
+      target: _blank
+      width: 300
+  - title: I'm a Puluminary.
+    description: "Since 2022, I have been part of the Puluminaries community program that recognizes members of the Pulumi community. Pulumi is the technology that made me love Infrastructure as Code and I truly believe that IaC should be:"
+    id: puluminary
+    align: right
+    image:
+      src: puluminary-badge.png
+      alt: Puluminary badge.
+      to: https://www.pulumi.com/community/puluminaries
+      target: _blank
+    features:
+      - name: Easy to learn, use, and be productive with
+        description: Infrastructure development should be done using the same practices as software development (programming languages, tools, libraries, tests...).
+        icon: i-heroicons-cog
+      - name: Up to date with main cloud providers' resources and features
+        description: The infrastructure we provision needs to be able to benefit from the latest resources, innovations, security improvements.
+        icon: i-heroicons-check
+      - name: Secure by default
+        description: Secrets encryption should be built-in (wherever sensitive data may be, in the configuration, in the the state or in the outputs).
+        icon: i-heroicons-lock-closed
+  - title: Microsoft Tech Bordeaux
+    description: I am one of the co-creators and organizers of the meetup group MTG:Bordeaux, which is part of MTG:France. If you live in or are visiting Bordeaux, come say hi.
+    align: left
+    id: mtg-bordeaux
+    image:
+      src: coonelé.png
+      alt: A racoon holding a cannelé.
+      to: https://www.meetup.com/mtg-bordeaux
+      target: _blank
+    features:
+      - name: Tech meetups
+        description: Talks about latest technologies (Microsoft and non-Microsoft) and experience feedback from various speakers.
+        icon: i-ph-brackets-curly-bold
+      - name: Networking
+        description: A community open to everyone and a good place to network.
+        icon: i-ph-chats-circle-bold
+cta:
+  title: Contact
+  description: If you have any questions or would like to discuss anything, don't hesitate to drop me a line.
+  links:
+    - label: Let's talk
+      size: xl
+      color: black
+      to: /contact
