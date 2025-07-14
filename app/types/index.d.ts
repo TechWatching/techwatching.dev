@@ -3,6 +3,7 @@ import type { Avatar, Badge, Link } from '#ui/types'
 
 export interface BlogPost extends ParsedContent {
   title: string
+  lead?: string
   description: string
   date: string
   image?: HTMLImageElement
@@ -12,4 +13,13 @@ export interface BlogPost extends ParsedContent {
     description?: string
     avatar: Avatar
   } & Link)[]
+  canonical?: string
+}
+
+export interface Events extends ParsedContent {
+  name: string
+  date: string
+  type: 'online' | 'conference' | 'meetup'
+  image?: HTMLImageElement
+  url: string
 }

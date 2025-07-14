@@ -1,10 +1,9 @@
-﻿import type { ParsedContent } from '@nuxt/content/'
-import { serverQueryContent } from '#content/server'
+﻿import { queryCollection } from '#imports'
 import { asSitemapUrl, defineSitemapEventHandler } from '#imports'
-import {getTagRoute} from "~/utils/tag";
+import {getTagRoute} from "../../../utils/tag";
 
 export default defineSitemapEventHandler(async (e) => {
-  const contentList = (await serverQueryContent(e).find()) as ParsedContent[]
+  const contentList = await queryCollection(e, 'posts').all()
   const tags = new Set(contentList.flatMap(c => c?.tags)
     .filter(t => t != null)
     .map(t => getTagRoute(t)))
@@ -13,10 +12,10 @@ export default defineSitemapEventHandler(async (e) => {
     .map((t) => asSitemapUrl({ loc: t}))
 
   const contentItems = contentList
-    .filter(c => !c._path?.endsWith('_dir') && (c._path?.startsWith('/posts') || c._path?.startsWith('/goodies')))
+    .filter(c => !c.path?.endsWith('_dir') && (c.path?.startsWith('/posts') || c.path?.startsWith('/goodies')))
     .map((c) => {
       return asSitemapUrl({
-        loc: c._path,
+        loc: c.path,
         lastmod: c.date ?? ''
       })
     })

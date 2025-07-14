@@ -114,7 +114,10 @@ export const collections = {
     type: 'page'
   }),
   posts: defineCollection({
-    source: '3.blog/**/*',
+    source: {
+      include: '3.blog/**/*',
+      exclude: ['**/.!(navigation.yml)']
+    },
     type: 'page',
     schema: z.object({
       image: z.object({ src: z.string().nonempty().editor({ input: 'media' }) }),
@@ -126,7 +129,8 @@ export const collections = {
         })
       ),
       date: z.date(),
-      badge: z.object({ label: z.string().nonempty() })
+      badge: z.object({ label: z.string().nonempty() }),
+      tags: z.array(z.string()).optional()
     })
   }),
   changelog: defineCollection({
