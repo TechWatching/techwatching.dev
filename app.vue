@@ -33,6 +33,6 @@ useSeoMeta({
       <NuxtPage />
     </NuxtLayout>
 
-    <UNotifications />
+    <!-- <UNotifications /> -->
   </div>
 </template>

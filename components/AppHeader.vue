@@ -44,12 +44,8 @@ const metaSymbol = '⌘' // Fallback for shortcuts display
     </template>
 
     <template #right>
-      <UTooltip text="Search" :shortcuts="[metaSymbol, 'K']">
-        <UContentSearchButton size="xl" label=""/>
-      </UTooltip>
-      <UTooltip :text="$colorMode.preference === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
-        <UColorModeButton size="xl"/>
-      </UTooltip>
+      <!-- <UContentSearchButton size="xl" label=""/> -->
+      <!-- <UColorModeButton size="xl"/> -->
     </template>
 
     <template #panel>
