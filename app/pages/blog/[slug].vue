@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Giscus from '@giscus/vue'
 const route = useRoute()
 
 const { data: post } = await useAsyncData(route.path, () => queryCollection('posts').path(route.path).first())
@@ -14,6 +15,13 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
 
 const title = post.value.seo?.title || post.value.title
 const description = post.value.seo?.description || post.value.description
+if(post.value.canonical) {
+  useHead({
+    link: [
+      { rel: 'canonical', href: post.value.canonical }
+    ]
+  })
+}
 
 useSeoMeta({
   title,
@@ -31,6 +39,8 @@ if (post.value.image?.src) {
     headline: 'Blog'
   })
 }
+const colorMode = useColorMode()
+const theme = computed(() => colorMode.value == "dark" ? "" : "light")
 </script>
 
 <template>
@@ -85,8 +95,31 @@ if (post.value.image?.src) {
         v-if="post?.body?.toc?.links?.length"
         #right
       >
-        <UContentToc :links="post.body.toc.links" />
+          <UContentToc :links="post.body.toc.links" />
+
+        <!-- <div class="">
+          <PostsTags :tags="post.tags"/>
+          <SocialsShare/>
+        </div> -->
       </template>
     </UPage>
+        <Giscus
+          repo="techwatching/techwatching.dev"
+          repo-id="R_kgDOGPrzmQ"
+          category="Announcements"
+          category-id="DIC_kwDOGPrzmc4B_fVQ"
+          mapping="pathname"
+          strict="0"
+          reactions-enabled="1"
+          emit-metadata="0"
+          input-position="top"
+          :theme="theme"
+          loading="lazy"
+          crossorigin="anonymous"/>
   </UContainer>
 </template>
+<style scoped>
+img {
+  view-transition-name: selected-post;
+}
+</style>

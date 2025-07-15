@@ -2,7 +2,10 @@
 const route = useRoute()
 
 const { data: page } = await useAsyncData('blog', () => queryCollection('blog').first())
-const { data: posts } = await useAsyncData(route.path, () => queryCollection('posts').all())
+const { data: posts } = await useAsyncData(route.path, () => queryCollection('posts')
+  .where('extension', '=', 'md')
+  .order('date', 'DESC')
+  .all())
 
 const title = page.value?.seo?.title || page.value?.title
 const description = page.value?.seo?.description || page.value?.description
@@ -15,6 +18,8 @@ useSeoMeta({
 })
 
 defineOgImageComponent('Saas')
+
+const activePost = useState()
 </script>
 
 <template>
@@ -37,7 +42,7 @@ defineOgImageComponent('Saas')
           :authors="post.authors"
           :badge="post.badge"
           :orientation="index === 0 ? 'horizontal' : 'vertical'"
-          :class="[index === 0 && 'col-span-full']"
+          :class="[index === 0 && 'col-span-full', activePost === index && 'active']"
           variant="naked"
           :ui="{
             description: 'line-clamp-2'
@@ -47,3 +52,10 @@ defineOgImageComponent('Saas')
     </UPageBody>
   </UContainer>
 </template>
+
+<style scoped>
+  .active {
+    view-transition-name: selected-post;
+    contain: layout;
+  }
+</style>

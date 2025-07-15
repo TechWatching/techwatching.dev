@@ -11,6 +11,10 @@ export default defineNuxtConfig({
     '@stefanobartoletti/nuxt-social-share'
   ],
 
+  experimental: {
+    viewTransition: true,
+  },
+  
   devtools: {
     enabled: true
   },

@@ -1,4 +1,5 @@
 import { defineCollection, z } from '@nuxt/content'
+import { string } from 'zod'
 
 const variantEnum = z.enum(['solid', 'outline', 'subtle', 'soft', 'ghost', 'link'])
 const colorEnum = z.enum(['primary', 'secondary', 'neutral', 'error', 'warning', 'success', 'info'])
@@ -130,7 +131,8 @@ export const collections = {
       ),
       date: z.date(),
       badge: z.object({ label: z.string().nonempty() }),
-      tags: z.array(z.string()).optional()
+      tags: z.array(z.string()),
+      canonical: z.string().optional(),
     })
   }),
   changelog: defineCollection({

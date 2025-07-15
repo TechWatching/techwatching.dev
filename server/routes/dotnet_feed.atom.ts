@@ -1,4 +1,4 @@
-﻿import {generateFeed} from "~/server/feed";
+﻿import {generateFeed} from "~~/server/feed";
 
 export default defineEventHandler(async (event) => {
   const feed = await generateFeed(event, [".NET"])
