@@ -39,7 +39,7 @@
     "@nuxtjs/seo": "3.0.3",
     "@stefanobartoletti/nuxt-social-share": "^1.2.2",
     "eslint": "^9.25.1",
-    "nuxt": "^3.16.2",
+    "nuxt": "^3.19.2",
     "typescript": "^5.8.3",
     "vue-tsc": "^2.2.10"
   },
