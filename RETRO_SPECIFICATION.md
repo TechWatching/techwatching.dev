@@ -1,7 +1,7 @@
 # TechWatching.dev - Retro Specification
 
 **Website URL:** https://techwatching.dev/  
-**Specification Date:** January 2025  
+**Specification Date:** November 2025  
 **Analysis Tool:** Playwright MCP
 
 ---
@@ -147,12 +147,14 @@ Additional features in the header:
 - Essay
 
 **Sample Articles Visible (Most Recent):**
-1. "Deploying a Nuxt Static Website on Azure with Pulumi" - Apr 6, 2025
-2. ".NET Aspirations - Use ASP.NET Core HTTPS Development Certificate" - Mar 18, 2025
-3. "Week 11, 2025 - Tips I learned this week" - Mar 17, 2025
-4. ".NET Aspirations - Embracing OpenTelemetry" - Mar 12, 2025
-5. "How to Develop an Open Telemetry Plugin for Nuxt" - Mar 9, 2025
+1. "Deploying a Nuxt Static Website on Azure with Pulumi" - Recent
+2. ".NET Aspirations - Use ASP.NET Core HTTPS Development Certificate" - Recent
+3. "Week 11, 2025 - Tips I learned this week" - Recent
+4. ".NET Aspirations - Embracing OpenTelemetry" - Recent
+5. "How to Develop an Open Telemetry Plugin for Nuxt" - Recent
 6. And many more dating back to 2019
+
+*Note: Specific publication dates have been omitted as they represent the state of the website at the time of analysis and may change.*
 
 #### 3. Blog Post Detail Pages (`/posts/[slug]`)
 
@@ -760,6 +762,6 @@ The website successfully serves its purpose as both a personal portfolio and a v
 ---
 
 **Document Version:** 1.0  
-**Last Updated:** January 2025  
+**Last Updated:** November 2025  
 **Created by:** Automated analysis using Playwright MCP  
 **Repository:** https://github.com/TechWatching/techwatching.dev
