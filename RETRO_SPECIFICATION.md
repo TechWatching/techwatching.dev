@@ -146,15 +146,15 @@ Additional features in the header:
 - Tips (weekly learning posts)
 - Essay
 
-**Sample Articles Visible (Most Recent):**
-1. "Deploying a Nuxt Static Website on Azure with Pulumi" - Recent
-2. ".NET Aspirations - Use ASP.NET Core HTTPS Development Certificate" - Recent
-3. "Week 11, 2025 - Tips I learned this week" - Recent
-4. ".NET Aspirations - Embracing OpenTelemetry" - Recent
-5. "How to Develop an Open Telemetry Plugin for Nuxt" - Recent
+**Sample Articles Visible (from most recent):**
+1. "Deploying a Nuxt Static Website on Azure with Pulumi"
+2. ".NET Aspirations - Use ASP.NET Core HTTPS Development Certificate"
+3. "Week 11, 2025 - Tips I learned this week"
+4. ".NET Aspirations - Embracing OpenTelemetry"
+5. "How to Develop an Open Telemetry Plugin for Nuxt"
 6. And many more dating back to 2019
 
-*Note: Specific publication dates have been omitted as they represent the state of the website at the time of analysis and may change.*
+*Note: Specific publication dates have been omitted as they represent the state of the website at the time of analysis and may change. Articles are listed in reverse chronological order as displayed on the website.*
 
 #### 3. Blog Post Detail Pages (`/posts/[slug]`)
 
@@ -485,7 +485,8 @@ Homepage → Goodies → Resource Details
 ## Design System
 
 ### Color Palette
-- **Primary colors:** Likely blues/teals (based on Nuxt UI Pro)
+*(Note: Specific color values were not extracted during analysis. The following is inferred from visual inspection and framework defaults.)*
+- **Primary colors:** Appears to use blues/teals (typical of Nuxt UI Pro)
 - **Accent colors:** For CTAs and highlights
 - **Neutral colors:** Grays for text and backgrounds
 - **Dark mode palette:** Inverted with careful contrast
@@ -579,10 +580,12 @@ Homepage → Goodies → Resource Details
 - **Forms:** Handled via submitjson
 - **Cookies:** Minimal usage (theme preference, analytics consent)
 
-### Content Security
-- **Copyright:** Clearly stated (MIT for code, CC-BY-SA-4.0 for content)
-- **License Files:** CC-BY-SA-4.0, LICENSE files in repo
-- **Attribution:** For images from Unsplash
+### Content Licensing
+*(Based on README.md and license files in repository)*
+- **Code License:** MIT
+- **Content License:** CC-BY-SA-4.0
+- **License Files:** CC-BY-SA-4.0, LICENSE files present
+- **Image Attribution:** Images from Unsplash with proper attribution
 
 ---
 
@@ -648,18 +651,15 @@ Homepage → Goodies → Resource Details
 
 ## Future Considerations
 
-### Planned Features (Based on Current State)
-1. **Speaking Page:** Currently placeholder - content coming soon
-2. **Additional Goodies:** More resources beyond Git cheat sheet
-3. **Continuous Improvements:** Regular updates to design and features
+### Observed Gaps/Incomplete Features
+*(As of the time of analysis)*
+1. **Speaking Page:** Currently showing "Coming soon" placeholder
+2. **Limited Goodies:** Only one resource (Git cheat sheet) currently available
 
-### Potential Enhancements
-1. **Newsletter:** Email subscription for new posts
-2. **Series/Collections:** Grouping related articles
-3. **Advanced Search:** Filtering, sorting options
-4. **Reading Time:** Estimated time to read articles
-5. **Code Playground:** Interactive code examples
-6. **Translations:** Multi-language support
+### Infrastructure Notes
+- The website is actively maintained with recent content updates
+- Repository includes dev container configuration for consistent development environment
+- Automated dependency updates configured via Renovate
 
 ---
 
