@@ -6,6 +6,7 @@ mcp-servers:
   playwright:
     command: "npx"
     args: ["-y", "@playwright/mcp"]
+    tools: ['*']
 ---
 
 # Website RetroSpec Generator
