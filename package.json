@@ -24,7 +24,7 @@
     "@nuxt/ui-pro": "^1.8.0",
     "@nuxtjs/mdc": "^0.17.0",
     "@vueuse/nuxt": "^11.3.0",
-    "feed": "^4.2.2",
+    "feed": "^5.1.0",
     "just-kebab-case": "^4.2.0",
     "nuxt-og-image": "^5.1.2",
     "posthog-js": "^1.236.7",
