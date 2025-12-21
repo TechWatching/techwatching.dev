@@ -24,32 +24,25 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 })
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'), {
-  transform: data => data.find(item => item.path === '/docs')?.children || []
-})
-const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('docs'), {
+const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('posts'), {
   server: false
 })
 
 const links = [{
-  label: 'Docs',
-  icon: 'i-lucide-book',
-  to: '/docs/getting-started'
-}, {
-  label: 'Pricing',
-  icon: 'i-lucide-credit-card',
-  to: '/pricing'
-}, {
   label: 'Blog',
   icon: 'i-lucide-pencil',
-  to: '/blog'
-}, {
-  label: 'Changelog',
-  icon: 'i-lucide-history',
-  to: '/changelog'
+  to: '/posts'
 }]
 
-provide('navigation', navigation)
+// Use the content search composable
+const { open } = useContentSearch()
+
+// Also support '/' as a shortcut for search (common pattern)
+defineShortcuts({
+  '/': () => {
+    open.value = true
+  }
+})
 </script>
 
 <template>
@@ -64,7 +57,6 @@ provide('navigation', navigation)
       <LazyUContentSearch
         :files="files"
         shortcut="meta_k"
-        :navigation="navigation"
         :links="links"
         :fuse="{ resultLimit: 42 }"
       />
