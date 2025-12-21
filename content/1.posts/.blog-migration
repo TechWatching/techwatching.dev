@@ -1,0 +1,25 @@
+- images
+  - alt text for images missing them
+  - rounded images
+- better syntax highlighting
+  - more supported languages (nushell, razor)
+  - name of file + icon
+  - replace remaining GitHub gists
+- table of content
+ - follow the content
+- share socials using nuxt-social-share
+- contact form using submitjson
+- tooling
+  - open graph preview
+- care about mobile experience
+
+(.*<img[^>]*src=")([^"]+)("[^>]*>.*)
+
+<img\s+(?:[^>]*?\s+)?src="([^"]*)"(?:[^>]*?\s+)?alt="([^"]*)"?[^>]*>
+
+
+
+![$2]($3){.rounded-lg .mx-auto}
+
+
+tag : preserve url for tags while having good names for tags
