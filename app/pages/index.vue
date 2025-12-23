@@ -16,82 +16,109 @@ useSeoMeta({
 <template>
   <div v-if="page">
     <UPageHero
-      :title="page.title"
-      :description="page.description"
-      :links="page.hero.links"
+      :title="page.hero?.title || page.title"
+      :description="page.hero?.description || page.description"
+      :links="page.hero?.links"
+      :ui="{
+        title: 'text-4xl sm:text-5xl lg:text-6xl text-center',
+        description: 'text-lg sm:text-xl text-gray-600 dark:text-gray-300 text-center',
+        headline: 'mb-8'
+      }"
     >
-      <template #top>
-        <HeroBackground />
-      </template>
-
-      <template #title>
-        <MDC
-          :value="page.title"
-          unwrap="p"
+      <template #headline>
+        <NuxtImg
+          src="/images/profile.png"
+          alt="Picture of Alexandre Nédélec"
+          width="288"
+          height="288"
+          class="mx-auto h-56 w-56 md:h-72 md:w-72 rounded-full object-cover"
         />
       </template>
-
-      <PromotionalVideo />
     </UPageHero>
 
     <UPageSection
-      v-for="(section, index) in page.sections"
-      :key="index"
+      v-if="page.roles"
+      :title="page.roles.title"
+      :description="page.roles.description"
+      :ui="{
+        title: 'text-3xl sm:text-4xl',
+        description: 'text-lg text-gray-600 dark:text-gray-300'
+      }"
+    >
+      <UPageGrid>
+        <UPageCard
+          v-for="(item, index) in page.roles.items"
+          :key="index"
+          :title="item.title"
+          :description="item.description"
+          :icon="item.icon"
+          :to="item.to"
+          :target="item.target"
+          spotlight
+          :ui="{
+            title: 'text-xl font-semibold',
+            description: 'text-base text-gray-600 dark:text-gray-400',
+            leadingIcon: 'size-8'
+          }"
+        />
+      </UPageGrid>
+    </UPageSection>
+
+    <UPageSection v-if="page.socials">
+      <div class="text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">{{ page.socials.title }}</h2>
+        <div class="flex flex-wrap justify-center gap-8">
+          <UButton
+            v-for="(social, index) in page.socials.links"
+            :key="index"
+            :to="social.to"
+            target="_blank"
+            color="neutral"
+            variant="ghost"
+            size="xl"
+            :icon="social.icon"
+            square
+            :aria-label="social.label"
+            :ui="{ leadingIcon: 'size-10' }"
+          />
+        </div>
+      </div>
+    </UPageSection>
+
+    <UPageSection
+      v-for="section in page.sections"
+      :key="section.id"
       :title="section.title"
       :description="section.description"
       :orientation="section.orientation"
       :reverse="section.reverse"
       :features="section.features"
+      :ui="{
+        title: 'text-3xl sm:text-4xl',
+        description: 'text-lg text-gray-600 dark:text-gray-300'
+      }"
     >
-      <ImagePlaceholder />
-    </UPageSection>
-
-    <UPageSection
-      :title="page.features.title"
-      :description="page.features.description"
-    >
-      <UPageGrid>
-        <UPageCard
-          v-for="(item, index) in page.features.items"
-          :key="index"
-          v-bind="item"
-          spotlight
+      <NuxtLink v-if="section.image?.src" :to="section.image.to" :target="section.image.target" class="block">
+        <NuxtImg
+          :src="section.image.src"
+          :alt="section.image.alt"
+          class="mx-auto max-w-[320px] sm:max-w-[420px] md:max-w-[500px]"
+          loading="lazy"
         />
-      </UPageGrid>
+      </NuxtLink>
     </UPageSection>
 
-    <UPageSection
-      id="testimonials"
-      :headline="page.testimonials.headline"
-      :title="page.testimonials.title"
-      :description="page.testimonials.description"
-    >
-      <UPageColumns class="xl:columns-4">
-        <UPageCard
-          v-for="(testimonial, index) in page.testimonials.items"
-          :key="index"
-          variant="subtle"
-          :description="testimonial.quote"
-          :ui="{ description: 'before:content-[open-quote] after:content-[close-quote]' }"
-        >
-          <template #footer>
-            <UUser
-              v-bind="testimonial.user"
-              size="lg"
-            />
-          </template>
-        </UPageCard>
-      </UPageColumns>
+    <UPageSection v-if="page.cta">
+      <UPageCTA
+        :title="page.cta.title"
+        :description="page.cta.description"
+        :links="page.cta.links"
+        variant="subtle"
+        :ui="{
+          title: 'text-3xl sm:text-4xl',
+          description: 'text-lg text-muted'
+        }"
+      />
     </UPageSection>
-
-    <USeparator />
-
-    <UPageCTA
-      v-bind="page.cta"
-      variant="naked"
-      class="overflow-hidden"
-    >
-      <LazyStarsBg />
-    </UPageCTA>
   </div>
 </template>
