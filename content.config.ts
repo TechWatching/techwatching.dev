@@ -118,5 +118,26 @@ export const collections = {
       date: z.date(),
       badge: z.object({ label: z.string().nonempty() })
     })
+  }),
+  goodiesPage: defineCollection({
+    source: '3.goodies.yml',
+    type: 'page',
+    schema: z.object({
+      align: z.string().optional(),
+      image: createImageSchema().optional()
+    })
+  }),
+  goodies: defineCollection({
+    source: '3.goodies/**/*',
+    type: 'page',
+    schema: z.object({
+      lead: z.string().optional(),
+      image: createImageSchema().optional()
+    })
+  }),
+  content: defineCollection({
+    source: '*.md',
+    type: 'page',
+    schema: z.object({})
   })
 }
