@@ -28,6 +28,10 @@ const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSe
   server: false
 })
 
+const { data: navigation } = useLazyAsyncData('navigation', () => queryCollectionNavigation('posts'), {
+  server: false
+})
+
 const links = [{
   label: 'Blog',
   icon: 'i-lucide-pencil',
@@ -56,6 +60,7 @@ defineShortcuts({
     <ClientOnly>
       <LazyUContentSearch
         :files="files"
+        :navigation="navigation"
         shortcut="meta_k"
         :links="links"
         :fuse="{ resultLimit: 42 }"
