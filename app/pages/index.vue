@@ -64,23 +64,11 @@ useSeoMeta({
       </UPageGrid>
     </UPageSection>
 
-    <UPageSection v-if="page.socials">
+    <UPageSection>
       <div class="text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">{{ page.socials.title }}</h2>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">You can find me on</h2>
         <div class="flex flex-wrap justify-center gap-8">
-          <UButton
-            v-for="(social, index) in page.socials.links"
-            :key="index"
-            :to="social.to"
-            target="_blank"
-            color="neutral"
-            variant="ghost"
-            size="xl"
-            :icon="social.icon"
-            square
-            :aria-label="social.label"
-            :ui="{ leadingIcon: 'size-10' }"
-          />
+          <SocialLinks icon-class="text-white" />
         </div>
       </div>
     </UPageSection>

@@ -1,94 +1,35 @@
 <script setup lang="ts">
-const columns = [{
-  label: 'Blog',
-  children: [{
-    label: 'All posts',
-    to: '/posts'
-  }]
-}]
-
-const toast = useToast()
-
-const email = ref('')
-const loading = ref(false)
-
-function onSubmit() {
-  loading.value = true
-
-  toast.add({
-    title: 'Subscribed!',
-    description: 'You\'ve been subscribed to our newsletter.'
-  })
-}
 </script>
 
 <template>
-  <USeparator
-    icon="i-simple-icons-nuxtdotjs"
-    class="h-px"
-  />
-
-  <UFooter :ui="{ top: 'border-b border-default' }">
+  <UFooter>
     <template #top>
-      <UContainer>
-        <UFooterColumns :columns="columns">
-          <template #right>
-            <form @submit.prevent="onSubmit">
-              <UFormField
-                name="email"
-                label="Subscribe to our newsletter"
-                size="lg"
-              >
-                <UInput
-                  v-model="email"
-                  type="email"
-                  class="w-full"
-                  placeholder="Enter your email"
-                >
-                  <template #trailing>
-                    <UButton
-                      type="submit"
-                      size="xs"
-                      color="neutral"
-                      label="Subscribe"
-                    />
-                  </template>
-                </UInput>
-              </UFormField>
-            </form>
-          </template>
-        </UFooterColumns>
-      </UContainer>
+      <USeparator />
+      <div class="mx-auto my-10 flex flex-wrap items-center gap-8 justify-center">
+        <SocialLinks />
+      </div>
+      <USeparator />
     </template>
 
     <template #left>
       <p class="text-muted text-sm">
-        Built with Nuxt UI • © {{ new Date().getFullYear() }}
+        Copyright © {{ new Date().getFullYear() }} Alexandre Nédélec. All rights reserved.
+      </p>
+    </template>
+
+    <template #default>
+      <p class="text-muted text-sm text-wrap max-w-2xl text-center">
+        The opinions expressed herein are my own and do not represent those of my employer or any other third-party views in any way.
       </p>
     </template>
 
     <template #right>
+      <UColorModeButton />
       <UButton
-        to="https://go.nuxt.com/discord"
-        target="_blank"
-        icon="i-simple-icons-discord"
-        aria-label="Nuxt on Discord"
-        color="neutral"
-        variant="ghost"
-      />
-      <UButton
-        to="https://go.nuxt.com/x"
-        target="_blank"
-        icon="i-simple-icons-x"
-        aria-label="Nuxt on X"
-        color="neutral"
-        variant="ghost"
-      />
-      <UButton
-        to="https://github.com/nuxt-ui-templates/saas"
+        to="https://github.com/TechWatching/techwatching.dev"
         target="_blank"
         icon="i-simple-icons-github"
-        aria-label="Nuxt UI on GitHub"
+        aria-label="GitHub Repository"
         color="neutral"
         variant="ghost"
       />

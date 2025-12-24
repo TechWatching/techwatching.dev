@@ -11,6 +11,21 @@ const items = computed(() => [
     label: 'Blog',
     to: '/posts',
     active: route.path.startsWith('/posts')
+  },
+  {
+    label: 'Speaking',
+    to: '/speaking',
+    active: route.path.startsWith('/speaking')
+  },
+  {
+    label: 'Goodies',
+    to: '/goodies',
+    active: route.path.startsWith('/goodies')
+  },
+  {
+    label: 'About',
+    to: '/about',
+    active: route.path === '/about'
   }
 ])
 </script>
@@ -18,43 +33,22 @@ const items = computed(() => [
 <template>
   <UHeader>
     <template #left>
-      <NuxtLink to="/">
-        <AppLogo class="w-auto h-6 shrink-0" />
+      <NuxtLink to="/" class="flex items-center gap-2">
+        <AppLogo />
       </NuxtLink>
-      <TemplateMenu />
     </template>
 
     <UNavigationMenu
       :items="items"
       variant="link"
+      :ui="{
+        link: 'text-lg font-semibold'
+      }"
     />
 
     <template #right>
+      <UContentSearchButton />
       <UColorModeButton />
-
-      <UButton
-        icon="i-lucide-log-in"
-        color="neutral"
-        variant="ghost"
-        to="/login"
-        class="lg:hidden"
-      />
-
-      <UButton
-        label="Sign in"
-        color="neutral"
-        variant="outline"
-        to="/login"
-        class="hidden lg:inline-flex"
-      />
-
-      <UButton
-        label="Sign up"
-        color="neutral"
-        trailing-icon="i-lucide-arrow-right"
-        class="hidden lg:inline-flex"
-        to="/signup"
-      />
     </template>
 
     <template #body>
@@ -62,23 +56,6 @@ const items = computed(() => [
         :items="items"
         orientation="vertical"
         class="-mx-2.5"
-      />
-
-      <USeparator class="my-6" />
-
-      <UButton
-        label="Sign in"
-        color="neutral"
-        variant="subtle"
-        to="/login"
-        block
-        class="mb-3"
-      />
-      <UButton
-        label="Sign up"
-        color="neutral"
-        to="/signup"
-        block
       />
     </template>
   </UHeader>
