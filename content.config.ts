@@ -128,7 +128,7 @@ export const collections = {
     })
   }),
   goodies: defineCollection({
-    source: '3.goodies/**/*',
+    source: '3.goodies/*.md',
     type: 'page',
     schema: z.object({
       lead: z.string().optional(),
