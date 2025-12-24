@@ -54,3 +54,34 @@ This is a personal blog built with:
 - **TailwindCSS v4** - Styling
 
 Content is stored in the `content/` directory with blog posts in `content/1.posts/`.
+
+## Nuxt UI v3 Styling Guidelines
+
+When customizing Nuxt UI v3 components:
+
+### Use the `ui` prop for styling
+Do NOT use `class` to style internal parts of components. Instead, use the `ui` prop with slot names:
+
+```vue
+<!-- ❌ Wrong - class doesn't affect internal elements -->
+<UNavigationMenu :items="items" class="text-xl font-semibold" />
+
+<!-- ✅ Correct - use ui prop with slot names -->
+<UNavigationMenu 
+  :items="items" 
+  :ui="{ link: 'text-xl font-semibold' }"
+/>
+```
+
+### Common ui slots by component
+- **UNavigationMenu**: `root`, `list`, `link`, `linkLabel`, `linkLeadingIcon`, etc.
+- **UButton**: `base`, `label`, `leadingIcon`, `trailingIcon`
+- **UHeader**: `root`, `left`, `center`, `right`, `logo`
+- **UAvatar**: `root`, `image`, `fallback`
+
+### Always check component documentation
+Use `mcp_nuxt-ui_get-component` or `mcp_nuxt-ui_get-component-metadata` to find:
+- Available props and their types
+- Available slots for customization
+- The `ui` prop structure with all customizable slots
+- Theme configuration in `app.config.ts`
