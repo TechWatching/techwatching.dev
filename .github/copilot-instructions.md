@@ -79,6 +79,25 @@ Do NOT use `class` to style internal parts of components. Instead, use the `ui` 
 - **UHeader**: `root`, `left`, `center`, `right`, `logo`
 - **UAvatar**: `root`, `image`, `fallback`
 
+### UAvatar custom sizes
+When using UAvatar with a custom size via the `ui` prop, always set explicit `width` and `height` props to match the display size. This ensures NuxtImg fetches the image at the correct resolution and avoids blurry images:
+
+```vue
+<!-- ❌ Wrong - image will be blurry (fetched at default small size) -->
+<UAvatar
+  src="/images/profile.png"
+  :ui="{ root: 'size-44' }"
+/>
+
+<!-- ✅ Correct - explicit dimensions match the display size (size-44 = 176px) -->
+<UAvatar
+  src="/images/profile.png"
+  :width="176"
+  :height="176"
+  :ui="{ root: 'size-44' }"
+/>
+```
+
 ### Always check component documentation
 Use `mcp_nuxt-ui_get-component` or `mcp_nuxt-ui_get-component-metadata` to find:
 - Available props and their types
