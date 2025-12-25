@@ -87,6 +87,8 @@ if (post.value.image?.src) {
 
         <UContentSurround :surround="surround" />
 
+        <SocialsShare />
+
         <GiscusComments />
       </UPageBody>
 

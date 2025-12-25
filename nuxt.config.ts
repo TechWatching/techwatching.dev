@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-og-image',
     '@nuxt/hints',
-    '@nuxt/scripts'
+    '@nuxt/scripts',
+    '@stefanobartoletti/nuxt-social-share'
   ],
 
   devtools: {
@@ -26,6 +27,10 @@ export default defineNuxtConfig({
   site: {
     url: 'https://techwatching.dev',
     name: 'Alexandre Nédélec'
+  },
+
+  socialShare: {
+    baseUrl: 'https://techwatching.dev'
   },
 
   experimental: {
