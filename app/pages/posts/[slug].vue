@@ -86,6 +86,8 @@ if (post.value.image?.src) {
         <USeparator v-if="surround?.length" />
 
         <UContentSurround :surround="surround" />
+
+        <GiscusComments />
       </UPageBody>
 
       <template
