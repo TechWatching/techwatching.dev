@@ -36,7 +36,10 @@ useSeoMeta({
     </UPageHero>
     <UPage>
       <UPageBody prose>
-        <ContentRenderer v-if="page" :value="page" />
+        <ContentRenderer
+          v-if="page"
+          :value="page"
+        />
         <div class="flex justify-center mt-8">
           <UAvatar
             src="/images/profile.png"

@@ -33,7 +33,10 @@ const items = computed(() => [
 <template>
   <UHeader>
     <template #left>
-      <NuxtLink to="/" class="flex items-center gap-2">
+      <NuxtLink
+        to="/"
+        class="flex items-center gap-2"
+      >
         <AppLogo />
       </NuxtLink>
     </template>

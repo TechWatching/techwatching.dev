@@ -11,9 +11,8 @@ export default defineNuxtConfig({
     '@nuxt/scripts'
   ],
 
-  site: {
-    url: 'https://techwatching.dev',
-    name: 'Alexandre Nédélec'
+  devtools: {
+    enabled: true
   },
 
   app: {
@@ -22,17 +21,18 @@ export default defineNuxtConfig({
     }
   },
 
-  devtools: {
-    enabled: true
-  },
-
   css: ['~/assets/css/main.css'],
 
-  compatibilityDate: '2024-07-11',
+  site: {
+    url: 'https://techwatching.dev',
+    name: 'Alexandre Nédélec'
+  },
 
   experimental: {
     viewTransition: true
   },
+
+  compatibilityDate: '2024-07-11',
 
   nitro: {
     prerender: {
