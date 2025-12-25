@@ -24,10 +24,12 @@
     "@unhead/vue": "^2.0.19",
     "@vueuse/nuxt": "^13.9.0",
     "better-sqlite3": "^12.4.6",
+    "feed": "^5.1.0",
     "just-kebab-case": "^4.2.0",
     "nuxt": "^4.2.2",
     "posthog-js": "^1.310.1",
     "submitjson": "^0.13.0",
+    "ufo": "^1.6.1",
     "zod": "^4.1.13"
   },
   "devDependencies": {
