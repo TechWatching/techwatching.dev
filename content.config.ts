@@ -76,7 +76,8 @@ export const collections = {
             src: z.string().nonempty().editor({ input: 'media' }),
             alt: z.string().optional(),
             to: z.string().optional(),
-            target: z.string().optional()
+            target: z.string().optional(),
+            width: z.number().optional()
           }).optional(),
           features: z.array(
             z.object({
