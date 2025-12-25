@@ -84,8 +84,8 @@ useSeoMeta({
       :reverse="section.reverse"
       :features="section.features"
       :ui="{
-        title: 'text-3xl sm:text-4xl',
-        description: 'text-lg text-gray-600 dark:text-gray-300'
+        title: 'text-3xl sm:text-4xl text-center lg:text-left',
+        description: 'text-lg text-gray-600 dark:text-gray-300 text-center lg:text-left'
       }"
     >
       <NuxtLink
@@ -97,7 +97,8 @@ useSeoMeta({
         <NuxtImg
           :src="section.image.src"
           :alt="section.image.alt"
-          class="mx-auto max-w-[320px] sm:max-w-[420px] md:max-w-[500px]"
+          :width="section.image.width ?? 600"
+          class="mx-auto"
           loading="lazy"
         />
       </NuxtLink>

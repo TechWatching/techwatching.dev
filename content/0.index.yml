@@ -61,6 +61,7 @@ sections:
       alt: Microsoft MVP badge.
       to: https://mvp.microsoft.com/en-US/mvp/profile/b6deecb6-7760-406e-84cb-8206f051f8e5
       target: _blank
+      width: 300
   - title: I'm a Puluminary.
     description: "Since 2022, I have been part of the Puluminaries community program that recognizes members of the Pulumi community. Pulumi is the technology that made me love Infrastructure as Code and I truly believe that IaC should be:"
     id: puluminary
