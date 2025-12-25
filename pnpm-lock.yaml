@@ -56,6 +56,9 @@ importers:
       posthog-js:
         specifier: ^1.310.1
         version: 1.310.1
+      submitjson:
+        specifier: ^0.13.0
+        version: 0.13.0
       zod:
         specifier: ^4.1.13
         version: 4.1.13
@@ -4548,6 +4551,12 @@ packages:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
 
+  openapi-fetch@0.8.2:
+    resolution: {integrity: sha512-4g+NLK8FmQ51RW6zLcCBOVy/lwYmFJiiT+ckYZxJWxUxH4XFhsNcX2eeqVMfVOi+mDNFja6qDXIZAz2c5J/RVw==}
+
+  openapi-typescript-helpers@0.0.5:
+    resolution: {integrity: sha512-MRffg93t0hgGZbYTxg60hkRIK2sRuEOHEtCUgMuLgbCC33TMQ68AmxskzUlauzZYD47+ENeGV/ElI7qnWqrAxA==}
+
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -5353,6 +5362,9 @@ packages:
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
       postcss: ^8.4.32
+
+  submitjson@0.13.0:
+    resolution: {integrity: sha512-01yQHwuj1kQkxU0FETNrrYDFmJCDvP2WCScvNX2s7Vp3MazTzSSjeP6ji0tOL5zCJTqfzH6xVo7Rqa9wa/sMBA==}
 
   superjson@2.2.3:
     resolution: {integrity: sha512-ay3d+LW/S6yppKoTz3Bq4mG0xrS5bFwfWEBmQfbC7lt5wmtk+Obq0TxVuA9eYRirBTQb1K3eEpBRHMQEo0WyVw==}
@@ -11374,6 +11386,12 @@ snapshots:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
+  openapi-fetch@0.8.2:
+    dependencies:
+      openapi-typescript-helpers: 0.0.5
+
+  openapi-typescript-helpers@0.0.5: {}
+
   optionator@0.9.4:
     dependencies:
       deep-is: 0.1.4
@@ -12370,6 +12388,10 @@ snapshots:
       browserslist: 4.27.0
       postcss: 8.5.6
       postcss-selector-parser: 7.1.0
+
+  submitjson@0.13.0:
+    dependencies:
+      openapi-fetch: 0.8.2
 
   superjson@2.2.3:
     dependencies:
