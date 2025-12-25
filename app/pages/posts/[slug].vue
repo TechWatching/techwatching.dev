@@ -22,6 +22,22 @@ useSeoMeta({
   ogDescription: description
 })
 
+// Schema.org Article markup for rich snippets
+useSchemaOrg([
+  defineArticle({
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    datePublished: post.value.date,
+    image: post.value.image?.src,
+    author: {
+      '@type': 'Person',
+      name: 'Alexandre Nédélec',
+      url: 'https://techwatching.dev/about'
+    }
+  })
+])
+
 if (post.value.image?.src) {
   defineOgImage({
     url: post.value.image.src

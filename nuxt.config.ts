@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/content',
     '@vueuse/nuxt',
-    'nuxt-og-image',
+    '@nuxtjs/seo',
     '@nuxt/hints',
     '@nuxt/scripts',
     '@stefanobartoletti/nuxt-social-share'
@@ -26,11 +26,17 @@ export default defineNuxtConfig({
 
   site: {
     url: 'https://techwatching.dev',
-    name: 'Alexandre Nédélec'
+    name: "Alexandre Nédélec's personal website",
+    description: "Alexandre Nédélec's personal website"
   },
 
   socialShare: {
     baseUrl: 'https://techwatching.dev'
+  },
+
+  sitemap: {
+    sources: ['/api/__sitemap__/urls'],
+    exclude: ['/login', '/signup']
   },
 
   runtimeConfig: {
