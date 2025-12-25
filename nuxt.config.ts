@@ -77,7 +77,9 @@ export default defineNuxtConfig({
   // Optional: Add route rules for full prerendering
   routeRules: {
     '/**': { prerender: true },
-    '/gitcheatsheet': { redirect: '/goodies/gitcheatsheet', prerender: true }
+    '/gitcheatsheet': { redirect: '/goodies/gitcheatsheet', prerender: true },
+    '/*.rss': { prerender: true },
+    '/*.atom': { prerender: true }
   },
 
   eslint: {
