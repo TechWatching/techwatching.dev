@@ -10,7 +10,7 @@ const createBaseSchema = () => z.object({
   description: z.string().nonempty()
 })
 
-const createFeatureItemSchema = () => createBaseSchema().extend({
+const _createFeatureItemSchema = () => createBaseSchema().extend({
   icon: z.string().nonempty().editor({ input: 'icon' })
 })
 

@@ -66,7 +66,9 @@ useSeoMeta({
 
     <UPageSection>
       <div class="text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">You can find me on</h2>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">
+          You can find me on
+        </h2>
         <div class="flex flex-wrap justify-center gap-8">
           <SocialLinks icon-class="text-white" />
         </div>
@@ -86,7 +88,12 @@ useSeoMeta({
         description: 'text-lg text-gray-600 dark:text-gray-300'
       }"
     >
-      <NuxtLink v-if="section.image?.src" :to="section.image.to" :target="section.image.target" class="block">
+      <NuxtLink
+        v-if="section.image?.src"
+        :to="section.image.to"
+        :target="section.image.target"
+        class="block"
+      >
         <NuxtImg
           :src="section.image.src"
           :alt="section.image.alt"

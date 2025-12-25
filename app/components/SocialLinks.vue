@@ -14,6 +14,10 @@ defineProps<{
     target="_blank"
     :aria-label="social.label"
   >
-    <UIcon :name="social.icon" class="w-10 h-10 shrink-0" :class="iconClass" />
+    <UIcon
+      :name="social.icon"
+      class="w-10 h-10 shrink-0"
+      :class="iconClass"
+    />
   </ULink>
 </template>
