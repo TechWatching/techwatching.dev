@@ -33,6 +33,12 @@ export default defineNuxtConfig({
     baseUrl: 'https://techwatching.dev'
   },
 
+  runtimeConfig: {
+    public: {
+      submitJsonApiKey: ''
+    }
+  },
+
   experimental: {
     viewTransition: true
   },

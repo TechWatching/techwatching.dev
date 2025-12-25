@@ -27,6 +27,7 @@
     "nuxt": "^4.2.2",
     "nuxt-og-image": "^5.1.12",
     "posthog-js": "^1.310.1",
+    "submitjson": "^0.13.0",
     "zod": "^4.1.13"
   },
   "devDependencies": {
