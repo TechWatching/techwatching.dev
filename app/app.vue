@@ -18,9 +18,9 @@ useHead({
 })
 
 useSeoMeta({
-  titleTemplate: '%s - Nuxt SaaS template',
-  ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/saas-light.png',
-  twitterImage: 'https://ui.nuxt.com/assets/templates/nuxt/saas-light.png',
+  titleTemplate: '%s - Alexandre Nédélec',
+  ogImage: '/images/social-card.png',
+  twitterImage: '/images/social-card.png',
   twitterCard: 'summary_large_image'
 })
 

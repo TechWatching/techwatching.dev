@@ -11,6 +11,17 @@ export default defineNuxtConfig({
     '@nuxt/scripts'
   ],
 
+  site: {
+    url: 'https://techwatching.dev',
+    name: 'Alexandre Nédélec'
+  },
+
+  app: {
+    head: {
+      titleTemplate: '%s - Alexandre Nédélec'
+    }
+  },
+
   devtools: {
     enabled: true
   },
