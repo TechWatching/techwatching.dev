@@ -37,15 +37,35 @@ export default defineNuxtConfig({
     viewTransition: true
   },
 
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          langs: [
+            'json', 'js', 'ts', 'html', 'xml', 'css', 'vue', 'shell',
+            'mdc', 'md', 'yaml', 'csharp', 'powershell', 'http',
+            'nushell', 'razor', 'sql'
+          ]
+        }
+      }
+    }
+  },
+
   compatibilityDate: '2024-07-11',
 
+  // Prerender all routes at build time for static hosting
   nitro: {
     prerender: {
-      routes: [
-        '/'
-      ],
-      crawlLinks: true
+      routes: ['/'],
+      crawlLinks: true,
+      failOnError: false
     }
+  },
+
+  // Optional: Add route rules for full prerendering
+  routeRules: {
+    '/**': { prerender: true },
+    '/gitcheatsheet': { redirect: '/goodies/gitcheatsheet', prerender: true }
   },
 
   eslint: {
