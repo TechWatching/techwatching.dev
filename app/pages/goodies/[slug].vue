@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { joinURL } from 'ufo'
+
 const route = useRoute()
 
 const { data: goodie } = await useAsyncData(route.path, () => queryCollection('goodies').path(route.path).first())
@@ -22,9 +24,12 @@ useSeoMeta({
   ogDescription: description
 })
 
+// OG Image: use goodie cover image if available, otherwise generate one
 if (goodie.value.image?.src) {
-  defineOgImage({
-    url: goodie.value.image.src
+  const site = useSiteConfig()
+  useSeoMeta({
+    ogImage: joinURL(site.url, goodie.value.image.src),
+    twitterImage: joinURL(site.url, goodie.value.image.src)
   })
 } else {
   defineOgImageComponent('Saas', {

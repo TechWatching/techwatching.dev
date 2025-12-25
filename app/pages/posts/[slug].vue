@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { joinURL } from 'ufo'
+
 const route = useRoute()
 
 const { data: post } = await useAsyncData(route.path, () => queryCollection('posts').path(route.path).first())
@@ -38,9 +40,12 @@ useSchemaOrg([
   })
 ])
 
+// OG Image: use post cover image if available, otherwise generate one
 if (post.value.image?.src) {
-  defineOgImage({
-    url: post.value.image.src
+  const site = useSiteConfig()
+  useSeoMeta({
+    ogImage: joinURL(site.url, post.value.image.src),
+    twitterImage: joinURL(site.url, post.value.image.src)
   })
 } else {
   defineOgImageComponent('Saas', {
@@ -54,7 +59,7 @@ if (post.value.image?.src) {
     <NuxtImg
       v-if="post.image?.src"
       :src="post.image.src"
-      :alt="post.image.alt || post.title"
+      :alt="post.title"
       class="post-cover-image w-full rounded-lg shadow-lg mb-8"
     />
 
