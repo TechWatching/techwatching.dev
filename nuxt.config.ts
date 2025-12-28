@@ -41,7 +41,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      submitJsonApiKey: ''
+      submitJsonApiKey: '',
+      posthogPublicKey: '',
+      posthogHost: 'https://eu.i.posthog.com'
     }
   },
 
