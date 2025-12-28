@@ -104,20 +104,26 @@ if (post.value.image?.src) {
           :value="post"
         />
 
+        <!-- Mobile: show tags and share inline -->
+        <div class="block lg:hidden mt-8">
+          <PostsTags v-if="post.tags?.length" :tags="post.tags" />
+          <SocialsShare class="mt-6" />
+        </div>
+
         <USeparator v-if="surround?.length" />
 
         <UContentSurround :surround="surround" />
 
-        <SocialsShare />
-
         <GiscusComments />
       </UPageBody>
 
-      <template
-        v-if="post?.body?.toc?.links?.length"
-        #right
-      >
-        <UContentToc :links="post.body.toc.links" />
+      <template #right>
+        <UContentToc :links="post?.body?.toc?.links">
+          <template #bottom>
+            <PostsTags v-if="post.tags?.length" :tags="post.tags" />
+            <SocialsShare />
+          </template>
+        </UContentToc>
       </template>
     </UPage>
   </UContainer>

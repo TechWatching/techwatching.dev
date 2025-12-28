@@ -2,16 +2,16 @@
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-3 mb-5">
-    <span class="text-sm text-muted">Share this post</span>
-    <div class="flex flex-wrap justify-center gap-4">
+  <div>
+    <USeparator type="dashed" label="Share" class="mt-4 mb-5" />
+    <div class="flex flex-wrap gap-2 justify-center mb-5">
       <SocialShare
         v-for="network in ['bluesky', 'mastodon', 'linkedin', 'hackernews', 'reddit', 'email']"
         :key="network"
         :network="network"
         :styled="false"
         :label="false"
-        class="text-muted p-3 rounded-lg transition-all duration-200 hover:text-primary hover:bg-elevated hover:scale-110"
+        class="p-2 rounded-lg text-muted transition-all duration-200 hover:text-primary hover:bg-elevated hover:scale-110"
       />
     </div>
   </div>
