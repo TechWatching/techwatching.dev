@@ -3,6 +3,12 @@ export default defineAppConfig({
     colors: {
       primary: 'blue',
       neutral: 'slate'
+    },
+    prose: {
+      codeIcon: {
+        cs: 'vscode-icons:file-type-csharp',
+        csx: 'vscode-icons:file-type-csharp'
+      }
     }
   },
   socials: [
