@@ -1,11 +1,12 @@
-import { asSitemapUrl, defineSitemapEventHandler } from '#imports'
+import { queryCollection } from '@nuxt/content/server'
+import type { H3Event, EventHandlerRequest } from 'h3'
 import kebabCase from 'just-kebab-case'
 import type { Collections } from '@nuxt/content'
 
 const getTagSlug = (tag: string) => kebabCase(tag.toLowerCase().replace('/', ''))
 const getTagRoute = (tag: string) => `/tags/${getTagSlug(tag)}`
 
-export default defineSitemapEventHandler(async (e) => {
+export default defineEventHandler(async (e: H3Event<EventHandlerRequest>) => {
   // Query all posts
   const posts = await queryCollection(e, 'posts').all()
 
@@ -21,21 +22,21 @@ export default defineSitemapEventHandler(async (e) => {
   })
 
   // Generate tag URLs
-  const tagItems = [...tags].map((t) => asSitemapUrl({ loc: t }))
+  const tagItems = [...tags].map((t) => ({ loc: t }))
 
   // Generate post URLs
   const postItems = posts.map((post: Collections['posts']) => {
-    return asSitemapUrl({
+    return {
       loc: post.path,
       lastmod: post.date ? new Date(post.date).toISOString() : undefined
-    })
+    }
   })
 
   // Generate goodie URLs
   const goodieItems = goodies.map((goodie: Collections['goodies']) => {
-    return asSitemapUrl({
+    return {
       loc: goodie.path
-    })
+    }
   })
 
   return [...tagItems, ...postItems, ...goodieItems]
