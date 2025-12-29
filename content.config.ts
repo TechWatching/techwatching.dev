@@ -136,6 +136,27 @@ export const collections = {
       image: createImageSchema().optional()
     })
   }),
+  speaking: defineCollection({
+    source: '2.speaking.yml',
+    type: 'page',
+    schema: z.object({
+      align: z.string().optional(),
+      events: z.array(
+        z.object({
+          name: z.string().optional(),
+          date: z.string().optional(),
+          event: z.string().optional(),
+          type: z.enum(['conference', 'meetup', 'podcast', 'webinar']).optional(),
+          format: z.enum(['talk', 'workshop', 'panel', 'keynote', 'lightning']).optional(),
+          location: z.string().optional(),
+          url: z.string().optional(),
+          slides: z.string().optional(),
+          image: z.string().optional(),
+          speakers: z.array(z.string()).optional()
+        })
+      ).optional()
+    })
+  }),
   content: defineCollection({
     source: '*.md',
     type: 'page',

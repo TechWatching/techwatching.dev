@@ -1,0 +1,115 @@
+navigation.icon: i-ph-microphone-stage
+title: Speaking
+description: Talks, conferences and presentations about Cloud, Infrastructure as Code, and .NET development.
+seo:
+  title: Speaking - Alexandre Nédélec
+  description: Discover my talks and presentations at conferences about Cloud, DevOps, Pulumi, and .NET development.
+events:
+  - name: "Roundtable: Aspire13, DevOps Server, WinUI3, CsWin32"
+    date: 2025-12-10
+    event: devdevdev.net
+    type: podcast
+    format: panel
+    location: Online
+    url: https://devdevdev.net/tr11-2025-aspire13-devops-server-winui3-cswin32/
+  - name: "Roundtable: .NET 10 performance, PATs, Semantic Kernel, Spec-Kit, TypedResult"
+    date: 2025-10-09
+    event: devdevdev.net
+    type: podcast
+    format: panel
+    location: Online
+    url: https://devdevdev.net/tr10-2025-net-10-perfs-les-pat-semantic-kernel-spec-kit-typedresult/
+  - name: Spec Driven Development with GitHub Spec Kit
+    date: 2025-09-29
+    event: VS Code Dev Days Bordeaux 2025
+    type: meetup
+    format: talk
+    location: Bordeaux
+    url: https://www.youtube.com/watch?v=TkQZfDq7LTI&list=PL5Kprdw8GhxdySCoOw9_l5QfqW5a5W69p&index=1&t=3321s
+  - name: "Internal Developer Platform: choose the right path for your organization"
+    date: 2025-06-24
+    event: WAX 2025
+    type: conference
+    format: talk
+    location: Aix-en-Provence
+    url: https://youtu.be/5LrGE_qn_OE?si=rlfWXWBdt0ZK4_xX
+  - name: Master DevOps - The Ultimate DevOps Learning Path with Pulumi
+    date: 2025-01-23
+    event: PulumiTV
+    type: webinar
+    format: interview
+    location: Online
+    url: https://youtu.be/6RXXCxWymEM
+  - name: Infrastructure as Code with Pulumi
+    date: 2024-11-15
+    event: BDX I/O 2024
+    type: conference
+    format: workshop
+    location: Bordeaux
+  - name: Infrastructure as Code with Pulumi
+    date: 2024-10-10
+    event: Cloud Nord 2024
+    type: conference
+    format: workshop
+    location: Lille
+  - name: Industrialize the configuration of your GitHub repositories using IaC
+    date: 2024-09-18
+    event: PulumiUP 2024
+    type: conference
+    format: talk
+    location: Online
+    url: https://youtu.be/C5ZuEVXesOk?si=YhLZflz91CMMcsYV
+  - name: Industrialize the configuration of your GitHub repositories using IaC
+    date: 2024-06-11
+    event: Meetup 3 MTG:Bordeaux
+    type: meetup
+    format: talk
+    location: Bordeaux
+    url: https://www.youtube.com/watch?v=ZYIXMb4C8Dg&list=PL5Kprdw8GhxdySCoOw9_l5QfqW5a5W69p&index=6&t=4056s
+  - name: Code your application and your infrastructure in .NET 8
+    date: 2023-12-05
+    event: .NET Conf 2023 with MTG
+    type: conference
+    format: talk
+    location: Online
+    url: https://youtu.be/10LVhbODDaE?si=iOhCCkVDCmYun499
+  - name: Oops I forgot to make my slides
+    date: 2023-11-15
+    event: BDX I/O 2023
+    type: conference
+    format: lightning
+    location: Bordeaux
+    url: https://youtu.be/XZAIb5CLqok?si=wrQ2Ive-o9DjlNZV
+  - name: Infrastructure as Code or Infrastructure as Software
+    date: 2023-06-29
+    event: BreizhCamp 2023
+    type: conference
+    format: talk
+    location: Rennes
+    url: https://youtu.be/vhJfNetCp9Y?si=fkbiyM00DSwNGj6G
+  - name: IaC to the future with Pulumi
+    date: 2023-06-20
+    event: Cloud Est 2023
+    type: conference
+    format: talk
+    location: Lyon
+  - name: How Pulumi is revolutionizing infrastructure deployment in Azure
+    date: 2023-05-13
+    event: Global Azure France 2023
+    type: conference
+    format: talk
+    location: Paris
+  - name: Infrastructure as Code or Infrastructure as Software
+    date: 2022-06-30
+    event: Cloud Ouest 2022
+    type: conference
+    format: talk
+    location: Online
+    url: https://youtu.be/V_Fis-hxQk4?si=1z1oiLFTcbVbDaDH
+  - name: Pulumi vs. Terraform
+    date: 2022-03-22
+    event: Clash
+    type: webinar
+    format: panel
+    location: Online
+    url: https://www.youtube.com/live/7raXBE5XH7Y?si=7hYJu702DxMSZBjo
