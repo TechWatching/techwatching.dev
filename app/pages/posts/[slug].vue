@@ -60,7 +60,7 @@ if (post.value.image?.src) {
       v-if="post.image?.src"
       :src="post.image.src"
       :alt="post.title"
-      class="post-cover-image w-full rounded-lg shadow-lg mb-8"
+      class="mt-8 w-full object-cover rounded-lg aspect-[16/9]"
     />
 
     <UPageHeader
