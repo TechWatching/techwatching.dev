@@ -6,7 +6,10 @@ defineProps<{ tags: string[] }>()
 
 <template>
   <div>
-    <USeparator type="dashed" label="Tags" />
+    <USeparator
+      type="dashed"
+      label="Tags"
+    />
     <div class="flex flex-wrap w-full items-center gap-3 mt-5">
       <UBadge
         v-for="(tag, index) in tags"

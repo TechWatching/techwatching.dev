@@ -22,7 +22,7 @@ export default defineEventHandler(async (e: H3Event<EventHandlerRequest>) => {
   })
 
   // Generate tag URLs
-  const tagItems = [...tags].map((t) => ({ loc: t }))
+  const tagItems = [...tags].map(t => ({ loc: t }))
 
   // Generate post URLs
   const postItems = posts.map((post: Collections['posts']) => {

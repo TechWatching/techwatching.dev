@@ -54,7 +54,7 @@ const { data: contentNavigation } = useLazyAsyncData('navigation-content', () =>
 })
 
 // Helper to add icon to navigation items
-const addIconToItems = (items: any[] | undefined, icon: string) => 
+const addIconToItems = (items: { path?: string, title?: string, [key: string]: unknown }[] | undefined, icon: string) =>
   (items || []).map(item => ({ ...item, icon }))
 
 // Combine navigation with proper section labels and icons on each item

@@ -140,7 +140,10 @@ function formatDate(date?: string) {
     <UPageBody>
       <!-- Stats Overview -->
       <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        <UPageCard variant="soft" class="text-center">
+        <UPageCard
+          variant="soft"
+          class="text-center"
+        >
           <div class="text-3xl font-bold text-primary">
             {{ stats.totalTalks }}
           </div>
@@ -148,7 +151,10 @@ function formatDate(date?: string) {
             Speaking Events
           </div>
         </UPageCard>
-        <UPageCard variant="soft" class="text-center">
+        <UPageCard
+          variant="soft"
+          class="text-center"
+        >
           <div class="text-3xl font-bold text-primary">
             {{ stats.conferences }}
           </div>
@@ -156,7 +162,10 @@ function formatDate(date?: string) {
             Conferences
           </div>
         </UPageCard>
-        <UPageCard variant="soft" class="text-center">
+        <UPageCard
+          variant="soft"
+          class="text-center"
+        >
           <div class="text-3xl font-bold text-primary">
             {{ stats.years }}
           </div>
@@ -164,7 +173,10 @@ function formatDate(date?: string) {
             Years Speaking
           </div>
         </UPageCard>
-        <UPageCard variant="soft" class="text-center">
+        <UPageCard
+          variant="soft"
+          class="text-center"
+        >
           <div class="text-3xl font-bold text-primary">
             {{ stats.podcasts }}
           </div>
@@ -175,9 +187,15 @@ function formatDate(date?: string) {
       </section>
 
       <!-- Upcoming Events -->
-      <section v-if="upcomingEvents.length" class="mb-16">
+      <section
+        v-if="upcomingEvents.length"
+        class="mb-16"
+      >
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-          <UIcon name="i-lucide-calendar-clock" class="text-primary" />
+          <UIcon
+            name="i-lucide-calendar-clock"
+            class="text-primary"
+          />
           Upcoming Events
         </h2>
         <UPageGrid>
@@ -216,12 +234,18 @@ function formatDate(date?: string) {
       <!-- Past Events as Timeline grouped by Year -->
       <section>
         <h2 class="text-2xl font-bold mb-8 flex items-center gap-2 justify-center">
-          <UIcon name="i-lucide-history" class="text-primary" />
+          <UIcon
+            name="i-lucide-history"
+            class="text-primary"
+          />
           Past Talks
         </h2>
 
         <div class="max-w-2xl mx-auto space-y-12">
-          <div v-for="{ year, timelineItems } in eventsByYear" :key="year">
+          <div
+            v-for="{ year, timelineItems } in eventsByYear"
+            :key="year"
+          >
             <!-- Year Header -->
             <div class="flex items-center gap-4 mb-6">
               <div class="h-px flex-1 bg-default" />
@@ -259,7 +283,10 @@ function formatDate(date?: string) {
                           class="capitalize shrink-0"
                         />
                       </div>
-                      <p v-if="item.location" class="text-muted text-sm mt-0.5 flex items-center gap-1">
+                      <p
+                        v-if="item.location"
+                        class="text-muted text-sm mt-0.5 flex items-center gap-1"
+                      >
                         <UIcon
                           :name="item.isOnline ? 'i-lucide-globe' : 'i-lucide-map-pin'"
                           class="size-3.5"
@@ -267,7 +294,10 @@ function formatDate(date?: string) {
                         {{ item.location }}
                       </p>
                     </div>
-                    <div v-if="item.url || item.slides" class="flex items-center gap-2 shrink-0">
+                    <div
+                      v-if="item.url || item.slides"
+                      class="flex items-center gap-2 shrink-0"
+                    >
                       <UButton
                         v-if="item.url"
                         :to="item.url"
@@ -299,10 +329,16 @@ function formatDate(date?: string) {
 
       <!-- Contact CTA -->
       <section class="mt-16">
-        <UPageCard variant="subtle" class="text-center max-w-2xl mx-auto">
+        <UPageCard
+          variant="subtle"
+          class="text-center max-w-2xl mx-auto"
+        >
           <div class="flex flex-col items-center gap-4 py-4">
             <div class="p-3 rounded-full bg-primary/10">
-              <UIcon name="i-lucide-message-circle" class="size-8 text-primary" />
+              <UIcon
+                name="i-lucide-message-circle"
+                class="size-8 text-primary"
+              />
             </div>
             <h3 class="text-xl font-semibold text-highlighted">
               Want me to speak at your event?

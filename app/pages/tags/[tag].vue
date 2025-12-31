@@ -30,7 +30,10 @@ const activePost = useState<number | null>('activePost', () => null)
 
 <template>
   <UContainer>
-    <UPageHeader :title="title" :description="description" />
+    <UPageHeader
+      :title="title"
+      :description="description"
+    />
 
     <UPageBody>
       <UBlogPosts>

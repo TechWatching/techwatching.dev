@@ -3,7 +3,11 @@
 
 <template>
   <div>
-    <USeparator type="dashed" label="Share" class="mt-4 mb-5" />
+    <USeparator
+      type="dashed"
+      label="Share"
+      class="mt-4 mb-5"
+    />
     <div class="flex flex-wrap gap-2 justify-center mb-5">
       <SocialShare
         v-for="network in ['bluesky', 'mastodon', 'linkedin', 'hackernews', 'reddit', 'email']"

@@ -14,10 +14,10 @@ useHead({
 })
 const colorMode = useColorMode()
 const isDark = computed({
-  get () {
+  get() {
     return colorMode.value === 'dark'
   },
-  set () {
+  set() {
     colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
   }
 })
@@ -42,8 +42,8 @@ async function create(retries = 10) {
     {
       theme: isDark.value ? 'dark' : 'light',
       conversation: props.conversation || 'none',
-      cards: props.cards,
-    },
+      cards: props.cards
+    }
   )
   loaded.value = true
   if (element === undefined)
@@ -56,14 +56,20 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="tweet" class="tweet nuxtcontent-tweet">
-      <div v-if="!loaded || tweetNotFound" class="w-30 h-30 my-10px bg-gray-400 bg-opacity-10 rounded-lg flex opacity-50">
-        <div class="m-auto animate-pulse text-4xl">
-          <UIcon name="i-carbon-logo-twitter" />
-          <span v-if="tweetNotFound">Could not load tweet with id="{{ props.id }}"</span>
-        </div>
+  <div
+    ref="tweet"
+    class="tweet nuxtcontent-tweet"
+  >
+    <div
+      v-if="!loaded || tweetNotFound"
+      class="w-30 h-30 my-10px bg-gray-400 bg-opacity-10 rounded-lg flex opacity-50"
+    >
+      <div class="m-auto animate-pulse text-4xl">
+        <UIcon name="i-carbon-logo-twitter" />
+        <span v-if="tweetNotFound">Could not load tweet with id="{{ props.id }}"</span>
       </div>
     </div>
+  </div>
 </template>
 
 <style>

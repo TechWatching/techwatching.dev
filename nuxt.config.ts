@@ -26,29 +26,8 @@ export default defineNuxtConfig({
 
   site: {
     url: 'https://techwatching.dev',
-    name: "Alexandre Nédélec's personal website",
-    description: "Alexandre Nédélec's personal website"
-  },
-
-  socialShare: {
-    baseUrl: 'https://techwatching.dev'
-  },
-
-  sitemap: {
-    sources: ['/api/__sitemap__/urls'],
-    exclude: ['/login', '/signup']
-  },
-
-  runtimeConfig: {
-    public: {
-      submitJsonApiKey: '',
-      posthogPublicKey: '',
-      posthogHost: 'https://eu.i.posthog.com'
-    }
-  },
-
-  experimental: {
-    viewTransition: true
+    name: 'Alexandre Nédélec\'s personal website',
+    description: 'Alexandre Nédélec\'s personal website'
   },
 
   content: {
@@ -65,14 +44,11 @@ export default defineNuxtConfig({
     }
   },
 
-  compatibilityDate: '2024-07-11',
-
-  // Prerender all routes at build time for static hosting
-  nitro: {
-    prerender: {
-      routes: ['/'],
-      crawlLinks: true,
-      failOnError: false
+  runtimeConfig: {
+    public: {
+      submitJsonApiKey: '',
+      posthogPublicKey: '',
+      posthogHost: 'https://eu.i.posthog.com'
     }
   },
 
@@ -84,6 +60,21 @@ export default defineNuxtConfig({
     '/*.atom': { prerender: true }
   },
 
+  experimental: {
+    viewTransition: true
+  },
+
+  compatibilityDate: '2024-07-11',
+
+  // Prerender all routes at build time for static hosting
+  nitro: {
+    prerender: {
+      routes: ['/'],
+      crawlLinks: true,
+      failOnError: false
+    }
+  },
+
   eslint: {
     config: {
       stylistic: {
@@ -91,5 +82,14 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  sitemap: {
+    sources: ['/api/__sitemap__/urls'],
+    exclude: ['/login', '/signup']
+  },
+
+  socialShare: {
+    baseUrl: 'https://techwatching.dev'
   }
 })

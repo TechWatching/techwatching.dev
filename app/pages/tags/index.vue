@@ -37,11 +37,23 @@ defineOgImageComponent('Saas')
 <template>
   <UContainer>
     <UPage>
-      <UPageHeader :title="title" :description="description" />
+      <UPageHeader
+        :title="title"
+        :description="description"
+      />
       <UPageBody>
         <div class="flex flex-wrap place-content-evenly gap-5 mt-4">
-          <UChip v-for="[tag, occurrence] in tagOccurrences" :key="tag" size="2xl" :text="occurrence">
-            <UButton color="neutral" variant="subtle" :to="getTagRoute(tag)">
+          <UChip
+            v-for="[tag, occurrence] in tagOccurrences"
+            :key="tag"
+            size="2xl"
+            :text="occurrence"
+          >
+            <UButton
+              color="neutral"
+              variant="subtle"
+              :to="getTagRoute(tag)"
+            >
               {{ tag }}
             </UButton>
           </UChip>
