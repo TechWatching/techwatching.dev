@@ -1,62 +1,15 @@
-# Nuxt SaaS Template
+# TechWatching.dev
 
-[![Nuxt UI](https://img.shields.io/badge/Made%20with-Nuxt%20UI-00DC82?logo=nuxt&labelColor=020420)](https://ui.nuxt.com)
+This is the code and content for my personal website https://techwatching.dev.
+The website is built using [Nuxt](https://nuxt.com/) and is based on the [Nuxt SaaS template](https://github.com/nuxt-ui-templates/saas).
 
-Fully built SaaS application to launch your next project with a landing page, a pricing page, a documentation and a blog powered by [Nuxt UI](https://ui.nuxt.com) components.
+## License
 
-- [Live demo](https://saas-template.nuxt.dev/)
-- [Documentation](https://ui.nuxt.com/docs/getting-started/installation/nuxt)
+The code is licensed under MIT. My words and original images are licensed under CC-BY-SA-4.0.
+Images used on this blog that are my not my own mostly come Unsplash and in particular this [collection](https://unsplash.com/fr/collections/4349161/blog). A big thanks to the authors of these pictures, don't hesitate to go to the [collection](https://unsplash.com/fr/collections/4349161/blog) to get their names and ave a look at their work.
 
-<a href="https://saas-template.nuxt.dev/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://ui.nuxt.com/assets/templates/nuxt/saas-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://ui.nuxt.com/assets/templates/nuxt/saas-light.png">
-    <img alt="Nuxt SaaS Template" src="https://ui.nuxt.com/assets/templates/nuxt/saas-light.png">
-  </picture>
-</a>
+## History of this project
 
-## Quick Start
-
-```bash [Terminal]
-npm create nuxt@latest -- -t github:nuxt-ui-templates/saas
-```
-
-## Deploy your own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-name=saas&repository-url=https%3A%2F%2Fgithub.com%2Fnuxt-ui-templates%2Fsaas&demo-image=https%3A%2F%2Fui.nuxt.com%2Fassets%2Ftemplates%2Fnuxt%2Fsaas-dark.png&demo-url=https%3A%2F%2Fsaas-template.nuxt.dev%2F&demo-title=Nuxt%20SaaS%20Template&demo-description=A%20SaaS%20template%20with%20landing%2C%20pricing%2C%20docs%20and%20blog%20powered%20by%20Nuxt%20Content.)
-
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-pnpm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-pnpm dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-pnpm build
-```
-
-Locally preview production build:
-
-```bash
-pnpm preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-## Renovate integration
-
-Install [Renovate GitHub app](https://github.com/apps/renovate/installations/select_target) on your repository and you are good to go.
+My original blog was built in .NET using [Statiq](https://www.statiq.dev/web) (and even [Wyam](https://github.com/Wyamio/Wyam) before that).
+It worked well, and I could have kept using it. But in 2024, I decided to migrate the blog to Nuxt in 2024 to benefits from the Vue.js/Nuxt ecosystem and because I was more familiar with Vue.js for frontend development.
+The code that used the Statiq Web static website generation toolkit in .NET can still be found on the [statiqdev branch](https://github.com/TechWatching/techwatching.dev/tree/statiqdev).
