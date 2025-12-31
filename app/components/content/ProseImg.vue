@@ -16,7 +16,7 @@ defineProps<{
     loading="lazy"
     format="webp"
     quality="80"
-    sizes="100vw sm:80vw md:720px lg:800px"
+    sizes="100vw sm:100vw md:100vw lg:100vw"
     class="rounded-lg"
   />
 </template>
