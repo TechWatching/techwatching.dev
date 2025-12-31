@@ -28,14 +28,14 @@ useSeoMeta({
 useSchemaOrg([
   defineArticle({
     '@type': 'BlogPosting',
-    headline: title,
+    'headline': title,
     description,
-    datePublished: post.value.date,
-    image: post.value.image?.src,
-    author: {
+    'datePublished': post.value.date,
+    'image': post.value.image?.src,
+    'author': {
       '@type': 'Person',
-      name: 'Alexandre Nédélec',
-      url: 'https://techwatching.dev/about'
+      'name': 'Alexandre Nédélec',
+      'url': 'https://techwatching.dev/about'
     }
   })
 ])
@@ -60,7 +60,7 @@ if (post.value.image?.src) {
       v-if="post.image?.src"
       :src="post.image.src"
       :alt="post.title"
-      class="mt-8 w-full object-cover rounded-lg aspect-[16/9]"
+      class="mt-8 w-full object-cover rounded-lg aspect-video"
     />
 
     <UPageHeader
@@ -106,7 +106,10 @@ if (post.value.image?.src) {
 
         <!-- Mobile: show tags and share inline -->
         <div class="block lg:hidden mt-8">
-          <PostsTags v-if="post.tags?.length" :tags="post.tags" />
+          <PostsTags
+            v-if="post.tags?.length"
+            :tags="post.tags"
+          />
           <SocialsShare class="mt-6" />
         </div>
 
@@ -120,7 +123,10 @@ if (post.value.image?.src) {
       <template #right>
         <UContentToc :links="post?.body?.toc?.links">
           <template #bottom>
-            <PostsTags v-if="post.tags?.length" :tags="post.tags" />
+            <PostsTags
+              v-if="post.tags?.length"
+              :tags="post.tags"
+            />
             <SocialsShare />
           </template>
         </UContentToc>

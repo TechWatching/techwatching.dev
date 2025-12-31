@@ -29,7 +29,7 @@ const badgeColors: Record<string, 'primary' | 'secondary' | 'success' | 'info' |
   announcement: 'error'
 }
 
-function getBadgeWithColor(badge: any) {
+function getBadgeWithColor(badge: string | { label?: string, color?: string } | undefined) {
   if (!badge) return undefined
   if (typeof badge === 'string') {
     const color = badgeColors[badge.toLowerCase()] || 'primary'

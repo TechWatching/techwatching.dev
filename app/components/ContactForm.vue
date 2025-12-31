@@ -33,8 +33,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       icon: 'i-heroicons-envelope'
     })
     await navigateTo({ path: '/' })
-  }
-  catch {
+  } catch {
     toast.add({
       title: 'Oops',
       description: 'Sorry, your message was not successfully sent, try again or contact me by message on LinkedIn/BlueSky/Mastodon.',
@@ -46,25 +45,60 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 </script>
 
 <template>
-  <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-    <UFormField label="Name" name="name">
-      <UInput v-model="state.name" placeholder="Your name" class="w-full" />
+  <UForm
+    :schema="schema"
+    :state="state"
+    class="space-y-4"
+    @submit="onSubmit"
+  >
+    <UFormField
+      label="Name"
+      name="name"
+    >
+      <UInput
+        v-model="state.name"
+        placeholder="Your name"
+        class="w-full"
+      />
     </UFormField>
 
-    <UFormField label="Email" name="email">
-      <UInput v-model="state.email" type="email" placeholder="your.email@example.com" class="w-full" />
+    <UFormField
+      label="Email"
+      name="email"
+    >
+      <UInput
+        v-model="state.email"
+        type="email"
+        placeholder="your.email@example.com"
+        class="w-full"
+      />
     </UFormField>
 
-    <UFormField label="Message" name="message">
-      <UTextarea v-model="state.message" placeholder="Your message..." class="w-full" :rows="5" />
+    <UFormField
+      label="Message"
+      name="message"
+    >
+      <UTextarea
+        v-model="state.message"
+        placeholder="Your message..."
+        class="w-full"
+        :rows="5"
+      />
     </UFormField>
 
     <!-- Honeypot field for spam protection -->
-    <UFormField label="Message details" name="messageDetails" class="hidden">
+    <UFormField
+      label="Message details"
+      name="messageDetails"
+      class="hidden"
+    >
       <UTextarea v-model="state.messageDetails" />
     </UFormField>
 
-    <UButton type="submit" loading-auto>
+    <UButton
+      type="submit"
+      loading-auto
+    >
       Send
     </UButton>
   </UForm>

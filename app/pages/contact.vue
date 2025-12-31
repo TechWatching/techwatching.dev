@@ -12,7 +12,10 @@ useSeoMeta({
 
 <template>
   <UContainer>
-    <UPageHeader :title="title" :description="description" />
+    <UPageHeader
+      :title="title"
+      :description="description"
+    />
     <UPageBody>
       <ContactForm />
     </UPageBody>
