@@ -126,7 +126,7 @@ function formatDate(date?: string) {
     <UPageHeader
       :title="page?.title || 'Speaking'"
       :description="page?.description"
-      class="py-[50px]"
+      class="py-12.5"
     >
       <template #headline>
         <UBadge

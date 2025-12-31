@@ -19,7 +19,10 @@ defineOgImageComponent('Saas')
 const activePost = useState<number | null>('activePost', () => null)
 
 // Map badge labels to colors for visual variety
-const badgeColors: Record<string, 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'error' | 'neutral'> = {
+type BadgeColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'error' | 'neutral'
+type BadgeVariant = 'solid' | 'outline' | 'soft' | 'subtle'
+
+const badgeColors: Record<string, BadgeColor> = {
   development: 'primary',
   tips: 'success',
   tutorial: 'warning',
@@ -29,16 +32,16 @@ const badgeColors: Record<string, 'primary' | 'secondary' | 'success' | 'info' |
   announcement: 'error'
 }
 
-function getBadgeWithColor(badge: string | { label?: string, color?: string } | undefined) {
+function getBadgeWithColor(badge: string | { label?: string, color?: BadgeColor, variant?: BadgeVariant } | undefined) {
   if (!badge) return undefined
   if (typeof badge === 'string') {
     const color = badgeColors[badge.toLowerCase()] || 'primary'
-    return { label: badge, color, variant: 'subtle' }
+    return { label: badge, color, variant: 'subtle' as const }
   }
   // If badge is already an object, add color if not present
   const label = badge.label || badge
   const color = badge.color || badgeColors[String(label).toLowerCase()] || 'primary'
-  return { ...badge, color, variant: badge.variant || 'subtle' }
+  return { ...badge, color, variant: badge.variant || 'subtle' as const }
 }
 </script>
 
@@ -46,7 +49,7 @@ function getBadgeWithColor(badge: string | { label?: string, color?: string } | 
   <UContainer>
     <UPageHeader
       v-bind="page"
-      class="py-[50px]"
+      class="py-12.5"
     />
 
     <UPageBody>
