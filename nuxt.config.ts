@@ -54,6 +54,8 @@ export default defineNuxtConfig({
 
   // Optional: Add route rules for full prerendering
   routeRules: {
+    '/ph/static/**': { proxy: 'https://eu-assets.i.posthog.com/static/**' },
+    '/ph/**': { proxy: 'https://eu.i.posthog.com/**' },
     '/**': { prerender: true },
     '/api/**': { prerender: true },
     '/gitcheatsheet': { redirect: '/goodies/gitcheatsheet', prerender: true },
