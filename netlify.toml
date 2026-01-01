@@ -1,0 +1,18 @@
+# PostHog reverse proxy for analytics
+[[redirects]]
+  from = "/ph/static/*"
+  to = "https://eu-assets.i.posthog.com/static/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/ph/*"
+  to = "https://eu.i.posthog.com/:splat"
+  status = 200
+  force = true
+
+# Legacy redirect
+[[redirects]]
+  from = "/gitcheatsheet"
+  to = "/goodies/gitcheatsheet"
+  status = 301
