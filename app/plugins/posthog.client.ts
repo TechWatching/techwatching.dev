@@ -3,7 +3,8 @@ import posthog from 'posthog-js'
 export default defineNuxtPlugin(() => {
   const runtimeConfig = useRuntimeConfig()
   const posthogClient = posthog.init(runtimeConfig.public.posthogPublicKey, {
-    api_host: runtimeConfig.public.posthogHost,
+    api_host: '/ph',
+    ui_host: runtimeConfig.public.posthogHost,
     person_profiles: 'identified_only',
     capture_pageview: false, // We'll handle this manually with the router,
     cookieless_mode: 'always', // Use cookieless mode to avoid cookie consent issues
