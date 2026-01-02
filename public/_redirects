@@ -1,0 +1,6 @@
+# PostHog reverse proxy for analytics
+/ph/static/*  https://eu-assets.i.posthog.com/static/:splat  200
+/ph/*  https://eu.i.posthog.com/:splat  200
+
+# Legacy redirect
+/gitcheatsheet  /goodies/gitcheatsheet  301
