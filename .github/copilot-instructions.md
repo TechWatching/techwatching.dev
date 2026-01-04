@@ -55,6 +55,31 @@ This is a personal blog built with:
 
 Content is stored in the `content/` directory with blog posts in `content/1.posts/`.
 
+## Commit Message Guidelines
+
+Always use [Conventional Commits](https://www.conventionalcommits.org/) format for commit messages:
+
+```
+<type>(<scope>): <subject>
+
+<body>
+```
+
+**Common types:**
+- `feat:` - A new feature
+- `fix:` - A bug fix
+- `docs:` - Documentation changes
+- `style:` - Code style changes (formatting, missing semicolons, etc.)
+- `refactor:` - Code refactoring without changing functionality
+- `test:` - Adding or updating tests
+- `chore:` - Maintenance tasks, dependency updates, etc.
+
+**Examples:**
+- `docs: add missing 'retro' tag to retrospective posts`
+- `feat: add dark mode support`
+- `fix: resolve navigation menu alignment issue`
+- `chore: update dependencies to latest versions`
+
 ## Nuxt UI v3 Styling Guidelines
 
 When customizing Nuxt UI v3 components:
