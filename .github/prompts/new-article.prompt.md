@@ -65,7 +65,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-![Image description](/posts/images/{slug}_1.png){.rounded-lg .mx-auto}
+![Image description](/posts/images/{number}.{slug}_1.png){.rounded-lg .mx-auto}
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
