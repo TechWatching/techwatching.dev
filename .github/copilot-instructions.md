@@ -104,3 +104,49 @@ Use `mcp_nuxt-ui_get-component` or `mcp_nuxt-ui_get-component-metadata` to find:
 - Available slots for customization
 - The `ui` prop structure with all customizable slots
 - Theme configuration in `app.config.ts`
+
+## Git Commit Guidelines
+
+This project uses **Conventional Commits** for all commit messages.
+
+### Commit Message Format
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Types
+- **feat**: A new feature
+- **fix**: A bug fix
+- **docs**: Documentation only changes
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting)
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **perf**: A code change that improves performance
+- **test**: Adding missing tests or correcting existing tests
+- **chore**: Changes to the build process or auxiliary tools and libraries
+- **ci**: Changes to CI configuration files and scripts
+
+### Scope (optional)
+Use the scope to specify the area of the codebase affected:
+- `content` - Blog posts and content files
+- `ui` - UI components and styling
+- `config` - Configuration files (nuxt.config.ts, app.config.ts)
+- `deps` - Dependency updates
+
+### Examples
+```
+feat(content): add new blog post about TypeScript tips
+fix(ui): correct navigation menu alignment on mobile
+docs: update README with deployment instructions
+chore(deps): update nuxt to v4.1.0
+refactor(ui): simplify AppHeader component structure
+```
+
+### Rules
+- Use lowercase for the type and description
+- Do not end the description with a period
+- Use imperative mood in the description ("add" not "added" or "adds")
+- Keep the first line under 72 characters
