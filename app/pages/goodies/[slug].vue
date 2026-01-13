@@ -44,7 +44,13 @@ if (goodie.value.image?.src) {
       v-if="goodie.image?.src"
       :src="goodie.image.src"
       :alt="goodie.image.alt || goodie.title"
-      class="goodie-cover-image w-full rounded-lg shadow-lg mb-8"
+      :width="goodie.image.width"
+      :style="goodie.image.maxHeight ? { maxHeight: `${goodie.image.maxHeight}px` } : undefined"
+      :class="[
+        'goodie-cover-image rounded-lg shadow-lg mb-8',
+        goodie.image.width ? 'mx-auto' : 'w-full',
+        goodie.image.maxHeight ? 'object-cover w-full' : ''
+      ]"
     />
 
     <UPageHeader

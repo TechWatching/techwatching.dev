@@ -133,7 +133,10 @@ export const collections = {
     type: 'page',
     schema: z.object({
       lead: z.string().optional(),
-      image: createImageSchema().optional()
+      image: createImageSchema().extend({
+        width: z.number().optional(),
+        maxHeight: z.number().optional()
+      }).optional()
     })
   }),
   speaking: defineCollection({
