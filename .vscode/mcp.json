@@ -1,12 +1,22 @@
 {
-  "servers": {
-    "nuxt-ui": {
-      "type": "http",
-      "url": "https://ui.nuxt.com/mcp"
-    },
-    "nuxt": {
-      "type": "http",
-      "url": "https://nuxt.com/mcp"
-    }
-  }
+	"servers": {
+		"nuxt-ui": {
+			"type": "http",
+			"url": "https://ui.nuxt.com/mcp"
+		},
+		"nuxt": {
+			"type": "http",
+			"url": "https://nuxt.com/mcp"
+		},
+		"io.github.ChromeDevTools/chrome-devtools-mcp": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"chrome-devtools-mcp@0.12.1"
+			],
+			"gallery": "https://api.mcp.github.com",
+			"version": "0.12.1"
+		}
+	},
+	"inputs": []
 }

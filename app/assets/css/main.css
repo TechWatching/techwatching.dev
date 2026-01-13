@@ -17,6 +17,12 @@
   --color-green-800: #016538;
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
+
+  /* MCP Server category colors */
+  --color-cat-vcs: #10b981;
+  --color-cat-testing: #a855f7;
+  --color-cat-docs: #3b82f6;
+  --color-cat-cloud: #f97316;
 }
 
 .dark {
