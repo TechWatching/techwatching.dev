@@ -29,7 +29,7 @@
     "better-sqlite3": "^12.5.0",
     "feed": "^5.1.0",
     "just-kebab-case": "^4.2.0",
-    "nuxt": "^4.2.2",
+    "nuxt": "^4.3.0",
     "posthog-js": "^1.313.0",
     "submitjson": "^0.13.0",
     "ufo": "^1.6.1",
