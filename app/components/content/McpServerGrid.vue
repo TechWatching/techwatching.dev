@@ -102,7 +102,7 @@ function isHighlighted(category: string) {
           !isHighlighted(server.category) && 'opacity-25 grayscale scale-95'
         ]"
         :style="{
-          boxShadow: isHighlighted(server.category) 
+          boxShadow: isHighlighted(server.category)
             ? `inset 0 0 0 2px ${getCategoryInfo(server.category).color}, 0 0 20px color-mix(in srgb, ${getCategoryInfo(server.category).color} 25%, transparent)`
             : 'none'
         }"
