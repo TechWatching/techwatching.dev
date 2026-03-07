@@ -42,7 +42,7 @@
     "@iconify-json/vscode-icons": "^1.2.41",
     "@nuxt/eslint": "^1.15.1",
     "@stefanobartoletti/nuxt-social-share": "^2.3.1",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.3",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.2.4"
   },
