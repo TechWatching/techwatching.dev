@@ -22,7 +22,6 @@ The `.npmrc` sets `shamefully-hoist=true`.
 ### Bootstrap
 
 ```bash
-corepack enable        # ensure pnpm is managed by corepack
 pnpm install           # install all dependencies
 ```
 
