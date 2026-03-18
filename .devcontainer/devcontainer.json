@@ -18,7 +18,7 @@
       "onAutoForward": "openPreview"
     }
   },
-  "onCreateCommand": "pnpm self-update",
+  "onCreateCommand": "corepack enable && corepack install",
   "updateContentCommand": "pnpm install --config.confirmModulesPurge=false",
   "postAttachCommand": "pnpm dev",
 
