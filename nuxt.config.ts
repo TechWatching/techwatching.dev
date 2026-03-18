@@ -69,7 +69,7 @@ export default defineNuxtConfig({
   // Prerender all routes at build time for static hosting
   nitro: {
     prerender: {
-      routes: ['/'],
+      routes: ['/', '/feed.rss', '/feed.atom', '/dotnet_feed.rss', '/dotnet_feed.atom'],
       crawlLinks: true,
       failOnError: false
     }
