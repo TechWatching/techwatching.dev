@@ -68,7 +68,6 @@ apply or adapt (see rules below), fetch its current content from `nuxt-ui-templa
 - `eslint.config.mjs`
 - `tsconfig.json`
 - `pnpm-workspace.yaml`
-- `.npmrc` — apply changes (or deletion) as-is
 - `package.json` — apply only updates to **shared** dependencies (nuxt, @nuxt/ui, @nuxt/content,
   @nuxt/image, @nuxt/fonts, @nuxt/icon, typescript, vue, etc.). Do NOT remove packages that
   exist in this repo but not the template (e.g. @nuxtjs/seo, gsap, @vueuse/nuxt, and others).
