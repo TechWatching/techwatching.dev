@@ -5,7 +5,7 @@
 This is **TechWatching.dev**, Alexandre Nédélec's personal blog at https://techwatching.dev. It is a statically generated site built with:
 
 - **Nuxt 4** — Vue.js meta-framework (compatibility date `2024-07-11`)
-- **Nuxt UI v3** (`@nuxt/ui`) — UI component library based on TailwindCSS v4
+- **Nuxt UI v4** (`@nuxt/ui`) — UI component library based on TailwindCSS v4
 - **Nuxt Content v3** (`@nuxt/content`) — Markdown/YAML content management with SQLite
 - **TailwindCSS v4** — Utility-first CSS
 - **@nuxtjs/seo** — SEO, OG images, schema.org, sitemap
@@ -16,8 +16,6 @@ This is **TechWatching.dev**, Alexandre Nédélec's personal blog at https://tec
 ### Package Manager
 
 This project uses **pnpm** (version specified in `package.json` → `"packageManager": "pnpm@10.29.2"`). Always use `pnpm` — never `npm` or `yarn`.
-
-The `.npmrc` sets `shamefully-hoist=true`.
 
 ### Bootstrap
 
@@ -44,8 +42,9 @@ The CI workflow (`.github/workflows/ci.yml`) runs on every push:
 1. `pnpm install` — install dependencies
 2. `pnpm run lint` — **must pass with zero errors**
 3. `pnpm run typecheck` — **must pass with zero errors**
+4. `pnpm run generate` — **static site generation must succeed**
 
-Always run both `pnpm lint` and `pnpm typecheck` before committing. Fix all lint and type errors before marking work as done.
+Always run `pnpm lint`, `pnpm typecheck`, and `pnpm generate` before committing. Fix all lint, type, and generation errors before marking work as done.
 
 ## Project Layout
 
@@ -62,7 +61,7 @@ techwatching.dev/
 │   ├── agents/                   # Copilot agent definitions
 │   │   └── nuxt.agent.md
 │   └── workflows/
-│       └── ci.yml                # lint + typecheck on every push
+│       └── ci.yml                # lint + typecheck + generate on every push
 ├── app/                          # Nuxt app source (Nuxt 4 layout)
 │   ├── app.vue                   # root Vue component
 │   ├── app.config.ts             # Nuxt UI theme config (colors, components)
@@ -142,9 +141,9 @@ Activate additional tool groups as needed:
 - How do I deploy to Netlify/Vercel?
 - How do I create API routes in Nuxt?
 
-## Nuxt UI v3 Styling Guidelines
+## Nuxt UI v4 Styling Guidelines
 
-When customizing Nuxt UI v3 components:
+When customizing Nuxt UI v4 components:
 
 ### Use the `ui` prop for styling
 Do NOT use `class` to style internal parts of components. Instead, use the `ui` prop with slot names:
