@@ -29,8 +29,11 @@ were added. Your job is to apply useful upstream improvements without breaking a
 
 ## Step 1: Check for new template changes
 
-Read the file `.github/template-sync-state.json`. It contains `lastSyncedCommit` — the last
-template commit SHA that was already processed.
+Read the file `.github/template-sync-state.json` from the repository. It contains
+`lastSyncedCommit` — the last template commit SHA that was already processed.
+
+**Important**: If the file does not exist, use the initial baseline SHA
+`d548b61351af9ef0802da1946d26b2c35a3db449` as the starting point and create the state file.
 
 Use the GitHub repos tool to get the latest commit SHA on the `main` branch of
 `nuxt-ui-templates/saas`.
@@ -137,6 +140,15 @@ corepack enable 2>/dev/null || npm install -g pnpm
 pnpm install
 ```
 
+If `pnpm install` fails due to native module compilation (e.g. `better-sqlite3`), try:
+
+```bash
+pnpm install --ignore-scripts
+# Then rebuild only the needed native module
+cd node_modules/.pnpm/better-sqlite3@*/node_modules/better-sqlite3 && npx --yes prebuild-install || npx --yes node-gyp rebuild
+cd -
+```
+
 Run type checking and linting:
 
 ```bash
@@ -144,59 +156,7 @@ pnpm run typecheck
 pnpm run lint
 ```
 
-## Step 6: Run the dev server and take screenshots
-
-Install `@playwright/cli` (the Playwright CLI tool designed for coding agents), then start the
-dev server and take screenshots of key pages. Save them to `.playwright-screenshots/` (this
-folder is not committed to git — it will be uploaded as a workflow artifact separately).
-
-```bash
-npm install -g @playwright/cli@latest
-```
-
-Start the dev server in background and wait for it to be ready:
-
-```bash
-# Start dev server in background
-pnpm dev &
-DEV_PID=$!
-
-# Wait up to 90 seconds for the dev server to be ready
-for i in $(seq 1 30); do
-  curl -sf http://localhost:3000 > /dev/null && echo "Dev server ready" && break
-  echo "Waiting for dev server... ($i/30)"
-  sleep 3
-done
-```
-
-Create the screenshots directory and take screenshots with `playwright-cli`:
-
-```bash
-mkdir -p .playwright-screenshots
-
-playwright-cli open http://localhost:3000
-playwright-cli screenshot --filename=.playwright-screenshots/home.png
-
-playwright-cli goto http://localhost:3000/posts
-playwright-cli screenshot --filename=.playwright-screenshots/posts.png
-
-playwright-cli goto http://localhost:3000/goodies
-playwright-cli screenshot --filename=.playwright-screenshots/goodies.png
-
-playwright-cli goto http://localhost:3000/speaking
-playwright-cli screenshot --filename=.playwright-screenshots/speaking.png
-
-playwright-cli goto http://localhost:3000/tags
-playwright-cli screenshot --filename=.playwright-screenshots/tags.png
-
-playwright-cli goto http://localhost:3000/about
-playwright-cli screenshot --filename=.playwright-screenshots/about.png
-
-playwright-cli close
-kill $DEV_PID 2>/dev/null || true
-```
-
-## Step 7: Create pull request
+## Step 6: Create pull request
 
 Create a pull request with:
 
@@ -210,6 +170,4 @@ Create a pull request with:
   - A table listing each changed file and the action taken (Applied / Adapted / Improved /
     Skipped) with a brief reason for skipped files
   - Any errors encountered during typecheck or lint, and whether they were fixed
-  - A note that screenshots of key pages are available as a **workflow artifact** on the
-    Actions run (link to the run URL) — they expire after 30 days
   - A reminder to review `package.json` dependency changes carefully before merging

@@ -1,5 +1,102 @@
 # GitHub Copilot Instructions
 
+## Project Overview
+
+This is **TechWatching.dev**, Alexandre Nédélec's personal blog at https://techwatching.dev. It is a statically generated site built with:
+
+- **Nuxt 4** — Vue.js meta-framework (compatibility date `2024-07-11`)
+- **Nuxt UI v3** (`@nuxt/ui`) — UI component library based on TailwindCSS v4
+- **Nuxt Content v3** (`@nuxt/content`) — Markdown/YAML content management with SQLite
+- **TailwindCSS v4** — Utility-first CSS
+- **@nuxtjs/seo** — SEO, OG images, schema.org, sitemap
+- **TypeScript** — strict typing throughout
+
+## Development Environment
+
+### Package Manager
+
+This project uses **pnpm** (version specified in `package.json` → `"packageManager": "pnpm@10.29.2"`). Always use `pnpm` — never `npm` or `yarn`.
+
+The `.npmrc` sets `shamefully-hoist=true`.
+
+### Bootstrap
+
+```bash
+pnpm install           # install all dependencies
+```
+
+### Common Commands
+
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start dev server at http://localhost:3000 |
+| `pnpm build` | Build for production (SSR) |
+| `pnpm generate` | Generate static site (prerendered) |
+| `pnpm preview` | Preview production build |
+| `pnpm lint` | Run ESLint |
+| `pnpm lint:fix` | Run ESLint with auto-fix |
+| `pnpm typecheck` | Run TypeScript type checking via `nuxt typecheck` |
+
+### CI Validation
+
+The CI workflow (`.github/workflows/ci.yml`) runs on every push:
+
+1. `pnpm install` — install dependencies
+2. `pnpm run lint` — **must pass with zero errors**
+3. `pnpm run typecheck` — **must pass with zero errors**
+
+Always run both `pnpm lint` and `pnpm typecheck` before committing. Fix all lint and type errors before marking work as done.
+
+## Project Layout
+
+```
+techwatching.dev/
+├── .github/
+│   ├── copilot-instructions.md   # this file — repository-wide Copilot instructions
+│   ├── git-commit-instructions.md # Conventional Commits format guide
+│   ├── instructions/             # path-specific instructions (.instructions.md)
+│   │   ├── content.instructions.md  # applyTo: content/**/*.{md,yml}
+│   │   └── nuxt.instructions.md     # applyTo: **/*.vue
+│   ├── prompts/                  # reusable prompt templates
+│   │   └── new-article.prompt.md
+│   ├── agents/                   # Copilot agent definitions
+│   │   └── nuxt.agent.md
+│   └── workflows/
+│       └── ci.yml                # lint + typecheck on every push
+├── app/                          # Nuxt app source (Nuxt 4 layout)
+│   ├── app.vue                   # root Vue component
+│   ├── app.config.ts             # Nuxt UI theme config (colors, components)
+│   ├── components/               # shared Vue components (AppHeader, GiscusComments, etc.)
+│   ├── pages/                    # file-based routes (index.vue, blog/[slug].vue, etc.)
+│   ├── layouts/                  # Nuxt layouts (default.vue)
+│   ├── assets/css/main.css       # global TailwindCSS entry point
+│   ├── plugins/                  # Nuxt plugins (posthog.client.ts)
+│   ├── types/                    # shared TypeScript types
+│   └── utils/                    # utility functions
+├── content/                      # @nuxt/content source files
+│   ├── 0.index.yml               # home page structured data
+│   ├── 1.posts/                  # blog posts — {number}.{slug}.md
+│   ├── 2.speaking.yml            # speaking events array
+│   └── 3.goodies/                # goodies/tools — {slug}.md
+├── server/
+│   ├── api/                      # JSON API endpoints (*.<method>.ts)
+│   └── routes/                   # custom routes (RSS/Atom: *.rss, *.atom)
+├── public/                       # static assets served as-is
+├── content.config.ts             # @nuxt/content collection schemas (zod)
+├── nuxt.config.ts                # Nuxt configuration
+├── eslint.config.mjs             # ESLint flat config
+├── tsconfig.json                 # TypeScript config
+├── pnpm-workspace.yaml           # pnpm workspace
+└── .npmrc                        # pnpm config
+```
+
+### Key architecture notes
+
+- **Static generation**: all routes prerendered via `routeRules: { '/**': { prerender: true } }` and Nitro crawl
+- **Content collections**: defined in `content.config.ts` using `defineCollection` + zod schemas; collection names are `index`, `posts`, `speaking`, `goodies`, `goodiesPage`, `content`
+- **Server handlers**: must import from `@nuxt/content/server` and pass `event` as first arg: `queryCollection(event, 'posts')`
+- **Commit messages**: follow Conventional Commits (see `.github/git-commit-instructions.md`)
+
 ## MCP Tool Usage
 
 When answering questions about this project, use the appropriate MCP (Model Context Protocol) tools:
@@ -44,16 +141,6 @@ Activate additional tool groups as needed:
 - How do I set up SSR/SSG?
 - How do I deploy to Netlify/Vercel?
 - How do I create API routes in Nuxt?
-
-## Project Context
-
-This is a personal blog built with:
-- **Nuxt 4** - Vue.js meta-framework
-- **Nuxt UI v3** - UI component library
-- **Nuxt Content v3** - Markdown/content management
-- **TailwindCSS v4** - Styling
-
-Content is stored in the `content/` directory with blog posts in `content/1.posts/`.
 
 ## Nuxt UI v3 Styling Guidelines
 

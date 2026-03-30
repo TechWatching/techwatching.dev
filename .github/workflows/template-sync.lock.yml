@@ -23,7 +23,7 @@
 #
 # gh-aw-metadata: {"schema_version":"v3","frontmatter_hash":"bcd9583d209a7e73f36870140a898d6ae2117552ec4664c6b968b064359e9b26","compiler_version":"v0.64.4","strict":true,"agent_id":"copilot"}
 
-name: "Start dev server in background"
+name: "Then rebuild only the needed native module"
 "on":
   schedule:
   - cron: "36 11 * * 1"
@@ -42,7 +42,7 @@ permissions: {}
 concurrency:
   group: "gh-aw-${{ github.workflow }}"
 
-run-name: "Start dev server in background"
+run-name: "Then rebuild only the needed native module"
 
 jobs:
   activation:
@@ -71,7 +71,7 @@ jobs:
           GH_AW_INFO_VERSION: "latest"
           GH_AW_INFO_AGENT_VERSION: "latest"
           GH_AW_INFO_CLI_VERSION: "v0.64.4"
-          GH_AW_INFO_WORKFLOW_NAME: "Start dev server in background"
+          GH_AW_INFO_WORKFLOW_NAME: "Then rebuild only the needed native module"
           GH_AW_INFO_EXPERIMENTAL: "false"
           GH_AW_INFO_SUPPORTS_TOOLS_ALLOWLIST: "true"
           GH_AW_INFO_STAGED: "false"
@@ -746,17 +746,6 @@ jobs:
             /tmp/gh-aw/sandbox/firewall/logs/
             /tmp/gh-aw/sandbox/firewall/audit/
           if-no-files-found: ignore
-      # NOTE: This step was added manually after `gh aw compile`. Do not overwrite
-      # this file with a plain `gh aw compile` without re-adding this step.
-      - name: Upload Playwright screenshots
-        if: always()
-        continue-on-error: true
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
-        with:
-          name: playwright-screenshots
-          path: .playwright-screenshots/
-          retention-days: 30
-          if-no-files-found: ignore
 
   conclusion:
     needs:
@@ -802,7 +791,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
           GH_AW_NOOP_MAX: "1"
-          GH_AW_WORKFLOW_NAME: "Start dev server in background"
+          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -816,7 +805,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
           GH_AW_MISSING_TOOL_CREATE_ISSUE: "true"
-          GH_AW_WORKFLOW_NAME: "Start dev server in background"
+          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -830,7 +819,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Start dev server in background"
+          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_WORKFLOW_ID: "template-sync"
@@ -855,7 +844,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Start dev server in background"
+          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_NOOP_MESSAGE: ${{ steps.noop.outputs.noop_message }}
@@ -872,7 +861,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Start dev server in background"
+          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
@@ -950,7 +939,7 @@ jobs:
         if: always() && steps.detection_guard.outputs.run_detection == 'true'
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          WORKFLOW_NAME: "Start dev server in background"
+          WORKFLOW_NAME: "Then rebuild only the needed native module"
           WORKFLOW_DESCRIPTION: "No description provided"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
@@ -1045,7 +1034,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_SKIP_QUERY: "repo:TechWatching/techwatching.dev is:pr is:open label:template-sync"
-          GH_AW_WORKFLOW_NAME: "Start dev server in background"
+          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
           GH_AW_SKIP_MAX_MATCHES: "1"
         with:
           script: |
@@ -1071,7 +1060,7 @@ jobs:
       GH_AW_ENGINE_ID: "copilot"
       GH_AW_ENGINE_MODEL: ${{ needs.agent.outputs.model }}
       GH_AW_WORKFLOW_ID: "template-sync"
-      GH_AW_WORKFLOW_NAME: "Start dev server in background"
+      GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
     outputs:
       code_push_failure_count: ${{ steps.process_safe_outputs.outputs.code_push_failure_count }}
       code_push_failure_errors: ${{ steps.process_safe_outputs.outputs.code_push_failure_errors }}
