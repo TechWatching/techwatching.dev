@@ -23,7 +23,7 @@
 #
 # gh-aw-metadata: {"schema_version":"v3","frontmatter_hash":"eac89b927c097c5117f6cfb9ecde8f297119d97fd69d56d7e1e5e7132c00a8db","compiler_version":"v0.64.4","strict":true,"agent_id":"copilot"}
 
-name: "Then rebuild only the needed native module"
+name: "Template sync"
 "on":
   schedule:
   - cron: "36 11 * * 1"
@@ -42,7 +42,7 @@ permissions: {}
 concurrency:
   group: "gh-aw-${{ github.workflow }}"
 
-run-name: "Then rebuild only the needed native module"
+run-name: "Template sync"
 
 jobs:
   activation:
@@ -71,7 +71,7 @@ jobs:
           GH_AW_INFO_VERSION: "latest"
           GH_AW_INFO_AGENT_VERSION: "latest"
           GH_AW_INFO_CLI_VERSION: "v0.64.4"
-          GH_AW_INFO_WORKFLOW_NAME: "Then rebuild only the needed native module"
+          GH_AW_INFO_WORKFLOW_NAME: "Template sync"
           GH_AW_INFO_EXPERIMENTAL: "false"
           GH_AW_INFO_SUPPORTS_TOOLS_ALLOWLIST: "true"
           GH_AW_INFO_STAGED: "false"
@@ -791,7 +791,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
           GH_AW_NOOP_MAX: "1"
-          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
+          GH_AW_WORKFLOW_NAME: "Template sync"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -805,7 +805,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
           GH_AW_MISSING_TOOL_CREATE_ISSUE: "true"
-          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
+          GH_AW_WORKFLOW_NAME: "Template sync"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -819,7 +819,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
+          GH_AW_WORKFLOW_NAME: "Template sync"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_WORKFLOW_ID: "template-sync"
@@ -844,7 +844,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
+          GH_AW_WORKFLOW_NAME: "Template sync"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_NOOP_MESSAGE: ${{ steps.noop.outputs.noop_message }}
@@ -861,7 +861,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
+          GH_AW_WORKFLOW_NAME: "Template sync"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
@@ -939,7 +939,7 @@ jobs:
         if: always() && steps.detection_guard.outputs.run_detection == 'true'
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          WORKFLOW_NAME: "Then rebuild only the needed native module"
+          WORKFLOW_NAME: "Template sync"
           WORKFLOW_DESCRIPTION: "No description provided"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
@@ -1034,7 +1034,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_SKIP_QUERY: "repo:TechWatching/techwatching.dev is:pr is:open label:template-sync"
-          GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
+          GH_AW_WORKFLOW_NAME: "Template sync"
           GH_AW_SKIP_MAX_MATCHES: "1"
         with:
           script: |
@@ -1060,7 +1060,7 @@ jobs:
       GH_AW_ENGINE_ID: "copilot"
       GH_AW_ENGINE_MODEL: ${{ needs.agent.outputs.model }}
       GH_AW_WORKFLOW_ID: "template-sync"
-      GH_AW_WORKFLOW_NAME: "Then rebuild only the needed native module"
+      GH_AW_WORKFLOW_NAME: "Template sync"
     outputs:
       code_push_failure_count: ${{ steps.process_safe_outputs.outputs.code_push_failure_count }}
       code_push_failure_errors: ${{ steps.process_safe_outputs.outputs.code_push_failure_errors }}

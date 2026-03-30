@@ -1,4 +1,5 @@
 ---
+name: "Template sync"
 on:
   schedule: weekly on monday
   workflow_dispatch:
