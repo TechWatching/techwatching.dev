@@ -5,7 +5,7 @@
 This is **TechWatching.dev**, Alexandre Nédélec's personal blog at https://techwatching.dev. It is a statically generated site built with:
 
 - **Nuxt 4** — Vue.js meta-framework (compatibility date `2024-07-11`)
-- **Nuxt UI v3** (`@nuxt/ui`) — UI component library based on TailwindCSS v4
+- **Nuxt UI v4** (`@nuxt/ui`) — UI component library based on TailwindCSS v4
 - **Nuxt Content v3** (`@nuxt/content`) — Markdown/YAML content management with SQLite
 - **TailwindCSS v4** — Utility-first CSS
 - **@nuxtjs/seo** — SEO, OG images, schema.org, sitemap
@@ -142,9 +142,9 @@ Activate additional tool groups as needed:
 - How do I deploy to Netlify/Vercel?
 - How do I create API routes in Nuxt?
 
-## Nuxt UI v3 Styling Guidelines
+## Nuxt UI v4 Styling Guidelines
 
-When customizing Nuxt UI v3 components:
+When customizing Nuxt UI v4 components:
 
 ### Use the `ui` prop for styling
 Do NOT use `class` to style internal parts of components. Instead, use the `ui` prop with slot names:
