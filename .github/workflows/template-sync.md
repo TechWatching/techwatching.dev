@@ -146,13 +146,17 @@ pnpm run lint
 
 ## Step 6: Run the dev server and take screenshots
 
-Install Playwright's Chromium browser, then start the dev server and take screenshots of the
-key pages. Save them to `.playwright-screenshots/` (this folder is not committed to git — it
-will be uploaded as a workflow artifact separately).
+Install `@playwright/cli` (the Playwright CLI tool designed for coding agents), then start the
+dev server and take screenshots of key pages. Save them to `.playwright-screenshots/` (this
+folder is not committed to git — it will be uploaded as a workflow artifact separately).
 
 ```bash
-pnpm exec playwright install chromium --with-deps
+npm install -g @playwright/cli@latest
+```
 
+Start the dev server in background and wait for it to be ready:
+
+```bash
 # Start dev server in background
 pnpm dev &
 DEV_PID=$!
@@ -165,47 +169,30 @@ for i in $(seq 1 30); do
 done
 ```
 
-Write a Node.js script to `.playwright-screenshots/take-screenshots.mjs` with this content:
-
-```javascript
-import { chromium } from 'playwright';
-import { mkdirSync } from 'fs';
-
-mkdirSync('.playwright-screenshots', { recursive: true });
-
-const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-
-const pages = [
-  ['home', 'http://localhost:3000'],
-  ['posts', 'http://localhost:3000/posts'],
-  ['goodies', 'http://localhost:3000/goodies'],
-  ['speaking', 'http://localhost:3000/speaking'],
-  ['tags', 'http://localhost:3000/tags'],
-  ['about', 'http://localhost:3000/about'],
-];
-
-for (const [name, url] of pages) {
-  try {
-    await page.goto(url, { waitUntil: 'networkidle', timeout: 15000 });
-    await page.screenshot({
-      path: `.playwright-screenshots/${name}.png`,
-      fullPage: false,
-    });
-    console.log(`✅ Screenshot saved: ${name}`);
-  } catch (e) {
-    console.error(`❌ Failed to screenshot ${name}: ${e.message}`);
-  }
-}
-
-await browser.close();
-console.log('Done.');
-```
-
-Then run the screenshot script and stop the dev server:
+Create the screenshots directory and take screenshots with `playwright-cli`:
 
 ```bash
-node .playwright-screenshots/take-screenshots.mjs
+mkdir -p .playwright-screenshots
+
+playwright-cli open http://localhost:3000
+playwright-cli screenshot --filename=.playwright-screenshots/home.png
+
+playwright-cli goto http://localhost:3000/posts
+playwright-cli screenshot --filename=.playwright-screenshots/posts.png
+
+playwright-cli goto http://localhost:3000/goodies
+playwright-cli screenshot --filename=.playwright-screenshots/goodies.png
+
+playwright-cli goto http://localhost:3000/speaking
+playwright-cli screenshot --filename=.playwright-screenshots/speaking.png
+
+playwright-cli goto http://localhost:3000/tags
+playwright-cli screenshot --filename=.playwright-screenshots/tags.png
+
+playwright-cli goto http://localhost:3000/about
+playwright-cli screenshot --filename=.playwright-screenshots/about.png
+
+playwright-cli close
 kill $DEV_PID 2>/dev/null || true
 ```
 
