@@ -19,6 +19,7 @@ tools:
 
 safe-outputs:
   create-pull-request:
+    protected-files: allowed
 ---
 
 You are helping sync the personal blog at TechWatching/techwatching.dev with its upstream
