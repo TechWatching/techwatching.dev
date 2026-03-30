@@ -68,6 +68,7 @@ apply or adapt (see rules below), fetch its current content from `nuxt-ui-templa
 - `eslint.config.mjs`
 - `tsconfig.json`
 - `pnpm-workspace.yaml`
+- `.npmrc` — apply changes (or deletion) as-is
 - `package.json` — apply only updates to **shared** dependencies (nuxt, @nuxt/ui, @nuxt/content,
   @nuxt/image, @nuxt/fonts, @nuxt/icon, typescript, vue, etc.). Do NOT remove packages that
   exist in this repo but not the template (e.g. @nuxtjs/seo, gsap, @vueuse/nuxt, and others).
@@ -122,6 +123,12 @@ Also skip these site-specific files (they are fully custom and must not be chang
 - `content/` (all blog posts and site content)
 - `.github/` (all files except `template-sync-state.json`)
 - `public/` (site-specific static assets)
+
+### 🤔 Any other file not listed above
+
+If an upstream change touches a file not covered by any of the rules above, **apply it** unless
+it clearly conflicts with site-specific customizations. Mention it in the PR description table
+with action "Applied (unlisted)" so the reviewer can double-check.
 
 ## Step 4: Update state file
 
