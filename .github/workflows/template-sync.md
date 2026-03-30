@@ -148,7 +148,7 @@ unresolved problems in the PR description.
 First, ensure pnpm is available and dependencies are installed:
 
 ```bash
-corepack enable 2>/dev/null || npm install -g pnpm
+npm install -g pnpm@$(node -p "require('./package.json').packageManager.split('@')[1]")
 pnpm install
 ```
 
