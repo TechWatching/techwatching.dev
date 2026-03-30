@@ -68,10 +68,15 @@ apply or adapt (see rules below), fetch its current content from `nuxt-ui-templa
 - `eslint.config.mjs`
 - `tsconfig.json`
 - `pnpm-workspace.yaml`
-- `package.json` — apply only updates to **shared** dependencies (nuxt, @nuxt/ui, @nuxt/content,
-  @nuxt/image, @nuxt/fonts, @nuxt/icon, typescript, vue, etc.). Do NOT remove packages that
-  exist in this repo but not the template (e.g. @nuxtjs/seo, gsap, @vueuse/nuxt, and others).
-  Do NOT downgrade any package version that is already newer in this repo.
+- `package.json` — merge upstream dependency changes into this repo's package.json:
+  - **Update versions**: for every dependency that exists in both the template and this repo,
+    update to the template's version unless this repo already has a newer version.
+  - **Add new packages**: if the template added a new dependency, add it here too.
+  - **Do NOT remove packages**: packages that exist in this repo but not in the template
+    (e.g. @nuxtjs/seo, feed, giscus, posthog-js, submitjson, etc.) must be kept.
+  - **Do NOT downgrade**: if this repo has a newer version than the template, keep ours.
+  - **Update `packageManager`**: sync the pnpm version from the template.
+  - After updating `package.json`, run `pnpm install` to regenerate `pnpm-lock.yaml`.
 
 ### 🔄 Adapt with rename — apply the equivalent change to the renamed file
 
