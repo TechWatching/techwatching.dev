@@ -44,8 +44,9 @@ The CI workflow (`.github/workflows/ci.yml`) runs on every push:
 1. `pnpm install` — install dependencies
 2. `pnpm run lint` — **must pass with zero errors**
 3. `pnpm run typecheck` — **must pass with zero errors**
+4. `pnpm run generate` — **static site generation must succeed**
 
-Always run both `pnpm lint` and `pnpm typecheck` before committing. Fix all lint and type errors before marking work as done.
+Always run `pnpm lint`, `pnpm typecheck`, and `pnpm generate` before committing. Fix all lint, type, and generation errors before marking work as done.
 
 ## Project Layout
 
@@ -62,7 +63,7 @@ techwatching.dev/
 │   ├── agents/                   # Copilot agent definitions
 │   │   └── nuxt.agent.md
 │   └── workflows/
-│       └── ci.yml                # lint + typecheck on every push
+│       └── ci.yml                # lint + typecheck + generate on every push
 ├── app/                          # Nuxt app source (Nuxt 4 layout)
 │   ├── app.vue                   # root Vue component
 │   ├── app.config.ts             # Nuxt UI theme config (colors, components)
