@@ -17,8 +17,6 @@ This is **TechWatching.dev**, Alexandre Nédélec's personal blog at https://tec
 
 This project uses **pnpm** (version specified in `package.json` → `"packageManager": "pnpm@10.29.2"`). Always use `pnpm` — never `npm` or `yarn`.
 
-The `.npmrc` sets `shamefully-hoist=true`.
-
 ### Bootstrap
 
 ```bash
