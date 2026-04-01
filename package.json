@@ -14,22 +14,22 @@
   },
   "dependencies": {
     "@giscus/vue": "^3.1.1",
-    "@iconify-json/lucide": "^1.2.90",
-    "@iconify-json/simple-icons": "^1.2.70",
-    "@nuxt/content": "^3.11.2",
+    "@iconify-json/lucide": "^1.2.100",
+    "@iconify-json/simple-icons": "^1.2.75",
+    "@nuxt/content": "^3.12.0",
     "@nuxt/hints": "1.0.0-alpha.6",
     "@nuxt/image": "^2.0.0",
     "@nuxt/scripts": "0.13.2",
-    "@nuxt/ui": "^4.4.0",
+    "@nuxt/ui": "^4.6.0",
     "@nuxtjs/seo": "^3.4.0",
     "@shikijs/engine-javascript": "^4.0.2",
     "@standard-schema/spec": "^1.1.0",
     "@unhead/vue": "^2.1.4",
     "@vueuse/nuxt": "^14.2.1",
-    "better-sqlite3": "^12.6.2",
+    "better-sqlite3": "^12.8.0",
     "feed": "^5.2.0",
     "just-kebab-case": "^4.2.0",
-    "nuxt": "^4.2.2",
+    "nuxt": "^4.4.2",
     "posthog-js": "^1.345.2",
     "submitjson": "^0.14.0",
     "tailwindcss": "^4.2.2",
@@ -41,11 +41,14 @@
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/vscode-icons": "^1.2.41",
-    "@nuxt/eslint": "^1.15.1",
+    "@nuxt/eslint": "^1.15.2",
     "@stefanobartoletti/nuxt-social-share": "^2.3.1",
-    "eslint": "^10.0.3",
-    "typescript": "^5.9.3",
-    "vue-tsc": "^3.2.4"
+    "eslint": "^10.1.0",
+    "typescript": "^6.0.2",
+    "vue-tsc": "^3.2.6"
   },
-  "packageManager": "pnpm@10.29.2"
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
 }
