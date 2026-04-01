@@ -21,7 +21,7 @@
     "@nuxt/image": "^2.0.0",
     "@nuxt/scripts": "0.13.2",
     "@nuxt/ui": "^4.6.0",
-    "@nuxtjs/seo": "^3.4.0",
+    "@nuxtjs/seo": "^5.1.0",
     "@shikijs/engine-javascript": "^4.0.2",
     "@standard-schema/spec": "^1.1.0",
     "@unhead/vue": "^2.1.4",
