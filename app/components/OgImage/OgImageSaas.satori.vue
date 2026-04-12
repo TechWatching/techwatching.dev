@@ -22,6 +22,12 @@ defineProps({
 <template>
   <div class="w-full h-full flex flex-col justify-center text-center bg-slate-900 p-8">
     <div class="relative">
+      <p
+        v-if="headline"
+        class="text-3xl text-blue-400 mb-4 uppercase tracking-widest"
+      >
+        {{ headline }}
+      </p>
       <h1 class="text-8xl mb-4 text-white">
         {{ title }}
       </h1>
