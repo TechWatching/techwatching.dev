@@ -11,6 +11,10 @@ defineProps({
   description: {
     type: String,
     required: true
+  },
+  headline: {
+    type: String,
+    default: undefined
   }
 })
 </script>
