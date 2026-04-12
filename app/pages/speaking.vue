@@ -24,7 +24,7 @@ useSeoMeta({
   ogDescription: description
 })
 
-defineOgImageComponent('Saas')
+defineOgImageComponent('SaaS')
 
 // Sort events by date (most recent first) and filter out incomplete entries
 const events = computed(() => {
