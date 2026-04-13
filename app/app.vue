@@ -20,7 +20,6 @@ useHead({
 useSeoMeta({
   titleTemplate: '%s - Alexandre Nédélec',
   ogImage: '/social-card.png',
-  twitterImage: '/social-card.png',
   twitterCard: 'summary_large_image'
 })
 
