@@ -40,8 +40,8 @@ Read the file `.github/template-sync-state.json` from the repository. It contain
 Use the GitHub repos tool to get the latest commit SHA on the `main` branch of
 `nuxt-ui-templates/saas`.
 
-If the latest SHA equals `lastSyncedCommit`, there are no new changes — stop immediately,
-there is nothing to do.
+If the latest SHA equals `lastSyncedCommit`, there are no new changes — call `noop` with the
+message "No new template changes since last sync." and stop.
 
 ## Step 2: Identify changed files
 
