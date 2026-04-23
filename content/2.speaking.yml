@@ -5,6 +5,13 @@ seo:
   title: Speaking - Alexandre Nédélec
   description: Discover my talks and presentations at conferences about Cloud, DevOps, Pulumi, and .NET development.
 events:
+  - name: "Roadmap GitHub Copilot"
+    date: 2026-03-31
+    event: DevApps
+    type: podcast
+    format: talk
+    location: Online
+    url: https://devapps.ms/podcasts/119-github-copilot-roadmap
   - name: "Roundtable: Aspire13, DevOps Server, WinUI3, CsWin32"
     date: 2025-12-10
     event: devdevdev.net
