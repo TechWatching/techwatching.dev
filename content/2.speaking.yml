@@ -9,7 +9,7 @@ events:
     date: 2026-03-31
     event: DevApps
     type: podcast
-    format: talk
+    format: panel
     location: Online
     url: https://devapps.ms/podcasts/119-github-copilot-roadmap
   - name: "Roundtable: Aspire13, DevOps Server, WinUI3, CsWin32"
