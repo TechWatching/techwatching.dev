@@ -49,7 +49,7 @@ roles:
       target: _blank
 sections:
   - title: I'm a Microsoft MVP.
-    description: "In December 2024, I was awarded the Microsoft MVP title in the Microsoft Azure category."
+    description: "I have been a Microsoft MVP since December 2024, and I'm currently an MVP in the Azure category and Developer Technologies category."
     id: mvp
     align: center
     image:
