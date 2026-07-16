@@ -55,8 +55,19 @@ useSeoMeta({
       :align="section.align"
       :features="section.features"
     >
-      <NuxtLink v-if="section.image?.src" :to="section.image.to" :target="section.image.target">
-        <NuxtImg :src="section.image.src" sizes="10vw" :alt="section.image.alt" class="mx-auto" :width="section.image.width ?? 600"/>
+      <NuxtLink
+        v-if="section.image?.src"
+        :to="section.image.to"
+        :target="section.image.target"
+        :class="section.id === 'mvp' ? 'mvp-badge-link' : ''"
+      >
+        <NuxtImg
+          :src="section.image.src"
+          sizes="10vw"
+          :alt="section.image.alt"
+          :class="section.id === 'mvp' ? 'mvp-badge' : 'mx-auto'"
+          :width="section.image.width ?? 600"
+        />
       </NuxtLink>
     </ULandingSection>
 
@@ -79,5 +90,37 @@ useSeoMeta({
     background-image: linear-gradient(to right, rgb(var(--color-gray-800)) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(var(--color-gray-800)) 1px, transparent 1px);
   }
+}
+
+.mvp-badge-link {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.75rem;
+  border: 1px solid rgb(var(--color-gray-200));
+  border-radius: 0.75rem;
+  background: white;
+  box-shadow: 0 12px 28px rgb(15 23 42 / 0.12);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.mvp-badge-link:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 18px 34px rgb(15 23 42 / 0.18);
+}
+
+.mvp-badge-link:focus-visible {
+  outline: 3px solid rgb(var(--color-primary-500));
+  outline-offset: 4px;
+}
+
+.mvp-badge {
+  display: block;
+  width: min(48rem, 90vw);
+  height: auto;
+}
+
+.dark .mvp-badge-link {
+  border-color: rgb(var(--color-gray-700));
 }
 </style>
