@@ -24,7 +24,7 @@
     "@nuxtjs/seo": "^3.4.0",
     "@shikijs/engine-javascript": "^4.2.0",
     "@standard-schema/spec": "^1.1.0",
-    "@unhead/vue": "^2.1.15",
+    "@unhead/vue": "^3.4.0",
     "@vueuse/nuxt": "^14.3.0",
     "better-sqlite3": "^12.11.1",
     "feed": "^5.2.1",
