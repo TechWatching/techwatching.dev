@@ -27,7 +27,7 @@
     "@unhead/vue": "^2.1.15",
     "@vueuse/nuxt": "^14.3.0",
     "better-sqlite3": "^12.11.1",
-    "feed": "^5.2.1",
+    "feed": "^6.0.0",
     "just-kebab-case": "^4.2.0",
     "nuxt": "^4.4.2",
     "posthog-js": "^1.393.0",
