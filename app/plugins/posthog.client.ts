@@ -2,6 +2,9 @@ import posthog from 'posthog-js'
 
 export default defineNuxtPlugin(() => {
   const runtimeConfig = useRuntimeConfig()
+  if (!runtimeConfig.public.posthogPublicKey)
+    return
+
   const posthogClient = posthog.init(runtimeConfig.public.posthogPublicKey, {
     api_host: '/ph',
     ui_host: runtimeConfig.public.posthogHost,

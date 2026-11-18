@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   ],
 
   devtools: {
-    enabled: true
+    enabled: false
   },
 
   app: {
@@ -71,7 +71,7 @@ export default defineNuxtConfig({
     prerender: {
       routes: ['/', '/feed.rss', '/feed.atom', '/dotnet_feed.rss', '/dotnet_feed.atom'],
       crawlLinks: true,
-      failOnError: false
+      failOnError: true
     }
   },
 
@@ -82,6 +82,33 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  fonts: {
+    provider: 'local',
+    local: {
+      packages: ['@fontsource-variable/public-sans']
+    }
+  },
+
+  icon: {
+    clientBundle: {
+      icons: [
+        'simple-icons:bluesky',
+        'simple-icons:devdotto',
+        'simple-icons:github',
+        'simple-icons:hashnode',
+        'simple-icons:linkedin',
+        'simple-icons:mastodon'
+      ],
+      scan: {
+        globInclude: [
+          'app/**/*.{vue,ts}',
+          'content/**/*.{md,mdc,yml,yaml}'
+        ]
+      }
+    },
+    fallbackToApi: false
   },
 
   sitemap: {

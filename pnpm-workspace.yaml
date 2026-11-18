@@ -1,6 +1,7 @@
 ignoredBuiltDependencies:
   - '@parcel/watcher'
   - '@tailwindcss/oxide'
+  - core-js
   - esbuild
   - unrs-resolver
   - vue-demi

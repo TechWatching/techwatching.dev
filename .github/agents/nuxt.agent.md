@@ -18,9 +18,9 @@ You are the **Nuxt Frontend** — a frontend specialist that builds Vue SFC comp
 - Build Vue SFC components using `<script setup lang="ts">` and Composition API following the pattern in `app/components/` (e.g., `AppHeader.vue`, `GiscusComments.vue`, `ContactForm.vue`)
 - Implement Nuxt file-based pages in `app/pages/` with `useAsyncData` and `queryCollection` to fetch typed `@nuxt/content` data with path filters (e.g., `queryCollection('posts').path(route.path).first()`)
 - Compose page layouts with `@nuxt/ui` components (`UPageHero`, `UPageSection`, `UPageGrid`, `UPageCard`, `UContainer`, `UPageHeader`, `UPageBody`, `UContentToc`, `UContentSurround`, `UBadge`, `UButton`, `UAvatar`) and TailwindCSS utility classes
-- Configure per-page SEO using `useSeoMeta`, `useSchemaOrg` with `defineArticle` for blog posts, and `defineOgImageComponent('Saas', ...)` for OG image fallbacks when no cover image is available
+- Configure per-page SEO using `useSeoMeta`, `useSchemaOrg` with `defineArticle` for blog posts, and `defineOgImage('Saas', { title, description })` for OG image fallbacks when no cover image is available
 - Write Nitro server handlers in `server/api/` and `server/routes/` following the existing `.get.ts` naming convention (e.g., `tags.json.get.ts`, `feed.ts` pattern for RSS/Atom feeds)
-- Integrate third-party components: `@giscus/vue` for comments, `@stefanobartoletti/nuxt-social-share` for sharing, `@nuxt/image` `NuxtImg` for optimized images, PostHog analytics via `posthog-js`, and contact form via `submitjson`
+- Integrate third-party components: `@giscus/vue` for comments, `@stefanobartoletti/nuxt-social-share` for sharing, `@nuxt/image` `NuxtImg` for optimized images, PostHog analytics via `posthog-js`, and the SubmitJSON HTTP API for the contact form
 
 ## Technical Standards
 

@@ -1,80 +1,49 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-
 const props = defineProps<{
   id: string | number
   conversation?: string
   cards?: 'hidden' | 'visible'
 }>()
 
-useHead({
-  script: [
-    { id: 'twitter-wjs', type: 'text/javascript', src: 'https://platform.twitter.com/widgets.js', async: true, defer: true }
-  ]
-})
 const colorMode = useColorMode()
-const isDark = computed({
-  get() {
-    return colorMode.value === 'dark'
-  },
-  set() {
-    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
-  }
-})
 
-const tweet = ref<HTMLElement | null>()
-
-const loaded = ref(false)
-const tweetNotFound = ref(false)
-
-async function create(retries = 10) {
-  // @ts-expect-error global external script injected
-  if (!window.twttr?.widgets?.createTweet) {
-    if (retries <= 0)
-      return console.error('Failed to load Twitter widget after 10 retries.')
-    setTimeout(() => create(retries - 1), 1000)
-    return
-  }
-  // @ts-expect-error global external script injected
-  const element = await window.twttr.widgets.createTweet(
-    props.id.toString(),
-    tweet.value,
-    {
-      theme: isDark.value ? 'dark' : 'light',
-      conversation: props.conversation || 'none',
-      cards: props.cards
-    }
-  )
-  loaded.value = true
-  if (element === undefined)
-    tweetNotFound.value = true
-}
-
-onMounted(() => {
-  create()
+const embedUrl = computed(() => {
+  const query = new URLSearchParams({
+    id: props.id.toString(),
+    dnt: 'true',
+    theme: colorMode.value === 'dark' ? 'dark' : 'light',
+    conversation: props.conversation || 'none'
+  })
+  if (props.cards)
+    query.set('cards', props.cards)
+  return `https://platform.twitter.com/embed/Tweet.html?${query}`
 })
 </script>
 
 <template>
-  <div
-    ref="tweet"
-    class="tweet nuxtcontent-tweet"
-  >
-    <div
-      v-if="!loaded || tweetNotFound"
-      class="w-30 h-30 my-10px bg-gray-400 bg-opacity-10 rounded-lg flex opacity-50"
+  <div class="tweet nuxtcontent-tweet my-10">
+    <iframe
+      :src="embedUrl"
+      :title="`Embedded post ${props.id}`"
+      class="w-full min-h-80 border-0"
+      height="520"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+    />
+    <NuxtLink
+      :to="`https://twitter.com/i/status/${props.id}`"
+      class="sr-only"
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      <div class="m-auto animate-pulse text-4xl">
-        <UIcon name="i-carbon-logo-twitter" />
-        <span v-if="tweetNotFound">Could not load tweet with id="{{ props.id }}"</span>
-      </div>
-    </div>
+      Open post {{ props.id }} on X
+    </NuxtLink>
   </div>
 </template>
 
 <style>
 .nuxtcontent-tweet iframe {
   border-radius: 1rem;
-  overflow: hidden;
 }
 </style>

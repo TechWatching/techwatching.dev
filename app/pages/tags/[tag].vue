@@ -23,7 +23,7 @@ useSeoMeta({
   ogDescription: description
 })
 
-defineOgImageComponent('Saas')
+defineOgImage('Saas', { title, description })
 
 const activePost = useState<number | null>('activePost', () => null)
 </script>

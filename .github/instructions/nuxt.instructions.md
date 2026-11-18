@@ -51,7 +51,7 @@ if (!post.value) {
 
 - Call `useSeoMeta({ title, ogTitle, description, ogDescription })` in every page — read `seo` overrides from content first: `post.value.seo?.title || post.value.title`
 - Use `useSchemaOrg([defineArticle({ '@type': 'BlogPosting', ... })])` on post pages
-- For OG images: use `joinURL(site.url, post.image.src)` if a cover image exists; otherwise call `defineOgImageComponent('Saas', { headline: 'Blog' })`
+- For OG images: use `joinURL(site.url, post.image.src)` if a cover image exists; otherwise call `defineOgImage('Saas', { title, description })`
 - Import `joinURL` from `ufo`, get site config via `const site = useSiteConfig()`
 
 ```vue
@@ -63,7 +63,7 @@ if (post.value.image?.src) {
   const site = useSiteConfig()
   useSeoMeta({ ogImage: joinURL(site.url, post.value.image.src) })
 } else {
-  defineOgImageComponent('Saas', { headline: 'Blog' })
+  defineOgImage('Saas', { title, description })
 }
 </script>
 ```
