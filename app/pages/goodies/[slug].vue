@@ -32,8 +32,9 @@ if (goodie.value.image?.src) {
     twitterImage: joinURL(site.url, goodie.value.image.src)
   })
 } else {
-  defineOgImageComponent('Saas', {
-    headline: 'Goodies'
+  defineOgImage('Saas', {
+    title,
+    description
   })
 }
 </script>

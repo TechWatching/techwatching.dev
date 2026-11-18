@@ -1,3 +1,11 @@
 [build]
   command = "pnpm run generate"
   ignore = "if echo \"$BRANCH\" | grep -q '^renovate/'; then exit 0; else exit 1; fi"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://api.submitjson.com; frame-src https://giscus.app https://platform.twitter.com; worker-src 'self' blob:; upgrade-insecure-requests"
+    Permissions-Policy = "camera=(), geolocation=(), microphone=(), payment=()"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"

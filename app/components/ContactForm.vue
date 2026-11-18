@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { z } from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
-import SubmitJSON from 'submitjson'
 
 const schema = z.object({
   name: z.string().min(1, 'Required'),
@@ -21,12 +20,19 @@ const state = reactive({
 
 const config = useRuntimeConfig()
 const submitJsonApiKey = config.public.submitJsonApiKey
-const sj = new SubmitJSON({ apiKey: submitJsonApiKey, endpoint: '3blcoDHQS' })
 const toast = useToast()
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   try {
-    await sj.submit(event.data)
+    await $fetch('https://api.submitjson.com/v1/submit/3blcoDHQS', {
+      method: 'POST',
+      headers: {
+        'X-API-Key': submitJsonApiKey
+      },
+      body: {
+        data: event.data
+      }
+    })
     toast.add({
       title: 'Message sent',
       description: 'Thank you for your message!',
@@ -34,6 +40,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     })
     await navigateTo({ path: '/' })
   } catch {
+    console.error('Failed to submit contact form: request rejected')
     toast.add({
       title: 'Oops',
       description: 'Sorry, your message was not successfully sent, try again or contact me by message on LinkedIn/BlueSky/Mastodon.',
