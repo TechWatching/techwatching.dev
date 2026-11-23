@@ -50,7 +50,7 @@
     "@stefanobartoletti/nuxt-social-share": "^3.3.2",
     "eslint": "^10.15.0",
     "serve": "^14.2.8",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vue-tsc": "^3.3.14"
   },
   "pnpm": {
