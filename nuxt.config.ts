@@ -75,6 +75,16 @@ export default defineNuxtConfig({
     }
   },
 
+  ui: {
+    eslint: {
+      rules: {
+        'no-unknown-classes': 'warn',
+        'no-conflicting-classes': 'warn',
+        'no-palette-colors': 'warn'
+      }
+    }
+  },
+
   eslint: {
     config: {
       stylistic: {

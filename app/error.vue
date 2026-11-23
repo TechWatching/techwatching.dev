@@ -83,7 +83,7 @@ const links = [{
 </script>
 
 <template>
-  <div>
+  <UApp>
     <AppHeader />
 
     <UMain>
@@ -106,6 +106,5 @@ const links = [{
       />
     </ClientOnly>
 
-    <UToaster />
-  </div>
+  </UApp>
 </template>

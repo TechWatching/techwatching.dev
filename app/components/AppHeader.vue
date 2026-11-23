@@ -1,6 +1,18 @@
 <script setup lang="ts">
 const route = useRoute()
 
+const { open: searchOpen } = useContentSearch()
+
+const open = ref(false)
+
+// Both modals portal to `body` with no z-index, so after a client-side layout
+// change the menu can end up painted over the search
+watch(searchOpen, (value) => {
+  if (value) {
+    open.value = false
+  }
+})
+
 const items = computed(() => [
   {
     label: 'Home',
@@ -31,11 +43,11 @@ const items = computed(() => [
 </script>
 
 <template>
-  <UHeader>
+  <UHeader v-model:open="open">
     <template #left>
       <NuxtLink
         to="/"
-        class="flex items-center gap-2"
+        class="flex items-center gap-2 focus-visible:outline-3 outline-primary/25 rounded-md p-1 -ms-1"
       >
         <AppLogo />
       </NuxtLink>
